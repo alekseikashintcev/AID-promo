@@ -2,22 +2,17 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="theme-color" content="#080f1e"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <meta name="description" content="Экстренная первая помощь — AHA 2025. Работает офлайн."/>
-  <link rel="manifest" href="manifest.json"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png"/>
-  <link rel="apple-touch-icon" sizes="167x167" href="icon-167.png"/>
-  <link rel="apple-touch-icon" sizes="152x152" href="icon-152.png"/>
-  <link rel="apple-touch-icon" sizes="120x120" href="icon-120.png"/>
-  <link rel="apple-touch-icon" href="icon-180.png"/>
-  <meta name="apple-mobile-web-app-title" content="Первая помощь"/>
+  <meta name="apple-mobile-web-app-title" content="Поезд «Смена»"/>
   <meta name="mobile-web-app-capable" content="yes"/>
-  <title>🚨 Экстренная первая помощь</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <meta name="description" content="Поезд «Смена» Санкт-Петербург - Москва. Работает офлайн."/>
+  <title>🚨 Поезд «Смена»</title>
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogItCf0L7QtdC30LQgwqvQodC80LXQvdCwwrsiLCAic2hvcnRfbmFtZSI6ICLQodC80LXQvdCwIiwgImRlc2NyaXB0aW9uIjogItCf0YDQvtGC0L7QutC+0LvRiyDQvdC10L7RgtC70L7QttC90L7QuSDQv9C+0LzQvtGJ0Lgg0LTQu9GPINC/0L7QtdC30LTQsCDCq9Ch0LzQtdC90LDCuyDQodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQsyDigJQg0JzQvtGB0LrQstCwLiDQoNCw0LHQvtGC0LDQtdGCINC+0YTQu9Cw0LnQvS4iLCAic3RhcnRfdXJsIjogIi4vIiwgInNjb3BlIjogIi4vIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwODBmMWUiLCAidGhlbWVfY29sb3IiOiAiIzA4MGYxZSIsICJsYW5nIjogInJ1IiwgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTVRJZ05URXlJajQ4Y21WamRDQjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2NuZzlJakV3TUNJZ1ptbHNiRDBpSTJabU0yRXpNQ0l2UGp4eVpXTjBJSGc5SWpJeE5pSWdlVDBpTVRBMklpQjNhV1IwYUQwaU9EQWlJR2hsYVdkb2REMGlNekF3SWlCeWVEMGlNVGdpSUdacGJHdzlJaU5tWm1abVptWWlMejQ4Y21WamRDQjRQU0l4TURZaUlIazlJakl4TmlJZ2QybGtkR2c5SWpNd01DSWdhR1ZwWjJoMFBTSTRNQ0lnY25nOUlqRTRJaUJtYVd4c1BTSWpabVptWm1abUlpOCtQQzl6ZG1jKyIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsICJwdXJwb3NlIjogImFueSJ9LCB7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBMU1USWdOVEV5SWo0OGNtVmpkQ0IzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdjbmc5SWpFd01DSWdabWxzYkQwaUkyWm1NMkV6TUNJdlBqeHlaV04wSUhnOUlqSXhOaUlnZVQwaU1UQTJJaUIzYVdSMGFEMGlPREFpSUdobGFXZG9kRDBpTXpBd0lpQnllRDBpTVRnaUlHWnBiR3c5SWlObVptWm1abVlpTHo0OGNtVmpkQ0I0UFNJeE1EWWlJSGs5SWpJeE5pSWdkMmxrZEdnOUlqTXdNQ0lnYUdWcFoyaDBQU0k0TUNJZ2NuZzlJakU0SWlCbWFXeHNQU0lqWm1abVptWm1JaTgrUEM5emRtYysiLCAic2l6ZXMiOiAiNTEyeDUxMiIsICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLCAicHVycG9zZSI6ICJtYXNrYWJsZSJ9XX0="/>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iI2ZmM2EzMCIvPjxyZWN0IHg9IjIxNiIgeT0iMTA2IiB3aWR0aD0iODAiIGhlaWdodD0iMzAwIiByeD0iMTgiIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSIxMDYiIHk9IjIxNiIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI4MCIgcng9IjE4IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+"/>
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iI2ZmM2EzMCIvPjxyZWN0IHg9IjIxNiIgeT0iMTA2IiB3aWR0aD0iODAiIGhlaWdodD0iMzAwIiByeD0iMTgiIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSIxMDYiIHk9IjIxNiIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI4MCIgcng9IjE4IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+"/>
   <style>
     html,body,#root{margin:0;padding:0;min-height:100%;background:#080f1e;}
     #loading{display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:16px;font-family:system-ui,sans-serif;color:#8a9cbf;background:#080f1e;}
@@ -64,8 +59,6 @@ c.useEffect=function(a,b){return g.current.useEffect(a,b)};c.useId=function(){re
 c.useState=function(a){return g.current.useState(a)};c.useSyncExternalStore=function(a,b,c){return g.current.useSyncExternalStore(a,b,c)};c.useTransition=function(){return g.current.useTransition()};c.version="18.3.1"});
 })();
 
-</script>
-<script>
 /* ReactDOM */
 /**
  * @license React
@@ -335,8 +328,6 @@ var d=null!=c&&c.hydratedSources||null,e=!1,f="",g=aj;null!==c&&void 0!==c&&(!0=
 function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmountComponentAtNode=function(a){if(!Vd(a))throw Error(m(40));return a._reactRootContainer?(yb(function(){Wd(null,null,a,!1,function(){a._reactRootContainer=null;a[Ja]=null})}),!0):!1};Q.unstable_batchedUpdates=Tf;Q.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!Vd(c))throw Error(m(200));if(null==a||void 0===a._reactInternals)throw Error(m(38));return Wd(a,b,c,!1,d)};Q.version="18.3.1-next-f1338f8080-20240426"});
 })();
 
-</script>
-<script>
 /* Emergency Aid App — AHA 2025 — works offline */
 const {
   useState,
@@ -347,9 +338,7 @@ const {
 
 /* ═══════════════════════════════ CONFIG ═══ */
 const CFG = {
-  emergencyNumber: "112",
-  specialistVideoUrl: "https://your-hospital.ru/emergency-call",
-  specialistPhone: ""
+  emergencyNumber: "112"
 };
 const C = {
   bg: "#080f1e",
@@ -372,9 +361,8 @@ const C = {
   textMuted: "#4a5a78"
 };
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{font-family:'Manrope',-apple-system,system-ui,sans-serif;background:${C.bg};color:${C.text};min-height:100vh;-webkit-font-smoothing:antialiased;}
+html,body{font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;background:${C.bg};color:${C.text};min-height:100vh;-webkit-font-smoothing:antialiased;}
 .screen{min-height:100vh;display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 .body{flex:1;padding:20px 16px;overflow-y:auto;}
 .footer{padding:12px 16px 20px;background:${C.bg};border-top:1px solid ${C.border};position:sticky;bottom:0;}
@@ -383,9 +371,10 @@ html,body{font-family:'Manrope',-apple-system,system-ui,sans-serif;background:${
 .hdr-t{font-weight:800;font-size:17px;flex:1;line-height:1.2;}
 .hdr-s{font-size:11px;color:${C.textSec};margin-top:1px;}
 .e112{display:flex;align-items:center;gap:5px;padding:7px 12px;background:${C.red};border-radius:20px;font-weight:800;font-size:13px;text-decoration:none;color:#fff;flex-shrink:0;}
+.home-btn{display:flex;align-items:center;gap:4px;padding:7px 10px;background:${C.card};border:1px solid ${C.border};border-radius:20px;font-weight:700;font-size:12px;color:${C.text};flex-shrink:0;cursor:pointer;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;}
 .pb{height:3px;background:${C.border};margin:0 16px 8px;border-radius:2px;overflow:hidden;}
 .pf{height:100%;background:${C.blue};border-radius:2px;transition:width .35s;}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 20px;border:none;border-radius:14px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;transition:transform .1s,opacity .2s;min-height:52px;text-decoration:none;}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 20px;border:none;border-radius:14px;cursor:pointer;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;font-weight:700;font-size:16px;transition:transform .1s,opacity .2s;min-height:52px;text-decoration:none;}
 .btn:active{transform:scale(.97);}
 .btn-red{background:${C.red};color:#fff;}
 .btn-sec{background:${C.card};color:${C.text};border:1px solid ${C.border};}
@@ -411,7 +400,7 @@ html,body{font-family:'Manrope',-apple-system,system-ui,sans-serif;background:${
 .tmr{display:flex;align-items:center;justify-content:space-between;background:${C.bg};border:1px solid ${C.border};border-radius:12px;padding:12px 14px;margin-top:12px;}
 .tmrd{font-size:34px;font-weight:900;font-variant-numeric:tabular-nums;color:${C.green};}
 .tmrl{font-size:11px;color:${C.textSec};margin-top:2px;}
-.tmrb{padding:10px 18px;border-radius:10px;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;background:${C.green};color:#000;}
+.tmrb{padding:10px 18px;border-radius:10px;border:none;cursor:pointer;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;font-weight:700;font-size:13px;background:${C.green};color:#000;}
 .tmrb.run{background:${C.red};color:#fff;}
 .dcard{border-radius:20px;padding:22px;margin-bottom:16px;text-align:center;}
 .dico{font-size:54px;margin-bottom:10px;}
@@ -419,19 +408,21 @@ html,body{font-family:'Manrope',-apple-system,system-ui,sans-serif;background:${
 .dsub{font-size:13px;opacity:.8;}
 .dbadge{display:inline-flex;padding:5px 14px;border-radius:20px;font-weight:700;font-size:12px;margin-top:10px;}
 .rsel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.rbtn{padding:14px 10px;border-radius:12px;border:2px solid ${C.border};background:${C.card};cursor:pointer;text-align:center;font-family:'Manrope',sans-serif;color:${C.text};transition:all .15s;}
+.rbtn{padding:14px 10px;border-radius:12px;border:2px solid ${C.border};background:${C.card};cursor:pointer;text-align:center;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;color:${C.text};transition:all .15s;}
 .rbtn.sel{border-color:${C.blue};background:${C.blueBg};}
 .rbico{font-size:24px;margin-bottom:4px;}
 .rblbl{font-weight:800;font-size:14px;}
 .rbsub{font-size:11px;color:${C.textSec};margin-top:2px;}
 .banner{display:flex;align-items:flex-start;gap:10px;background:${C.blueBg};border:1px solid #1a3a5a;border-radius:12px;padding:14px;margin-bottom:16px;}
 .sec-t{font-size:12px;font-weight:700;color:${C.textSec};text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.confirm{margin-top:12px;width:100%;padding:11px 14px;border-radius:12px;border:1px solid ${C.border};background:${C.cardHover};color:${C.text};font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;font-weight:800;font-size:13px;cursor:pointer;}
+.confirm.done{background:${C.greenBg};border-color:${C.green};color:${C.green};cursor:default;}
 /* METRONOME */
 .metro{background:${C.bg};border:2px solid ${C.border};border-radius:16px;margin-top:14px;overflow:hidden;}
 .metro-top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;}
 .metro-bpm{font-size:11px;color:${C.textSec};font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
 .metro-controls{display:flex;gap:8px;align-items:center;}
-.metro-btn{padding:8px 14px;border-radius:9px;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;transition:transform .1s;}
+.metro-btn{padding:8px 14px;border-radius:9px;border:none;cursor:pointer;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;font-weight:700;font-size:13px;transition:transform .1s;}
 .metro-btn:active{transform:scale(.95);}
 .metro-bar{height:4px;background:${C.border};}
 .metro-fill{height:100%;background:${C.red};transition:width .05s linear;}
@@ -489,8 +480,26 @@ const P = {
     color: C.red,
     severity: "critical",
     basic: {
-      intro: "Немедленно позвоните 112. Начните CPR прямо сейчас.",
+      intro: "Немедленно позвоните 112. Начните реанимацию прямо сейчас.",
       steps: [{
+        id: "call_112",
+        icon: "📞",
+        title: "Вызовите 112",
+        text: "Вызовите 112 НЕМЕДЛЕННО. Сообщите: «Остановка сердца, поезд “Смена”, Санкт-Петербург - Москва».\nПопросите проводника или пассажира принести дефибриллятор.\nВключите громкую связь и продолжайте выполнять алгоритм.",
+        hl: "r"
+      }, {
+        id: "radio_reanimation",
+        icon: "📻",
+        title: "Передайте сигнал по радиосвязи",
+        text: "Передайте по радиосвязи сигнал: «Реанимация».\nДождитесь подтверждения передачи сигнала.",
+        hl: "r"
+      }, {
+        id: "train_doctor_call",
+        icon: "📢",
+        title: "Вызовите медицинского работника",
+        text: "Вызовите по внутрипоездной трансляции медицинского работника:\n«Уважаемые пассажиры, если среди вас есть медицинские работники, прошу вас пройти в вагон № ____. Благодарю за отзывчивость».",
+        hl: "y"
+      }, {
         id: 1,
         icon: "⚠️",
         title: "Безопасность",
@@ -499,13 +508,7 @@ const P = {
         id: 2,
         icon: "👋",
         title: "Проверьте реакцию",
-        text: "Похлопайте по плечам, громко спросите: «Вы меня слышите?»\nНет ответа → к следующему шагу."
-      }, {
-        id: 3,
-        icon: "📞",
-        title: "ЗВОНИТЕ 112",
-        text: "Вызовите скорую НЕМЕДЛЕННО. Попросите кого-то найти AED (дефибриллятор).\nЕсли один — сначала звоните, потом помогаете.",
-        hl: "r"
+        text: "Похлопайте по плечам, громко спросите: «Вы меня слышите?»\nПроверьте пульс на шее (сонная артерия, 2 пальца, не более 10 секунд) и наличие дыхания — поднесите зеркальце ко рту и носу.\nНет ответа, нет пульса или нет дыхания → к следующему шагу."
       }, {
         id: 4,
         icon: "🛏️",
@@ -518,7 +521,7 @@ const P = {
         text: "Основание ладони — ЦЕНТР груди (нижняя половина грудины).\nВторая рука сверху, пальцы в замок. Руки прямые.\n▸ Глубина ≥5 см\n▸ Частота 100–120/мин\n▸ Полное расправление груди между компрессиями",
         hl: "r",
         timer: 120,
-        timerLabel: "2 минуты CPR",
+        timerLabel: "2 минуты реанимации",
         cpr: true,
         anim: "cpr"
       }, {
@@ -530,33 +533,55 @@ const P = {
       }, {
         id: 7,
         icon: "⚡",
-        title: "Использование AED",
-        text: "Включите AED → следуйте голосовым инструкциям.\nПриклейте электроды как на картинке.\nПосле разряда → СРАЗУ продолжайте компрессии!",
+        title: "Использование дефибриллятора",
+        text: "Включите дефибриллятор → следуйте голосовым инструкциям.\nПриклейте электроды как на картинке.\nПосле разряда → СРАЗУ продолжайте компрессии!",
         hl: "y",
         anim: "aed"
+      }, {
+        id: "check_2min",
+        icon: "🩺",
+        title: "Каждые 2 минуты — проверьте пульс, дыхание, давление",
+        text: "На смене спасателя или в момент анализа ритма дефибриллятором прервите компрессии на несколько секунд и проверьте:\n• Пульс на сонной артерии (не более 10 сек)\n• Дыхание — видно/слышно/чувствуется\n• АД, если есть тонометр\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [8]
       }, {
         id: 8,
         icon: "🔄",
         title: "Не останавливайтесь",
-        text: "Продолжайте CPR до приезда скорой.\nМеняйтесь каждые 2 минуты если есть помощники.\nОстановитесь только если пациент задвигался или нормально задышал."
+        text: "Если пульса и дыхания нет — сразу продолжайте компрессии.\nМеняйтесь каждые 2 минуты если есть помощники.\nПродолжайте до приезда скорой или до восстановления пульса и дыхания."
+      }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — остановите реанимацию",
+        text: "Прекратите компрессии, если пациент:\n• Дышит нормально И у него определяется пульс\n• Начал двигаться, реагировать, открыл глаза\n\nДалее:\n1. Устойчивое боковое положение, если без сознания, но дышит\n2. Не оставляйте одного — непрерывно наблюдайте дыхание, пульс, сознание до приезда скорой\n3. Подтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал\n\nЕсли пульс/дыхание снова пропадут — немедленно возобновите компрессии.",
+        hl: "g"
       }]
     },
     medical: {
-      intro: "AHA 2025 ACLS. Высококачественный CPR — приоритет. Минимизировать паузы.",
+      intro: "AHA 2025 ACLS. Высококачественная реанимация — приоритет. Минимизировать паузы.",
       shockable: [{
         id: 1,
         icon: "🫁",
-        title: "Старт CPR",
+        title: "Старт реанимации",
         text: "Мешок-маска + О₂. Монитор/дефибриллятор.\nКомпрессии ≥5 см, 100–120/мин. Соотношение 30:2 (без продвинутых ДП).\nПри продвинутых ДП: непрерывные компрессии + 1 вдох каждые 6 сек.",
         timer: 120,
-        timerLabel: "2 мин CPR",
+        timerLabel: "2 мин реанимации",
         cpr: true,
         anim: "cpr"
+      }, {
+        id: "rhythm_check",
+        icon: "🩺",
+        title: "Проверка ритма, пульса, дыхания, АД (≤10 сек)",
+        text: "На паузе не более 10 сек оцените ритм на мониторе + пульс (пальпация) + дыхание + АД, если есть манжета/артлиния.\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [2, 3, 4, 5]
       }, {
         id: 2,
         icon: "⚡",
         title: "Дефибрилляция (VF/pVT)",
-        text: "Бифазный: 120–200 Дж (или максимальный)\nМонофазный: 360 Дж\nПосле разряда → НЕМЕДЛЕННО продолжить CPR 2 мин.",
+        text: "Бифазный: 120–200 Дж (или максимальный)\nМонофазный: 360 Дж\nПосле разряда → НЕМЕДЛЕННО продолжить реанимацию 2 мин.",
         hl: "o",
         anim: "aed"
       }, {
@@ -574,28 +599,42 @@ const P = {
         id: 5,
         icon: "🔍",
         title: "Обратимые причины (4Г+4Т)",
-        text: "4Г: Гиповолемия · Гипоксия · Г⁺ ион (ацидоз) · Гипо/гиперКалиемия · Гипотермия\n4Т: Тампонада · Тензионный пневмоторакс · Токсины · Тромбоз (ТЭЛА/ОКС)"
+        text: "4Г: Гиповолемия · Гипоксия · Г⁺ ион (ацидоз) · Гипо/гиперКалиемия\n4Т: Тампонада · Тензионный пневмоторакс · Тромбоз (ТЭЛА/ОКС)"
+      }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — прекратите компрессии",
+        text: "ROSC подтверждён (устойчивый пульс + дыхание/адекватная оксигенация).\nПодтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал с точным временем ROSC.",
+        hl: "g"
       }, {
         id: 6,
         icon: "🏥",
-        title: "При ROSC → Пост-реанимационная помощь",
+        title: "Постреанимационная помощь",
         text: "SpO₂ 90–98% · PaCO₂ 35–45 · MAP ≥65 мм рт.ст.\nЭКГ 12 отведений · КТ · Контроль t° 32–37.5°C\nЭЭГ при отсутствии сознания · Избегать гипогликемии",
         hl: "g"
       }],
       nonShockable: [{
         id: 1,
         icon: "🫁",
-        title: "Старт CPR + IV/IO",
+        title: "Старт реанимации + IV/IO",
         text: "Мешок-маска + О₂. Монитор. IV/IO доступ.\nКомпрессии ≥5 см, 100–120/мин.",
         timer: 120,
-        timerLabel: "2 мин CPR",
+        timerLabel: "2 мин реанимации",
         cpr: true,
         anim: "cpr"
+      }, {
+        id: "rhythm_check",
+        icon: "🩺",
+        title: "Проверка ритма, пульса, дыхания, АД (≤10 сек)",
+        text: "На паузе не более 10 сек оцените ритм на мониторе + пульс (пальпация) + дыхание + АД, если есть манжета/артлиния.\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [2, 3, 4, 5]
       }, {
         id: 2,
         icon: "💊",
         title: "Адреналин НЕМЕДЛЕННО",
-        text: "Адреналин 1 мг IV/IO — КАК МОЖНО СКОРЕЕ.\nПовторять каждые 3–5 мин.\nETCO₂ ≥10 мм рт.ст. → признак качественного CPR.",
+        text: "Адреналин 1 мг IV/IO — КАК МОЖНО СКОРЕЕ.\nПовторять каждые 3–5 мин.\nETCO₂ ≥10 мм рт.ст. → признак качественной реанимации.",
         hl: "r"
       }, {
         id: 3,
@@ -606,12 +645,18 @@ const P = {
         id: 4,
         icon: "🔍",
         title: "Обратимые причины (4Г+4Т)",
-        text: "Гиповолемия (болюс жидкости) · Гипоксия (интубация) · Ацидоз · Гиперкалиемия\nТампонада (перикардиоцентез) · Тензионный пневмоторакс (игла 2-е межреберье) · Токсины · Тромбоэмболия"
+        text: "Гиповолемия (болюс жидкости) · Гипоксия (интубация) · Ацидоз · Гиперкалиемия\nТампонада (перикардиоцентез) · Тензионный пневмоторакс (игла 2-е межреберье) · Тромбоэмболия"
       }, {
         id: 5,
         icon: "📊",
         title: "Оценка эффективности",
-        text: "ETCO₂ стойко <10 мм рт.ст. → неоптимальный CPR → переоценить.\nПри ROSC → пост-реанимационная помощь.\nОценить уместность продолжения реанимации."
+        text: "ETCO₂ стойко <10 мм рт.ст. → неоптимальная реанимация → переоценить.\nОценить уместность продолжения реанимации."
+      }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — прекратите компрессии",
+        text: "ROSC подтверждён (устойчивый пульс + дыхание/адекватная оксигенация).\nПодтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал с точным временем ROSC.\nДалее — постреанимационная помощь (SpO₂ 90–98%, MAP ≥65, ЭКГ 12 отв., контроль t°).",
+        hl: "g"
       }]
     }
   },
@@ -622,23 +667,46 @@ const P = {
     color: C.red,
     severity: "critical",
     basic: {
-      intro: "Дети: причина часто дыхательная. 2 минуты CPR → вызов 112 (если нет свидетелей коллапса).",
+      intro: "Дети: причина часто дыхательная. 2 минуты реанимации → вызов 112 (если нет свидетелей коллапса).",
       steps: [{
-        id: 1,
+        id: "call_112",
+        icon: "📞",
+        title: "Вызовите 112",
+        text: "Вызовите 112 НЕМЕДЛЕННО. Сообщите: «Остановка сердца у ребёнка, поезд “Смена”, Санкт-Петербург - Москва».\nПопросите проводника или пассажира принести дефибриллятор.\nВключите громкую связь и продолжайте выполнять алгоритм.",
+        hl: "r"
+      }, {
+        id: "radio_reanimation",
+        icon: "📻",
+        title: "Передайте сигнал по радиосвязи",
+        text: "Передайте по радиосвязи сигнал: «Реанимация».\nДождитесь подтверждения передачи сигнала.",
+        hl: "r"
+      }, {
+        id: "train_doctor_call",
+        icon: "📢",
+        title: "Вызовите медицинского работника",
+        text: "Вызовите по внутрипоездной трансляции медицинского работника:\n«Уважаемые пассажиры, если среди вас есть медицинские работники, прошу вас пройти в вагон № ____. Благодарю за отзывчивость».",
+        hl: "y"
+      }, {
+        id: "safety",
         icon: "⚠️",
-        title: "Безопасность и оценка",
-        text: "Убедитесь в безопасности. Проверьте реакцию (похлопайте по плечу).\nНет ответа + нет дыхания/только хрипы → действуйте."
+        title: "Безопасность",
+        text: "Убедитесь, что место безопасно для вас и ребёнка."
+      }, {
+        id: "reaction",
+        icon: "👋",
+        title: "Проверьте реакцию",
+        text: "Похлопайте по плечу, громко спросите: «Ты меня слышишь?»\nПроверьте пульс на шее (сонная артерия, 2 пальца, не более 10 секунд) и наличие дыхания — поднесите зеркальце ко рту и носу.\nНет ответа, нет пульса или нет дыхания/только хрипы → действуйте."
       }, {
         id: 2,
         icon: "📞",
         title: "Вызов помощи",
-        text: "ОДИН СПАСАТЕЛЬ:\n• Сначала 2 мин CPR → потом 112 (если нет свидетелей)\n• При внезапном witnessed коллапсе → сначала AED/112\n\nДВА СПАСАТЕЛЯ:\n• Один начинает CPR, второй звонит 112 и ищет AED.",
+        text: "ОДИН СПАСАТЕЛЬ:\n• Сначала 2 мин реанимации → потом 112 (если нет свидетелей)\n• При внезапном коллапсе на глазах у свидетелей → сначала дефибриллятор/112\n\nДВА СПАСАТЕЛЯ:\n• Один начинает реанимацию, второй звонит 112 и ищет дефибриллятор.",
         hl: "y"
       }, {
         id: 3,
         icon: "💨",
-        title: "Открыть ДП → 2 спасательных вдоха",
-        text: "Запрокинуть голову + поднять подбородок.\nДать 2 вдоха: грудь должна подниматься.\n\nМладенцы: охватить рот И нос.",
+        title: "Откройте дыхательные пути → 2 вдоха",
+        text: "Запрокиньте голову + поднимите подбородок — дыхательные пути открыты.\n\nРебёнок старше 1 года: зажмите нос, обхватите его рот своими губами — как взрослому.\nМладенец до 1 года: НЕ зажимайте нос — обхватите губами рот И нос одновременно, вдувайте мягко.\n\nВдувайте до видимого подъёма груди. Всего 2 вдоха.",
         hl: "r",
         anim: "breaths"
       }, {
@@ -647,7 +715,7 @@ const P = {
         title: "Компрессии",
         text: "МЕСТО:\n• Младенец (до 1 года): 2 пальца на 1 палец ниже центра грудины\n• Ребёнок: 1–2 ладони, центр груди\n\nГЛУБИНА: ≥1/3 глубины груди (~4–5 см)\nЧАСТОТА: 100–120/мин",
         timer: 120,
-        timerLabel: "2 минуты CPR",
+        timerLabel: "2 минуты реанимации",
         cpr: true,
         anim: "cpr"
       }, {
@@ -658,14 +726,28 @@ const P = {
       }, {
         id: 6,
         icon: "⚡",
-        title: "AED для ребёнка",
+        title: "Дефибриллятор для ребёнка",
         text: "До 8 лет / <25 кг: педиатрические электроды/режим (если есть).\nЕсли нет → используйте взрослый режим.",
         anim: "aed"
+      }, {
+        id: "check_2min",
+        icon: "🩺",
+        title: "Каждые 2 минуты — проверьте пульс, дыхание, давление",
+        text: "На смене спасателя прервите компрессии на несколько секунд и проверьте:\n• Пульс на сонной/плечевой артерии (не более 10 сек)\n• Дыхание — видно/слышно/чувствуется\n• АД, если есть манжета подходящего размера\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [7]
       }, {
         id: 7,
         icon: "🔄",
         title: "Не останавливайтесь",
-        text: "Продолжайте до прибытия медиков. Меняйтесь каждые 2 мин."
+        text: "Если пульса и дыхания нет — сразу продолжайте компрессии.\nПродолжайте до прибытия медиков. Меняйтесь каждые 2 мин."
+      }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — остановите реанимацию",
+        text: "Прекратите компрессии, если ребёнок:\n• Дышит нормально И у него определяется пульс\n• Начал двигаться, реагировать, открыл глаза\n\nДалее:\n1. Устойчивое боковое положение, если без сознания, но дышит\n2. Не оставляйте одного — непрерывно наблюдайте дыхание, пульс, сознание до приезда скорой\n3. Подтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал\n\nЕсли пульс/дыхание снова пропадут — немедленно возобновите компрессии.",
+        hl: "g"
       }]
     },
     medical: {
@@ -673,15 +755,23 @@ const P = {
       shockable: [{
         id: 1,
         icon: "🫁",
-        title: "CPR + Оксигенация",
+        title: "Реанимация + Оксигенация",
         text: "Мешок-маска + О₂. Монитор/дефибриллятор.\n1 спасатель: 30:2 | 2 спасателя (допубертат): 15:2",
         timer: 120,
         cpr: true
       }, {
+        id: "rhythm_check",
+        icon: "🩺",
+        title: "Проверка ритма, пульса, дыхания, АД (≤10 сек)",
+        text: "На паузе не более 10 сек оцените ритм на мониторе + пульс (пальпация) + дыхание + АД, если есть манжета подходящего размера.\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [2, 3, 4, 5]
+      }, {
         id: 2,
         icon: "⚡",
         title: "Дефибрилляция (VF/pVT)",
-        text: "1-й разряд: 2 Дж/кг\n2-й разряд: 4 Дж/кг\nПосле разряда → немедленно продолжить CPR 2 мин.",
+        text: "1-й разряд: 2 Дж/кг\n2-й разряд: 4 Дж/кг\nПосле разряда → немедленно продолжить реанимацию 2 мин.",
         hl: "o"
       }, {
         id: 3,
@@ -698,15 +788,29 @@ const P = {
         id: 5,
         icon: "🔍",
         title: "Обратимые причины у детей",
-        text: "ОСОБО: Гипогликемия (!), Гипоксия (первична!), Гиповолемия\nТакже: Тампонада, Пневмоторакс, Токсины, Гипотермия"
+        text: "ОСОБО: Гипогликемия (!), Гипоксия (первична!), Гиповолемия\nТакже: Тампонада, Пневмоторакс"
+      }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — прекратите компрессии",
+        text: "ROSC подтверждён (устойчивый пульс + дыхание/адекватная оксигенация).\nПодтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал с точным временем ROSC.\nДалее: SpO₂ 94–99%, нормовентиляция, избегать гипер/гипогликемии.",
+        hl: "g"
       }],
       nonShockable: [{
         id: 1,
         icon: "🫁",
-        title: "CPR + IV/IO",
-        text: "Мешок-маска + О₂. Монитор. IV/IO доступ.\nПедиатрические соотношения CPR.",
+        title: "Реанимация + IV/IO",
+        text: "Мешок-маска + О₂. Монитор. IV/IO доступ.\nПедиатрические соотношения для реанимации.",
         timer: 120,
         cpr: true
+      }, {
+        id: "rhythm_check",
+        icon: "🩺",
+        title: "Проверка ритма, пульса, дыхания, АД (≤10 сек)",
+        text: "На паузе не более 10 сек оцените ритм на мониторе + пульс (пальпация) + дыхание + АД, если есть манжета подходящего размера.\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [2, 3]
       }, {
         id: 2,
         icon: "💊",
@@ -719,9 +823,15 @@ const P = {
         title: "Обратимые причины",
         text: "Гипоксия → интубация!\nГипогликемия → глюкоза в/в!\nГиповолемия → болюс 20 мл/кг физ. р-ра"
       }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — прекратите компрессии",
+        text: "ROSC подтверждён (устойчивый пульс + дыхание/адекватная оксигенация).\nПодтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал с точным временем ROSC.",
+        hl: "g"
+      }, {
         id: 4,
         icon: "📊",
-        title: "ROSC",
+        title: "Постреанимационная помощь",
         text: "SpO₂ 94–99%, нормовентиляция, избегать гипер/гипогликемии."
       }]
     }
@@ -733,7 +843,7 @@ const P = {
     color: C.red,
     severity: "critical",
     basic: {
-      intro: "Стандартный CPR + смещение матки влево + срочный вызов акушерской бригады.",
+      intro: "Стандартная реанимация + смещение матки влево + срочный вызов акушерской бригады.",
       steps: [{
         id: 1,
         icon: "📞",
@@ -743,10 +853,10 @@ const P = {
       }, {
         id: 2,
         icon: "🤲",
-        title: "Стандартный CPR",
+        title: "Стандартная реанимация",
         text: "30 компрессий + 2 вдоха. Центр груди. ≥5 см. 100–120/мин.\nНЕ меняйте технику из-за беременности.",
         timer: 120,
-        timerLabel: "2 мин CPR",
+        timerLabel: "2 мин реанимации",
         cpr: true
       }, {
         id: 3,
@@ -758,23 +868,50 @@ const P = {
         id: 4,
         icon: "💨",
         title: "Дыхательные пути",
-        text: "У беременных трудные дыхательные пути чаще!\nПоддерживайте проходимость ДП до прибытия бригады."
+        text: "У беременных трудные дыхательные пути чаще!\nПоддерживайте дыхательные пути открытыми до прибытия бригады."
       }, {
         id: 5,
         icon: "⚡",
-        title: "AED — безопасен!",
-        text: "Используйте AED как обычно. Дефибрилляция безопасна для матери и плода."
+        title: "Дефибриллятор — безопасен!",
+        text: "Используйте дефибриллятор как обычно. Дефибрилляция безопасна для матери и плода."
+      }, {
+        id: "check_2min",
+        icon: "🩺",
+        title: "Каждые 2 минуты — проверьте пульс, дыхание, давление",
+        text: "На смене спасателя прервите компрессии на несколько секунд и проверьте:\n• Пульс на сонной артерии (не более 10 сек)\n• Дыхание — видно/слышно/чувствуется\n• АД, если есть тонометр\n\nПродолжайте смещение матки влево во время проверки.\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [6]
+      }, {
+        id: 6,
+        icon: "🔄",
+        title: "Не останавливайтесь",
+        text: "Если пульса и дыхания нет — сразу продолжайте компрессии.\nНе забывайте про смещение матки влево.\nПродолжайте до приезда бригады или до восстановления пульса и дыхания."
+      }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — остановите реанимацию",
+        text: "Прекратите компрессии, если пациентка:\n• Дышит нормально И у неё определяется пульс\n• Начала двигаться, реагировать, открыла глаза\n\nДалее:\n1. Положение на левом боку (или продолжайте смещение матки влево)\n2. Не оставляйте одну — непрерывно наблюдайте дыхание, пульс, сознание до приезда бригады\n3. Подтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал\n\nЕсли пульс/дыхание снова пропадут — немедленно возобновите компрессии.",
+        hl: "g"
       }]
     },
     medical: {
-      intro: "AHA 2025. Параллельно: CPR + смещение матки + подготовка к родоразрешению.",
+      intro: "AHA 2025. Параллельно: Реанимация + смещение матки + подготовка к родоразрешению.",
       shockable: [{
         id: 1,
         icon: "🤲",
-        title: "BLS/ALS + смещение матки",
-        text: "Высококачественный CPR. Непрерывное ручное смещение матки влево при высоте дна ≥ пупка.",
+        title: "Базовая реанимация/ALS + смещение матки",
+        text: "Высококачественная реанимация. Непрерывное ручное смещение матки влево при высоте дна ≥ пупка.",
         timer: 120,
         cpr: true
+      }, {
+        id: "rhythm_check",
+        icon: "🩺",
+        title: "Проверка ритма, пульса, дыхания, АД (≤10 сек)",
+        text: "На паузе не более 10 сек оцените ритм на мониторе + пульс (пальпация) + дыхание + АД, если есть манжета/артлиния.\nПродолжайте смещение матки влево.\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [2, 3, 4, 5, 6]
       }, {
         id: 2,
         icon: "👥",
@@ -799,19 +936,33 @@ const P = {
         text: "При терапии MgSO₄ → НЕМЕДЛЕННО прекратить + ввести кальций:\n• Глюконат Ca 1 г IV (10 мл 10%)\n  или Хлорид Ca 0.5 г IV",
         hl: "r"
       }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — прекратите компрессии",
+        text: "ROSC подтверждён (устойчивый пульс + дыхание/адекватная оксигенация) — экстренное КС не требуется.\nПодтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал с точным временем ROSC.",
+        hl: "g"
+      }, {
         id: 6,
         icon: "🏥",
         title: "Экстренное родоразрешение",
-        text: "Если нет ROSC к 5-й минуте → экстренное КС у постели пациентки.",
+        text: "Если нет возобновления пульса и дыхания к 5-й минуте → экстренное КС у постели пациентки.",
         hl: "o"
       }],
       nonShockable: [{
         id: 1,
         icon: "🤲",
-        title: "CPR + смещение матки",
+        title: "Реанимация + смещение матки",
         text: "Без дефибрилляции. Адреналин 1 мг каждые 3–5 мин.",
         timer: 120,
         cpr: true
+      }, {
+        id: "rhythm_check",
+        icon: "🩺",
+        title: "Проверка ритма, пульса, дыхания, АД (≤10 сек)",
+        text: "На паузе не более 10 сек оцените ритм на мониторе + пульс (пальпация) + дыхание + АД, если есть манжета/артлиния.\nПродолжайте смещение матки влево.\n\nОтметьте результат ниже — он сразу запишется в журнал.",
+        hl: "y",
+        vitalsCheck: true,
+        skipOnYes: [2, 3]
       }, {
         id: 2,
         icon: "💊",
@@ -819,10 +970,16 @@ const P = {
         text: "Адреналин 1 мг IV/IO ASAP. Лечить причины по ABCDEFGH.",
         hl: "r"
       }, {
+        id: "stop_cpr",
+        icon: "🛑",
+        title: "Пульс и дыхание восстановились — прекратите компрессии",
+        text: "ROSC подтверждён (устойчивый пульс + дыхание/адекватная оксигенация) — экстренное КС не требуется.\nПодтвердите ниже — запись «Возобновление пульса и дыхания» уйдёт в журнал с точным временем ROSC.",
+        hl: "g"
+      }, {
         id: 3,
         icon: "🏥",
         title: "Экстренное родоразрешение",
-        text: "При отсутствии ROSC к 5-й минуте → экстренное КС.",
+        text: "При отсутствии возобновления пульса и дыхания к 5-й минуте → экстренное КС.",
         hl: "o"
       }]
     }
@@ -864,14 +1021,14 @@ const P = {
       }, {
         id: 6,
         icon: "🤲",
-        title: "Потерял сознание → CPR",
-        text: "Осторожно опустите на пол.\nНЕМЕДЛЕННО начните CPR (30:2).\nПеред каждым вдохом — осматривайте рот.\nНЕ делайте слепое зондирование!",
+        title: "Потерял сознание → реанимация",
+        text: "Осторожно опустите на пол.\nНЕМЕДЛЕННО начните реанимацию (30:2).\nПеред каждым вдохом — осматривайте рот.\nНЕ делайте слепое зондирование!",
         hl: "r"
       }, {
         id: 7,
         icon: "🤰",
         title: "При беременности / ожирении",
-        text: "Вместо толчков в живот → 5 ТОЛЧКОВ В ГРУДЬ:\nПозиция рук как при CPR, но стоя позади пациента."
+        text: "Вместо толчков в живот → 5 ТОЛЧКОВ В ГРУДЬ:\nПозиция рук как при реанимации, но стоя позади пациента."
       }]
     },
     medical: {
@@ -884,7 +1041,7 @@ const P = {
       }, {
         id: 2,
         icon: "👊",
-        title: "5+5 (стандарт BLS)",
+        title: "5+5 (стандарт базовой реанимации)",
         text: "5 ударов по спине + 5 толчков Хаймлиха.\nЧередовать до освобождения или потери сознания."
       }, {
         id: 3,
@@ -895,8 +1052,8 @@ const P = {
       }, {
         id: 4,
         icon: "🤲",
-        title: "Потеря сознания → CPR + ларингоскопия",
-        text: "CPR по ACLS.\nПеред каждым вдохом → ларингоскопия.\nПри безуспешности → крикотиреотомия.",
+        title: "Потеря сознания → реанимация + ларингоскопия",
+        text: "Реанимация по ACLS.\nПеред каждым вдохом → ларингоскопия.\nПри безуспешности → крикотиреотомия.",
         hl: "r"
       }]
     }
@@ -934,8 +1091,8 @@ const P = {
       }, {
         id: 5,
         icon: "🤲",
-        title: "Потеря сознания → Педиатрический CPR",
-        text: "Начните педиатрический CPR.\nПеред каждым вдохом — осматривайте рот."
+        title: "Потеря сознания → педиатрическая реанимация",
+        text: "Начните педиатрическую реанимацию.\nПеред каждым вдохом — осматривайте рот."
       }]
     },
     medical: {
@@ -948,7 +1105,7 @@ const P = {
       }, {
         id: 2,
         icon: "🤲",
-        title: "При потере сознания — PALS CPR",
+        title: "При потере сознания — PALS реанимация",
         text: "15:2 при 2 спасателях (допубертат).\nЛМА или ЭТТ.\nПеред каждым вдохом — ларингоскопия."
       }]
     }
@@ -995,7 +1152,7 @@ const P = {
         id: 6,
         icon: "👁️",
         title: "Наблюдайте",
-        text: "Контролируйте дыхание и сознание.\nПотеря сознания + нет пульса → CPR."
+        text: "Контролируйте дыхание и сознание.\nПотеря сознания + нет пульса → реанимация."
       }]
     },
     medical: {
@@ -1030,6 +1187,167 @@ const P = {
       }]
     }
   },
+  fractures: {
+    id: "fractures",
+    title: "Переломы",
+    icon: "🦴",
+    color: C.orange,
+    severity: "urgent",
+    basic: {
+      intro: "Не пытайтесь вправить кость. Главное — обездвижить повреждённую часть тела и не позволять пострадавшему двигаться.",
+      steps: [{
+        id: 1,
+        icon: "📞",
+        title: "Оцените тяжесть и позвоните 112",
+        text: "Вызовите 112 при: открытом переломе (кость видна), сильной деформации конечности, признаках шока, переломе бедра/таза/позвоночника/черепа.",
+        hl: "r"
+      }, {
+        id: 2,
+        icon: "🚫",
+        title: "Не двигайте и не пытайтесь выпрямить",
+        text: "НЕ пытайтесь вправить кость на место.\nНЕ давайте вставать или опираться на повреждённую конечность.\nПопросите пострадавшего оставаться неподвижным."
+      }, {
+        id: 3,
+        icon: "🩹",
+        title: "Открытый перелом — накройте рану",
+        text: "Если кость видна: НЕ вправляйте и не давите на неё.\nНакройте рану чистой тканью вокруг (не поверх) торчащей кости.\nОстановите кровотечение прямым давлением по краям раны.",
+        hl: "r"
+      }, {
+        id: 4,
+        icon: "🪵",
+        title: "Иммобилизация шиной",
+        text: "Зафиксируйте повреждённую часть в том положении, в котором нашли.\nИспользуйте твёрдый предмет (доска, палка, свёрнутый журнал) + мягкую подкладку.\nЗахватите шиной сустав ВЫШЕ и НИЖЕ перелома."
+      }, {
+        id: 5,
+        icon: "🖐️",
+        title: "Проверьте кровообращение",
+        text: "До и после наложения шины проверьте:\n• Цвет кожи (не побледнела ли)\n• Тепло на ощупь\n• Пульс ниже места травмы\n• Чувствительность пальцев\nЕсли конечность немеет или синеет — ослабьте повязку.",
+        hl: "y"
+      }, {
+        id: 6,
+        icon: "🛏️",
+        title: "Положение и шок",
+        text: "Не давайте есть и пить (может понадобиться операция).\nПри признаках шока (бледность, холодный пот, слабость) — поднимите ноги на 30 см, если ноги не травмированы.\nСогрейте пострадавшего."
+      }, {
+        id: 7,
+        icon: "👁️",
+        title: "Наблюдайте",
+        text: "Следите за дыханием и сознанием.\nУсиление боли, онемение или похолодание конечности — сообщите об этом медикам при передаче."
+      }]
+    },
+    medical: {
+      intro: "Оценить по ABCDE. Контроль катастрофического кровотечения и жизнеугрожающих травм — ПЕРЕД иммобилизацией перелома.",
+      steps: [{
+        id: 1,
+        icon: "🔍",
+        title: "Оценка по ABCDE + нейроваскулярный статус",
+        text: "Оцените пульс, цвет кожи, капиллярное наполнение, чувствительность и движения дистальнее перелома ДО и ПОСЛЕ любых манипуляций.\nПри открытом переломе — задокументируйте вид раны до наложения повязки."
+      }, {
+        id: 2,
+        icon: "💊",
+        title: "Обезболивание",
+        text: "Лёгкая/умеренная боль (может функционировать):\nМелоксикам 15 мг + Ацетаминофен 1000 мг внутрь.\n\nСильная боль:\nКетамин 50 мг защёчно ИЛИ Фентанил 400 мкг интраназально.",
+        hl: "b"
+      }, {
+        id: 3,
+        icon: "🩹",
+        title: "Открытый перелом",
+        text: "Промойте рану большим объёмом физраствора при загрязнении.\nНакройте стерильной повязкой.\nАнтибиотик: Цефазолин 2 г IV/IO (если доступен), профилактика столбняка.\nНЕ вправляйте отломки в рану.",
+        hl: "r"
+      }, {
+        id: 4,
+        icon: "🪵",
+        title: "Шинирование / тракция",
+        text: "Иммобилизируйте сустав выше и ниже перелома.\nПри деформации бедра со значительным укорочением — тракционная шина.\nПовторно проверьте пульс и чувствительность после шинирования."
+      }, {
+        id: 5,
+        icon: "⚠️",
+        title: "Компартмент-синдром — не пропустите",
+        text: "5 признаков: боль несоразмерная травме, парестезии, бледность, отсутствие пульса, паралич.\nПри подозрении — ослабьте тесную повязку/шину, срочная эвакуация в хирургию.",
+        hl: "y"
+      }, {
+        id: 6,
+        icon: "🚑",
+        title: "Подготовка к эвакуации",
+        text: "Стабилизируйте перелом перед транспортировкой.\nПовторная оценка нейроваскулярного статуса каждые 10–15 мин.\nПриоритет — при переломах таза/бедра/множественных переломах (риск скрытой кровопотери)."
+      }]
+    }
+  },
+  pneumothorax: {
+    id: "pneumothorax",
+    title: "Пневмоторакс",
+    icon: "🫁",
+    color: C.red,
+    severity: "critical",
+    basic: {
+      intro: "Ранение груди с затруднённым дыханием опасно для жизни. Закройте открытую рану герметичной повязкой с одной свободной стороной.",
+      steps: [{
+        id: 1,
+        icon: "📞",
+        title: "Немедленно позвоните 112",
+        text: "Признаки: рана на груди, свистящий/хлюпающий звук при дыхании, резкая одышка, синюшность губ, одна половина груди не двигается при дыхании.",
+        hl: "r"
+      }, {
+        id: 2,
+        icon: "🖐️",
+        title: "Найдите рану и закройте ладонью",
+        text: "Если есть открытая рана груди — сразу прижмите её ладонью или чистой тканью, пока готовите повязку."
+      }, {
+        id: 3,
+        icon: "🩹",
+        title: "Герметичная повязка с клапаном",
+        text: "Накройте рану плотным материалом (пакет, обёртка от бинта) и закрепите пластырем/скотчем с ТРЁХ сторон, оставив один край свободным.\nЭто позволит воздуху выходить, но не заходить внутрь.",
+        hl: "r"
+      }, {
+        id: 4,
+        icon: "🛏️",
+        title: "Положение пострадавшего",
+        text: "Помогите сесть или полулежать с наклоном на повреждённую сторону — так легче дышать.\nНЕ укладывайте на спину, если это ухудшает дыхание."
+      }, {
+        id: 5,
+        icon: "🚫",
+        title: "Не удаляйте инородные предметы",
+        text: "Если в ране торчит предмет (осколок, нож) — НЕ вынимайте его.\nЗафиксируйте его валиками из ткани вокруг, чтобы не двигался."
+      }, {
+        id: 6,
+        icon: "👁️",
+        title: "Наблюдайте постоянно",
+        text: "Следите за дыханием и сознанием.\nЕсли дыхание остановилось и нет признаков жизни — начните реанимацию.\nПри усилении одышки после повязки — на выдохе на секунду приподнимите край, чтобы выпустить воздух."
+      }]
+    },
+    medical: {
+      intro: "Подозрение на напряжённый пневмоторакс = немедленная декомпрессия, не дожидаясь рентгена.",
+      steps: [{
+        id: 1,
+        icon: "🔍",
+        title: "Признаки напряжённого пневмоторакса",
+        text: "Тяжёлая дыхательная недостаточность + один из признаков:\nотсутствие дыхательных шумов с одной стороны, гипотония, набухание вен шеи, смещение трахеи (поздний признак)."
+      }, {
+        id: 2,
+        icon: "💉",
+        title: "Игольная декомпрессия",
+        text: "Игла 14G длиной ≥8 см (3.25 in):\n2-е межреберье по срединно-ключичной линии\nИЛИ 4–5-е межреберье по передней подмышечной линии (предпочтительно, по TCCC).\nВводить по верхнему краю нижнего ребра.",
+        hl: "r"
+      }, {
+        id: 3,
+        icon: "🩹",
+        title: "Открытая рана — клапанная повязка",
+        text: "При открытом пневмотораксе наложите вентилируемую окклюзионную повязку (клапан) или повязку на 3 стороны.\nСледите за признаками нарастающего напряжения."
+      }, {
+        id: 4,
+        icon: "🫁",
+        title: "Кислород + мониторинг",
+        text: "Высокопоточный O₂.\nПульсоксиметрия, ЧДД, АД каждые несколько минут.\nПри повторном ухудшении — повторная декомпрессия (может потребоваться несколько раз).",
+        hl: "b"
+      }, {
+        id: 5,
+        icon: "🏥",
+        title: "Дренирование / эвакуация",
+        text: "При наличии оснащения и подготовки — торакостомия пальцем или дренажная трубка.\nПриоритетная срочная эвакуация в стационар с торакальной хирургией.",
+        hl: "r"
+      }]
+    }
+  },
   syncope: {
     id: "syncope",
     title: "Обморок / Коллапс",
@@ -1057,7 +1375,7 @@ const P = {
         id: 4,
         icon: "👁️",
         title: "Следите за дыханием",
-        text: "Контролируйте дыхание каждые 30 секунд.\nЕсли нет дыхания или пульса → немедленно CPR."
+        text: "Контролируйте дыхание каждые 30 секунд.\nЕсли нет дыхания или пульса → немедленно реанимация."
       }, {
         id: 5,
         icon: "📞",
@@ -1100,6 +1418,7 @@ const P = {
   bradycardia: {
     id: "bradycardia",
     title: "Брадикардия с пульсом",
+    subtitle: "Замедленное сердцебиение",
     icon: "📉",
     color: C.yellow,
     severity: "urgent",
@@ -1120,7 +1439,7 @@ const P = {
         id: 3,
         icon: "👁️",
         title: "Наблюдайте",
-        text: "Контролируйте сознание и дыхание.\nПотеря сознания + нет пульса → CPR."
+        text: "Контролируйте сознание и дыхание.\nПотеря сознания + нет пульса → реанимация."
       }]
     },
     medical: {
@@ -1158,6 +1477,7 @@ const P = {
   tachycardia: {
     id: "tachycardia",
     title: "Тахикардия с пульсом",
+    subtitle: "Учащённое сердцебиение",
     icon: "📈",
     color: C.orange,
     severity: "urgent",
@@ -1167,7 +1487,7 @@ const P = {
         id: 1,
         icon: "📞",
         title: "Позвоните 112",
-        text: "ЧСС >150 + боль в груди, одышка, потеря сознания → немедленно 112.",
+        text: "Очень частое сердцебиение (более 150 ударов в минуту) + боль в груди, одышка, потеря сознания → немедленно 112.",
         hl: "r"
       }, {
         id: 2,
@@ -1178,12 +1498,12 @@ const P = {
         id: 3,
         icon: "💨",
         title: "Проба Вальсальвы",
-        text: "При сознании и регулярном ритме:\nСильно потужьтесь 15–30 секунд.\nМожет прервать СВТ."
+        text: "При сознании и регулярном ритме:\nСильно потужьтесь 15–30 секунд.\nМожет прервать приступ учащённого сердцебиения."
       }, {
         id: 4,
         icon: "👁️",
         title: "Наблюдайте",
-        text: "Если потерял сознание + нет пульса → CPR."
+        text: "Если потерял сознание + нет пульса → реанимация."
       }]
     },
     medical: {
@@ -1228,7 +1548,7 @@ const P = {
     color: C.orange,
     severity: "critical",
     basic: {
-      intro: "Тяжёлая аллергическая реакция. Адреналин — первый и главный препарат!",
+      intro: "Тяжёлая аллергическая реакция. Экстренно нужен автоинжектор (если есть)!",
       steps: [{
         id: 1,
         icon: "📞",
@@ -1238,7 +1558,7 @@ const P = {
       }, {
         id: 2,
         icon: "💉",
-        title: "Адреналин-авто-инжектор (EpiPen)",
+        title: "Автоинжектор (EpiPen)",
         text: "Если есть EpiPen/Auvi-Q:\n→ Вколоть в наружную поверхность бедра\n→ Держать 10 секунд\n→ Можно прямо через одежду!\n\nЕсли нет авто-инжектора → ждите скорую, сообщите 112.",
         hl: "r",
         anim: "epi"
@@ -1246,7 +1566,7 @@ const P = {
         id: 3,
         icon: "🛏️",
         title: "Положение пациента",
-        text: "Одышка → сидя или полусидя\nБез сознания / низкое АД → на спину, ноги приподнять\nБеременная → на левый бок\n\nНЕ позволяйте стоять или ходить!",
+        text: "Одышка → сидя или полусидя\nБез сознания / резкая слабость, головокружение, бледность → на спину, ноги приподнять\nБеременная → на левый бок\n\nНЕ позволяйте стоять или ходить!",
         hl: "y"
       }, {
         id: 4,
@@ -1259,7 +1579,7 @@ const P = {
         id: 5,
         icon: "🚫",
         title: "НЕ делайте",
-        text: "• НЕ давайте есть или пить\n• НЕ позволяйте ходить\n• НЕ оставляйте одного\n• Антигистамин — НЕ замена адреналину"
+        text: "• НЕ давайте есть или пить\n• НЕ позволяйте ходить\n• НЕ оставляйте одного\n• Антигистамин — НЕ замена автоинжектору"
       }]
     },
     medical: {
@@ -1447,169 +1767,6 @@ const P = {
       }]
     }
   },
-
-  /* ── ПЕРЕДОЗИРОВКА ОПИОИДАМИ / НАЛОКСОН ── */
-  overdose: {
-    id: "overdose",
-    title: "Передозировка / налоксон",
-    icon: "💊",
-    color: C.orange,
-    severity: "critical",
-    basic: {
-      intro: "Подозрение на опиоидную передозировку: сонливость/без сознания + медленное, шумное или отсутствующее дыхание. Действуйте сразу.",
-      steps: [{
-        id: 1,
-        icon: "📞",
-        title: "Немедленно 112",
-        text: "Скажите: «Подозрение на передозировку, дыхание замедлено/нет дыхания».\nПопросите принести налоксон и AED, если они доступны.",
-        hl: "r"
-      }, {
-        id: 2,
-        icon: "🔍",
-        title: "Признаки передозировки",
-        text: "• Не просыпается / не отвечает\n• Дыхание редкое, шумное, хрипящее или отсутствует\n• Синие/серые губы или ногти\n• Очень маленькие зрачки\n\nЕсли сомневаетесь — действуйте как при передозировке.",
-        hl: "y"
-      }, {
-        id: 3,
-        icon: "💊",
-        title: "Налоксон — если есть",
-        text: "Используйте готовый назальный спрей по инструкции устройства:\n1 доза в одну ноздрю.\nЕсли через 2–3 мин нет нормального дыхания/реакции — дать следующую дозу, если есть.\n\nНалоксон не заменяет 112 и CPR.",
-        timer: 180,
-        timerLabel: "2–3 мин до повторной дозы",
-        hl: "r",
-        anim: "naloxone"
-      }, {
-        id: 4,
-        icon: "💨",
-        title: "Дыхание / CPR",
-        text: "Нет нормального дыхания или нет пульса → CPR.\nЕсли пульс есть, но дыхание слабое/редкое — поддерживайте дыхание, если обучены.\nAED применяйте как обычно, если он доступен.",
-        timer: 120,
-        timerLabel: "2 мин контроль",
-        cpr: true,
-        anim: "cpr"
-      }, {
-        id: 5,
-        icon: "🔄",
-        title: "После улучшения",
-        text: "Поверните на бок, если дыхание восстановилось.\nОставайтесь рядом: действие налоксона может закончиться раньше, чем действие опиоида.\nНе давайте есть/пить. Передайте бригаде время доз.",
-        hl: "b",
-        anim: "recovery"
-      }]
-    },
-    medical: {
-      intro: "Опиоидная токсичность: приоритет — вентиляция/оксигенация. Налоксон применять без задержки, но не вместо ABC.",
-      steps: [{
-        id: 1,
-        icon: "🫁",
-        title: "ABC + вентиляция",
-        text: "Оценить дыхание и пульс. O₂, мешок-маска, мониторинг SpO₂/ЭКГ.\nПри остановке дыхания/кровообращения → стандартный BLS/ACLS.",
-        hl: "r",
-        anim: "cpr"
-      }, {
-        id: 2,
-        icon: "💊",
-        title: "Налоксон",
-        text: "Назально/IM/IV по локальному протоколу. Цель — восстановить адекватное дыхание, не обязательно полное пробуждение.\nПовторные дозы могут потребоваться, особенно при синтетических опиоидах.",
-        timer: 180,
-        timerLabel: "2–3 мин переоценка",
-        anim: "naloxone"
-      }, {
-        id: 3,
-        icon: "📊",
-        title: "Переоценка",
-        text: "Каждые 2–3 мин: дыхание, SpO₂, сознание, пульс.\nГотовность к рвоте/аспирации, гипоксии, рецидиву угнетения дыхания.",
-        hl: "y"
-      }, {
-        id: 4,
-        icon: "🏥",
-        title: "Транспортировка",
-        text: "Наблюдение обязательно: симптомы могут вернуться.\nПередайте время и количество доз налоксона, исходное дыхание, реакцию на терапию."
-      }]
-    }
-  },
-
-  /* ── УТОПЛЕНИЕ ── */
-  drowning: {
-    id: "drowning",
-    title: "Утопление",
-    icon: "🌊",
-    color: C.blue,
-    severity: "critical",
-    basic: {
-      intro: "Утопление — прежде всего дыхательная остановка. CPR начинают с ВДОХОВ, а не с компрессий — это отличие от стандарта!",
-      steps: [{
-        id: 1,
-        icon: "🛡️",
-        title: "Безопасность спасателя — прежде всего!",
-        text: "НЕ прыгайте в воду без страховки.\nТонущий в панике может утопить вас.\nБросьте верёвку, спасательный круг, доску, одежду.",
-        hl: "r"
-      }, {
-        id: 2,
-        icon: "📞",
-        title: "Звоните 112",
-        text: "Сообщите об утоплении.\nУкажите: пресная или солёная вода, примерное время в воде, температура воды.",
-        hl: "r"
-      }, {
-        id: 3,
-        icon: "💨",
-        title: "СНАЧАЛА — 5 спасательных вдохов!",
-        text: "НЕ как обычный CPR — начинайте с ВДОХОВ!\nЗапрокиньте голову, поднимите подбородок.\nДайте 5 вдохов (1 сек каждый) — грудь должна подниматься.",
-        hl: "r",
-        anim: "breaths"
-      }, {
-        id: 4,
-        icon: "🤲",
-        title: "CPR 30:2",
-        text: "После 5 вдохов → 30 компрессий + 2 вдоха.\n100–120/мин, глубина ≥5 см.\nПродолжайте до приезда скорой.",
-        timer: 120,
-        timerLabel: "2 мин CPR",
-        cpr: true,
-        anim: "cpr"
-      }, {
-        id: 5,
-        icon: "🌡️",
-        title: "Гипотермия — не прекращайте CPR!",
-        text: "Снимите мокрую одежду, укройте.\nДаже при ледяной воде продолжайте CPR.\n\nПравило: «Никто не мёртв, пока не тёпл и мёртв».\nРеанимация до согревания тела!",
-        hl: "b"
-      }]
-    },
-    medical: {
-      intro: "AHA 2023. Утопление = асфиксия + гипоксия. Оксигенация — абсолютный приоритет. 5 вдохов до компрессий.",
-      steps: [{
-        id: 1,
-        icon: "💨",
-        title: "5 вдохов — ДО компрессий!",
-        text: "Рот-рот или маска-мешок + О₂.\nПопытки 5 (даже если 2–3 успешны).\n\n⚠️ НЕ тратить время на дренаж воды из лёгких — это неэффективно и опасно.",
-        hl: "r"
-      }, {
-        id: 2,
-        icon: "🫁",
-        title: "Оксигенация — высший приоритет",
-        text: "О₂ 100%. Ранняя интубация при отсутствии сознания.\nВентиляция с ПДКВ при развитии отёка лёгких.\nПульсоксиметрия может не работать при гипотермии.",
-        hl: "o"
-      }, {
-        id: 3,
-        icon: "🤲",
-        title: "CPR + ACLS",
-        text: "1 спасатель: 30:2 / 2 спасателя: 15:2\nAED — применять при VF/pVT.\n\nПриоритет оксигенации — при возможности оксигенировать до дефибрилляции.",
-        timer: 120,
-        timerLabel: "2 мин CPR",
-        cpr: true
-      }, {
-        id: 4,
-        icon: "🌡️",
-        title: "Гипотермия и дефибрилляция",
-        text: "T° <30°C: до 3 разрядов, затем отложить до согревания.\nT° 30–35°C: стандартный ACLS, интервалы удвоены.\nАктивное согревание: одеяла, тёплые инфузии, форсированный воздух.",
-        hl: "y"
-      }, {
-        id: 5,
-        icon: "💊",
-        title: "Осложнения",
-        text: "Отёк лёгких → ПДКВ ≥5 см H₂O, диуретики с осторожностью\nМетаболический ацидоз → стандартная коррекция\nВторичное утопление: наблюдение 6–24 ч даже при нормальном состоянии!",
-        hl: "b"
-      }]
-    }
-  }
 };
 const QTREE = {
   q1: {
@@ -1621,9 +1778,6 @@ const QTREE = {
     }, {
       label: "⚡ Судороги / трясётся",
       next: "SEIZURES"
-    }, {
-      label: "💊 Передозировка / опиоиды",
-      next: "OVERDOSE"
     }, {
       label: "❌ Нет, без сознания",
       next: "q3"
@@ -1683,9 +1837,6 @@ const QTREE = {
       label: "📉 Медленный / редкий пульс",
       next: "BRADY"
     }, {
-      label: "💊 Сонливость / возможная передозировка",
-      next: "OVERDOSE"
-    }, {
       label: "💫 Другое / обморок / слабость",
       next: "SYNCOPE"
     }]
@@ -1698,7 +1849,7 @@ const QTREE = {
       next: "q4"
     }, {
       label: "❌ Нет пульса / не уверен",
-      next: "q5"
+      next: "CARDIAC"
     }]
   },
   q4: {
@@ -1709,28 +1860,6 @@ const QTREE = {
       next: "SYNCOPE"
     }, {
       label: "❌ Нет / только хрипы / гаспинг",
-      next: "q4b"
-    }]
-  },
-  q4b: {
-    text: "Есть подозрение на опиоиды / передозировку?",
-    sub: "Таблетки, порошок, шприц рядом; очень сонный/без сознания; редкое дыхание; синие губы; маленькие зрачки?",
-    options: [{
-      label: "💊 Да — подозрение на передозировку",
-      next: "OVERDOSE"
-    }, {
-      label: "🚫 Нет / неизвестно",
-      next: "q5"
-    }]
-  },
-  q5: {
-    text: "Это случилось в воде / при утоплении?",
-    sub: "Пациент был извлечён из воды, озера, бассейна или реки?",
-    options: [{
-      label: "🌊 Да — утопление",
-      next: "DROWNING"
-    }, {
-      label: "🚫 Нет",
       next: "CARDIAC"
     }]
   }
@@ -1745,9 +1874,7 @@ function getDiagnosis(code, patientType) {
     BRADY: "bradycardia",
     ANAPHYLAXIS: "anaphylaxis",
     STROKE: "stroke",
-    SEIZURES: "seizures",
-    OVERDOSE: "overdose",
-    DROWNING: "drowning"
+    SEIZURES: "seizures"
   };
   return map[code] || "syncope";
 }
@@ -1911,12 +2038,26 @@ function useFlashlight() {
 }
 
 /* ══════════════════ VOICE HOOK ══════════ */
+function sanitizeForSpeech(text) {
+  if (!text) return '';
+  return text
+    .replace(/_{1,}/g, ' ')           // "____" (место для номера) — пропустить, не читать "подчёркивание"
+    .replace(/[\\/]+/g, ' ')          // "/" и "\" — пропустить, не читать "слэш"
+    .replace(/[→←↔]/g, '. ')          // стрелки — короткая пауза вместо "стрелка"
+    .replace(/[«»"“”]/g, '')          // кавычки — убрать сам символ, слова внутри остаются
+    .replace(/[|*~^]/g, ' ')          // прочие служебные символы — пропустить
+    .replace(/\s{2,}/g, ' ')          // схлопнуть образовавшиеся лишние пробелы
+    .replace(/\s+([.,!?])/g, '$1')    // убрать пробел перед знаком препинания
+    .trim();
+}
 function useVoice() {
   const [enabled, setEnabled] = useState(true);
   const speak = useCallback(text => {
     if (!enabled || !window.speechSynthesis) return;
+    const clean = sanitizeForSpeech(text);
+    if (!clean) return;
     window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
+    const u = new SpeechSynthesisUtterance(clean);
     u.lang = 'ru-RU';
     u.rate = 0.9;
     window.speechSynthesis.speak(u);
@@ -2032,10 +2173,26 @@ function Timer({
   }, metro.active ? "🔇" : "🔊📳"), /*#__PURE__*/React.createElement("button", {
     className: `tmrb${run ? " run" : ""}`,
     onClick: toggle
-  }, done ? "↺" : run ? "⏸" : "▶"))));
+  }, done ? "↺" : run ? "⏸" : "▶"))), cpr && /*#__PURE__*/React.createElement("button", {
+    style: {
+      display: "block",
+      width: "100%",
+      marginTop: 10,
+      padding: "12px 14px",
+      border: "none",
+      borderTop: `1px solid ${C.border}`,
+      background: "transparent",
+      color: C.red,
+      fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif",
+      fontWeight: 800,
+      fontSize: 13,
+      cursor: "pointer"
+    },
+    onClick: () => setShowCounter(true)
+  }, "🤲 Открыть счётчик компрессий на весь экран"));
 }
 
-/* ══════════════════ CPR COUNTER ══════════ */
+/* ══════════════════ РЕАНИМАЦИЯ COUNTER ══════════ */
 function CprCounter({ onClose, metro }) {
   const [count, setCount] = useState(0);
   const [sets, setSets] = useState(0);
@@ -2128,22 +2285,46 @@ function CprCounter({ onClose, metro }) {
 }
 
 /* ══════════════════ OFFLINE ANIMATIONS ═ */
+/* Body-outline diagrams for the three most "spatial" actions — where exactly
+   to place hands / AED pads / autoinjector — since an emoji can't show WHERE
+   on the body an action happens, only that it's happening. */
+const BODY_DIAGRAMS = {
+  cpr: /*#__PURE__*/React.createElement("svg", { viewBox: "0 0 120 130", width: 84, height: 91 },
+    /*#__PURE__*/React.createElement("path", { d: "M28,14 Q60,2 92,14 L98,110 Q60,126 22,110 Z", fill: "none", stroke: "#8a9cbf", strokeWidth: 2.5 }),
+    /*#__PURE__*/React.createElement("line", { x1: 34, y1: 26, x2: 86, y2: 26, stroke: "#8a9cbf", strokeWidth: 1.5, strokeDasharray: "3,3" }),
+    /*#__PURE__*/React.createElement("line", { x1: 60, y1: 26, x2: 60, y2: 105, stroke: "#4a5a78", strokeWidth: 1, strokeDasharray: "2,3" }),
+    /*#__PURE__*/React.createElement("circle", { cx: 60, cy: 78, r: 13, fill: "#ff3a30", fillOpacity: 0.28, stroke: "#ff3a30", strokeWidth: 2.5 }),
+    /*#__PURE__*/React.createElement("circle", { cx: 60, cy: 78, r: 4, fill: "#ff3a30" })
+  ),
+  aed: /*#__PURE__*/React.createElement("svg", { viewBox: "0 0 120 130", width: 84, height: 91 },
+    /*#__PURE__*/React.createElement("path", { d: "M28,14 Q60,2 92,14 L98,110 Q60,126 22,110 Z", fill: "none", stroke: "#8a9cbf", strokeWidth: 2.5 }),
+    /*#__PURE__*/React.createElement("line", { x1: 60, y1: 14, x2: 60, y2: 118, stroke: "#4a5a78", strokeWidth: 1, strokeDasharray: "2,3" }),
+    /*#__PURE__*/React.createElement("rect", { x: 30, y: 20, width: 26, height: 26, rx: 4, fill: "#ff9500", fillOpacity: 0.3, stroke: "#ff9500", strokeWidth: 2.5 }),
+    /*#__PURE__*/React.createElement("rect", { x: 66, y: 74, width: 28, height: 32, rx: 4, fill: "#ff9500", fillOpacity: 0.3, stroke: "#ff9500", strokeWidth: 2.5, transform: "rotate(20 80 90)" })
+  ),
+  epi: /*#__PURE__*/React.createElement("svg", { viewBox: "0 0 90 130", width: 63, height: 91 },
+    /*#__PURE__*/React.createElement("path", { d: "M32,4 Q45,0 58,4 L64,112 Q45,126 26,112 Z", fill: "none", stroke: "#8a9cbf", strokeWidth: 2.5 }),
+    /*#__PURE__*/React.createElement("circle", { cx: 54, cy: 58, r: 12, fill: "#ff3a30", fillOpacity: 0.28, stroke: "#ff3a30", strokeWidth: 2.5 }),
+    /*#__PURE__*/React.createElement("circle", { cx: 54, cy: 58, r: 4, fill: "#ff3a30" })
+  )
+};
 function MiniAnimation({ type }) {
   const cfg = {
     cpr: { icons: ["🤲", "▭"], caption: "Компрессии: центр груди, 100–120/мин" },
     breaths: { icons: ["💨", "😮"], caption: "Вдох 1 секунда — грудь поднимается" },
-    naloxone: { icons: ["👃", "💊", "💨"], caption: "Налоксон: спрей в нос, затем ждите 2–3 мин" },
-    aed: { icons: ["⬛", "⚡", "⬛"], caption: "AED: включить, наклеить электроды, всем отойти" },
+    aed: { icons: ["⬛", "⚡", "⬛"], caption: "Дефибриллятор: включить, наклеить электроды, всем отойти" },
     epi: { icons: ["💉", "🦵"], caption: "Автоинжектор: наружная поверхность бедра" },
     stroke: { icons: ["🙂", "🙌", "🗣️", "⏱️"], caption: "FAST: лицо, руки, речь, время" },
     recovery: { icons: ["↻", "🧍"], caption: "После приступа: осторожно повернуть на бок" }
   }[type] || { icons: ["ℹ️"], caption: "Короткая подсказка" };
+  const diagram = BODY_DIAGRAMS[type];
   return /*#__PURE__*/React.createElement("div", {
     className: `anim anim-${type || "info"}`,
     "aria-label": cfg.caption
   }, /*#__PURE__*/React.createElement("div", {
-    className: "anim-icons"
-  }, cfg.icons.map((icon, i) => /*#__PURE__*/React.createElement("span", {
+    className: "anim-icons",
+    style: diagram ? { height: 100 } : undefined
+  }, diagram || cfg.icons.map((icon, i) => /*#__PURE__*/React.createElement("span", {
     key: i,
     className: "anim-symbol"
   }, icon))), /*#__PURE__*/React.createElement("div", {
@@ -2151,30 +2332,129 @@ function MiniAnimation({ type }) {
   }, cfg.caption));
 }
 
+/* ══════════════════ SAVED CASES (localStorage) ═══════════ */
+const CASES_LS_KEY = "smena_saved_cases_v1";
+function loadSavedCases() {
+  try {
+    const raw = localStorage.getItem(CASES_LS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    return [];
+  }
+}
+function persistSavedCases(list) {
+  try {
+    localStorage.setItem(CASES_LS_KEY, JSON.stringify(list));
+  } catch (e) {}
+}
+
+/* ══════════════ ACTIVE CASE AUTOSAVE (localStorage) ══════════════ */
+/* Keeps the in-progress case (screen, log, confirmed actions) alive across
+   accidental reloads / crashes / backgrounding — critical during a real emergency. */
+const ACTIVE_CASE_LS_KEY = "smena_active_case_v1";
+function loadActiveCase() {
+  try {
+    const raw = localStorage.getItem(ACTIVE_CASE_LS_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && parsed.s ? parsed : null;
+  } catch (e) {
+    return null;
+  }
+}
+function persistActiveCase(data) {
+  try {
+    localStorage.setItem(ACTIVE_CASE_LS_KEY, JSON.stringify(data));
+  } catch (e) {}
+}
+function clearActiveCase() {
+  try {
+    localStorage.removeItem(ACTIVE_CASE_LS_KEY);
+  } catch (e) {}
+}
+function downloadTextFile(filename, text) {
+  try {
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  } catch (e) {}
+}
+
 /* ══════════════════ EVENT LOG ═══════════ */
 const EVENT_PRESETS = [
   { icon: "💉", label: "Дан адреналин" },
-  { icon: "⚡", label: "Разряд AED" },
+  { icon: "⚡", label: "Разряд дефибриллятора" },
   { icon: "⚠️", label: "ШОК" },
   { icon: "🩸", label: "Остановка кровотечения" },
   { icon: "🫁", label: "Интубация" },
   { icon: "💊", label: "Амиодарон" },
   { icon: "🔄", label: "Смена спасателя" },
-  { icon: "💓", label: "ROSC" },
+  { icon: "💓", label: "Возобновление пульса и дыхания" },
   { icon: "💧", label: "Инфузия" },
   { icon: "📊", label: "Нет пульса" },
 ];
 
-function EventLog({ log, onAdd, onClose }) {
+function fmtDateTime(ts) {
+  return ts ? new Date(ts).toLocaleString('ru-RU', {
+    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'
+  }) : '—';
+}
+function fmtShortDateTime(ts) {
+  return new Date(ts || Date.now()).toLocaleString('ru-RU', {
+    day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
+  });
+}
+function patientTypeLabel(patientType) {
+  return {
+    adult: "Взрослый",
+    child: "Ребёнок",
+    pregnant: "Беременная",
+    elderly: "Пожилой"
+  }[patientType] || "Не указано";
+}
+function buildHandoffText(state, proto, log, name) {
+  const patientLabel = patientTypeLabel(state.patientType);
+  const trainingLabel = state.trainingLevel === "medical" ? "Медперсонал" : "Первая помощь";
+  const rhythmLabel = state.rhythmType === "shockable" ? "VF/pVT (шоковый)" : state.rhythmType === "nonShockable" ? "Асистолия/PEA" : "Не выбран";
+  const eventText = log.length ? log.map(ev => `${fmtDateTime(ev.ts)}  ${ev.text}`).join('\n') : 'Действия не добавлены';
+  return [
+    `КАРТОЧКА: ${name || 'без названия'}`,
+    'ПЕРЕДАЧА БРИГАДЕ',
+    `Сейчас: ${fmtDateTime(Date.now())}`,
+    `Начало сценария: ${fmtDateTime(state.caseStartedAt)}`,
+    `Пациент: ${patientLabel}`,
+    `Кто оказывал помощь: ${trainingLabel}`,
+    `Состояние / протокол: ${proto ? proto.title : 'не выбран'}`,
+    state.rhythmType ? `Ритм: ${rhythmLabel}` : null,
+    '',
+    'ОКАЗАННАЯ ПОМОЩЬ (журнал действий):',
+    eventText
+  ].filter(Boolean).join('\n');
+}
+
+function EventLog({ log, onAdd, onClose, onHome }) {
   const [copied, setCopied] = React.useState(false);
   const fmt = ts => {
     const d = new Date(ts);
-    return d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    return d.toLocaleString('ru-RU', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
   };
   const shareText = log.map(ev => fmt(ev.ts) + '  ' + ev.text).join('\n');
   const handleShare = () => {
     if (navigator.share) {
-      navigator.share({ title: 'Журнал событий CPR', text: shareText }).catch(() => {});
+      navigator.share({ title: 'Журнал действий реанимации', text: shareText }).catch(() => {});
     } else {
       navigator.clipboard.writeText(shareText).then(() => {
         setCopied(true);
@@ -2187,7 +2467,8 @@ function EventLog({ log, onAdd, onClose }) {
   },
     /*#__PURE__*/React.createElement("div", { className: "hdr" },
       /*#__PURE__*/React.createElement("button", { className: "back", onClick: onClose }, "←"),
-      /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, "📋 Журнал событий"),
+      /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, "📋 Журнал действий"),
+      onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
       /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
     ),
     /*#__PURE__*/React.createElement("div", { style: { padding: '12px 16px 8px', borderBottom: `1px solid ${C.border}` } },
@@ -2196,13 +2477,13 @@ function EventLog({ log, onAdd, onClose }) {
         EVENT_PRESETS.map(e => /*#__PURE__*/React.createElement("button", {
           key: e.label,
           onClick: () => onAdd(e.icon + ' ' + e.label),
-          style: { background: C.card, border: `1px solid ${C.border}`, borderRadius: 10, padding: '7px 12px', color: C.text, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'Manrope',sans-serif" }
+          style: { background: C.card, border: `1px solid ${C.border}`, borderRadius: 10, padding: '7px 12px', color: C.text, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif" }
         }, e.icon + ' ' + e.label))
       )
     ),
     /*#__PURE__*/React.createElement("div", { style: { flex: 1, overflowY: 'auto', padding: '12px 16px' } },
       log.length === 0
-        ? /*#__PURE__*/React.createElement("div", { style: { textAlign: 'center', color: C.textMuted, padding: '40px 0', fontSize: 14 } }, "Нет событий. Нажмите кнопку выше чтобы добавить.")
+        ? /*#__PURE__*/React.createElement("div", { style: { textAlign: 'center', color: C.textMuted, padding: '40px 0', fontSize: 14 } }, "Нет действий. Подтверждайте шаги алгоритма или нажмите кнопку выше.")
         : [...log].reverse().map((ev, i) => /*#__PURE__*/React.createElement("div", {
             key: i,
             style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: C.card, borderRadius: 10, marginBottom: 8, border: `1px solid ${C.border}` }
@@ -2214,7 +2495,7 @@ function EventLog({ log, onAdd, onClose }) {
     log.length > 0 && /*#__PURE__*/React.createElement("div", { style: { padding: '8px 16px 20px', borderTop: `1px solid ${C.border}` } },
       /*#__PURE__*/React.createElement("button", {
         onClick: handleShare,
-        style: { width: '100%', padding: '14px', background: C.green, border: 'none', borderRadius: 14, cursor: 'pointer', fontFamily: "'Manrope',sans-serif", fontWeight: 800, fontSize: 16, color: '#000', marginBottom: 10 }
+        style: { width: '100%', padding: '14px', background: C.green, border: 'none', borderRadius: 14, cursor: 'pointer', fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif", fontWeight: 800, fontSize: 16, color: '#000', marginBottom: 10 }
       }, copied ? "✅ Скопировано!" : "🚑 Передать бригаде"),
       /*#__PURE__*/React.createElement("div", { style: { fontSize: 11, color: C.textSec, textAlign: 'center', marginBottom: 8 } }, "Покажите список бригаде скорой помощи"),
       /*#__PURE__*/React.createElement("div", { style: { background: C.card, borderRadius: 12, padding: 14, fontSize: 12, lineHeight: 1.8, border: `1px solid ${C.border}`, whiteSpace: 'pre', overflowX: 'auto' } },
@@ -2225,18 +2506,17 @@ function EventLog({ log, onAdd, onClose }) {
 }
 
 /* ══════════════════ DOSE CALCULATOR ═══ */
-function DoseCalc({ onClose }) {
+function DoseCalc({ onClose, onHome }) {
   const [weight, setWeight] = React.useState('');
   const kg = parseFloat(weight) || 0;
   const drugs = [
-    { name: "Адреналин (CPR)", unit: "мг IV/IO", dose: kg * 0.01, max: 1, note: "0.01 мг/кг, каждые 3–5 мин" },
+    { name: "Адреналин (реанимация)", unit: "мг IV/IO", dose: kg * 0.01, max: 1, note: "0.01 мг/кг, каждые 3–5 мин" },
     { name: "Адреналин (анафилаксия)", unit: "мг IM", dose: kg * 0.01, max: 0.5, note: "0.01 мг/кг в бедро" },
     { name: "Амиодарон", unit: "мг IV/IO", dose: kg * 5, max: 300, note: "5 мг/кг болюс" },
     { name: "Лидокаин", unit: "мг IV/IO", dose: kg * 1, max: 100, note: "1 мг/кг" },
     { name: "Атропин", unit: "мг IV", dose: kg * 0.02, max: 3, note: "0.02 мг/кг (мин. 0.1 мг)" },
     { name: "Диазепам", unit: "мг ректально", dose: kg * 0.3, max: 10, note: "0.3 мг/кг" },
     { name: "Мидазолам", unit: "мг IM/IN", dose: kg * 0.15, max: 10, note: "0.15 мг/кг" },
-    { name: "Налоксон", unit: "мг IV/IM", dose: kg * 0.01, max: 2, note: "0.01 мг/кг" },
     { name: "Глюкоза 40%", unit: "мл IV", dose: kg * 0.5, max: 50, note: "0.5 мл/кг (= 0.2 г/кг глюкозы)" },
     { name: "NaCl 0.9% (болюс)", unit: "мл IV", dose: kg * 20, max: 1000, note: "20 мл/кг за 15–20 мин" },
   ];
@@ -2248,6 +2528,7 @@ function DoseCalc({ onClose }) {
     /*#__PURE__*/React.createElement("div", { className: "hdr" },
       /*#__PURE__*/React.createElement("button", { className: "back", onClick: onClose }, "←"),
       /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, "💊 Калькулятор доз"),
+      onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
       /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
     ),
     /*#__PURE__*/React.createElement("div", { style: { padding: '16px', borderBottom: `1px solid ${C.border}` } },
@@ -2258,13 +2539,13 @@ function DoseCalc({ onClose }) {
           placeholder: "кг",
           value: weight,
           onChange: e => setWeight(e.target.value),
-          style: { flex: 1, padding: '13px 16px', background: C.card, border: `2px solid ${kg > 0 ? C.blue : C.border}`, borderRadius: 12, color: C.text, fontSize: 22, fontWeight: 800, fontFamily: "'Manrope',sans-serif", outline: 'none' }
+          style: { flex: 1, padding: '13px 16px', background: C.card, border: `2px solid ${kg > 0 ? C.blue : C.border}`, borderRadius: 12, color: C.text, fontSize: 22, fontWeight: 800, fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif", outline: 'none' }
         }),
         /*#__PURE__*/React.createElement("div", { style: { fontSize: 13, color: C.textSec, fontWeight: 600 } }, "кг"),
         [10,20,30,60,80].map(w => /*#__PURE__*/React.createElement("button", {
           key: w,
           onClick: () => setWeight(String(w)),
-          style: { padding: '8px 10px', background: weight == w ? C.blue : C.card, border: `1px solid ${C.border}`, borderRadius: 10, color: weight == w ? '#fff' : C.text, fontWeight: 700, fontSize: 12, cursor: 'pointer', fontFamily: "'Manrope',sans-serif" }
+          style: { padding: '8px 10px', background: weight == w ? C.blue : C.card, border: `1px solid ${C.border}`, borderRadius: 10, color: weight == w ? '#fff' : C.text, fontWeight: 700, fontSize: 12, cursor: 'pointer', fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif" }
         }, w))
       ),
       kg > 0 && /*#__PURE__*/React.createElement("div", { style: { marginTop: 8, fontSize: 12, color: C.textSec } },
@@ -2301,41 +2582,37 @@ function DoseCalc({ onClose }) {
 }
 
 /* ══════════════════ HANDOFF CARD ═══════ */
-function HandoffCard({ state, proto, log, onClose }) {
+function HandoffCard({ state, proto, log, onClose, onSaveCase, onHome }) {
   const [copied, setCopied] = React.useState(false);
-  const fmt = ts => ts ? new Date(ts).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : '—';
-  const patientLabel = {
-    adult: "Взрослый",
-    child: "Ребёнок",
-    pregnant: "Беременная",
-    elderly: "Пожилой"
-  }[state.patientType] || "Не указано";
+  const [saved, setSaved] = React.useState(false);
+  const fmt = fmtDateTime;
+  const patientLabel = patientTypeLabel(state.patientType);
   const trainingLabel = state.trainingLevel === "medical" ? "Медперсонал" : "Первая помощь";
   const rhythmLabel = state.rhythmType === "shockable" ? "VF/pVT (шоковый)" : state.rhythmType === "nonShockable" ? "Асистолия/PEA" : "Не выбран";
-  const eventText = log.length ? log.map(ev => `${fmt(ev.ts)}  ${ev.text}`).join('\n') : 'События не добавлены';
-  const handoffText = [
-    'ПЕРЕДАЧА БРИГАДЕ',
-    `Сейчас: ${fmt(Date.now())}`,
-    `Начало сценария: ${fmt(state.caseStartedAt)}`,
-    `Пациент: ${patientLabel}`,
-    `Уровень: ${trainingLabel}`,
-    `Протокол: ${proto ? proto.title : 'не выбран'}`,
-    state.rhythmType ? `Ритм: ${rhythmLabel}` : null,
-    '',
-    'MIST/SBAR:',
-    `M/S: ${proto ? proto.title : 'состояние не выбрано'}`,
-    `I/B: ${patientLabel}, ${trainingLabel}`,
-    `T/R: см. журнал действий ниже`,
-    '',
-    'ЖУРНАЛ:',
-    eventText
-  ].filter(Boolean).join('\n');
+  const [name, setName] = React.useState(() => `${patientLabel} · ${fmtShortDateTime(state.caseStartedAt)}`);
+  const handoffText = buildHandoffText(state, proto, log, name);
   const copy = () => {
     if (!navigator.clipboard) return;
     navigator.clipboard.writeText(handoffText).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }).catch(() => {});
+  };
+  const safeName = (name || 'karta').replace(/[\\/:*?"<>|]+/g, '_').trim() || 'karta';
+  const download = () => downloadTextFile(`${safeName}.txt`, handoffText);
+  const share = () => {
+    if (navigator.share) {
+      navigator.share({ title: name || 'Карточка передачи', text: handoffText }).catch(() => {});
+    } else {
+      copy();
+    }
+  };
+  const save = () => {
+    if (onSaveCase) {
+      onSaveCase(name || 'Без названия', handoffText);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
+    }
   };
   return /*#__PURE__*/React.createElement("div", {
     style: { position: 'fixed', inset: 0, background: C.bg, zIndex: 220, display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto' }
@@ -2346,7 +2623,10 @@ function HandoffCard({ state, proto, log, onClose }) {
     onClick: onClose
   }, "←"), /*#__PURE__*/React.createElement("div", {
     className: "hdr-t"
-  }, "🚑 Передача бригаде"), /*#__PURE__*/React.createElement("a", {
+  }, "🚑 Передача бригаде"), onHome && /*#__PURE__*/React.createElement("button", {
+    className: "home-btn",
+    onClick: onHome
+  }, "🏠 В начало"), /*#__PURE__*/React.createElement("a", {
     href: "tel:112",
     className: "e112"
   }, "📞 112")), /*#__PURE__*/React.createElement("div", {
@@ -2355,29 +2635,120 @@ function HandoffCard({ state, proto, log, onClose }) {
     style: { background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 16, marginBottom: 12 }
   }, /*#__PURE__*/React.createElement("div", {
     style: { fontSize: 12, color: C.textSec, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 8 }
+  }, "Название карточки"), /*#__PURE__*/React.createElement("input", {
+    value: name,
+    onChange: e => setName(e.target.value),
+    placeholder: "Например: вагон 5, Иванов И.И.",
+    style: { width: '100%', boxSizing: 'border-box', padding: '10px 12px', borderRadius: 10, border: `1px solid ${C.border}`, background: C.bg, color: C.text, fontSize: 15, fontWeight: 700, fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif" }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: { background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 16, marginBottom: 12 }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: { fontSize: 12, color: C.textSec, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 8 }
   }, "Коротко"), /*#__PURE__*/React.createElement("div", {
     style: { display: 'grid', gap: 8, fontSize: 14, lineHeight: 1.45 }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Пациент: "), patientLabel), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Протокол: "), proto ? proto.title : "не выбран"), state.rhythmType && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Ритм: "), rhythmLabel), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Начало: "), fmt(state.caseStartedAt)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Событий: "), log.length))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Пациент: "), patientLabel), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Протокол: "), proto ? proto.title : "не выбран"), state.rhythmType && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Ритм: "), rhythmLabel), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Начало: "), fmt(state.caseStartedAt)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Действий: "), log.length))), /*#__PURE__*/React.createElement("div", {
     style: { background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 14, fontSize: 12, lineHeight: 1.75, whiteSpace: 'pre-wrap' }
   }, handoffText)), /*#__PURE__*/React.createElement("div", {
     className: "footer"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn btn-grn",
-    onClick: copy,
+    onClick: save,
     style: { marginBottom: 8 }
-  }, copied ? "✅ Скопировано" : "📋 Скопировать карточку"), /*#__PURE__*/React.createElement("button", {
+  }, saved ? "💾 Сохранено в «Мои карточки»" : "💾 Сохранить карточку"), /*#__PURE__*/React.createElement("div", {
+    style: { display: 'flex', gap: 8, marginBottom: 8 }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sec",
+    onClick: copy,
+    style: { flex: 1 }
+  }, copied ? "✅ Скопировано" : "📋 Копировать"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sec",
+    onClick: download,
+    style: { flex: 1 }
+  }, "⬇️ Скачать файл"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sec",
+    onClick: share,
+    style: { flex: 1 }
+  }, "📤 Передать")), /*#__PURE__*/React.createElement("div", {
+    style: { fontSize: 11, color: C.textSec, textAlign: 'center', marginBottom: 8, lineHeight: 1.5 }
+  }, "После сохранения карточку можно открыть в разделе «📁 Мои карточки» на главном экране — даже без интернета."), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-sec",
     onClick: onClose
   }, "Закрыть")));
 }
 
+/* ══════════════════ SAVED CASES SCREEN ═══════════ */
+function SavedCasesScreen({ cases, onClose, onDelete, onHome }) {
+  const [openId, setOpenId] = React.useState(null);
+  const [copiedId, setCopiedId] = React.useState(null);
+  const opened = cases.find(c => c.id === openId);
+  const fmt = ts => new Date(ts).toLocaleString('ru-RU', {
+    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+  });
+  if (opened) {
+    const safeName = (opened.name || 'karta').replace(/[\\/:*?"<>|]+/g, '_').trim() || 'karta';
+    return /*#__PURE__*/React.createElement("div", {
+      style: { position: 'fixed', inset: 0, background: C.bg, zIndex: 230, display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto' }
+    }, /*#__PURE__*/React.createElement("div", { className: "hdr" },
+      /*#__PURE__*/React.createElement("button", { className: "back", onClick: () => setOpenId(null) }, "←"),
+      /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, opened.name || "Карточка"),
+      onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
+      /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
+    ), /*#__PURE__*/React.createElement("div", { className: "body" },
+      /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.textSec, marginBottom: 10 } }, "Сохранено: " + fmt(opened.savedAt)),
+      /*#__PURE__*/React.createElement("div", {
+        style: { background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 14, fontSize: 12, lineHeight: 1.75, whiteSpace: 'pre-wrap' }
+      }, opened.text)
+    ), /*#__PURE__*/React.createElement("div", { className: "footer" },
+      /*#__PURE__*/React.createElement("div", { style: { display: 'flex', gap: 8, marginBottom: 8 } },
+        /*#__PURE__*/React.createElement("button", {
+          className: "btn btn-sec", style: { flex: 1 },
+          onClick: () => { navigator.clipboard && navigator.clipboard.writeText(opened.text).then(() => { setCopiedId(opened.id); setTimeout(() => setCopiedId(null), 2000); }).catch(() => {}); }
+        }, copiedId === opened.id ? "✅ Скопировано" : "📋 Копировать"),
+        /*#__PURE__*/React.createElement("button", {
+          className: "btn btn-sec", style: { flex: 1 },
+          onClick: () => downloadTextFile(`${safeName}.txt`, opened.text)
+        }, "⬇️ Скачать"),
+        /*#__PURE__*/React.createElement("button", {
+          className: "btn btn-sec", style: { flex: 1 },
+          onClick: () => { if (navigator.share) navigator.share({ title: opened.name, text: opened.text }).catch(() => {}); }
+        }, "📤 Передать")
+      ),
+      /*#__PURE__*/React.createElement("button", {
+        className: "btn btn-red",
+        style: { marginBottom: 8 },
+        onClick: () => { if (confirm("Удалить эту карточку без возможности восстановления?")) { onDelete(opened.id); setOpenId(null); } }
+      }, "🗑️ Удалить карточку"),
+      /*#__PURE__*/React.createElement("button", { className: "btn btn-sec", onClick: () => setOpenId(null) }, "Назад к списку")
+    ));
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    style: { position: 'fixed', inset: 0, background: C.bg, zIndex: 230, display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto' }
+  }, /*#__PURE__*/React.createElement("div", { className: "hdr" },
+    /*#__PURE__*/React.createElement("button", { className: "back", onClick: onClose }, "←"),
+    /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, "📁 Мои карточки"),
+    onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
+    /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
+  ), /*#__PURE__*/React.createElement("div", { style: { flex: 1, overflowY: 'auto', padding: '12px 16px' } },
+    cases.length === 0
+      ? /*#__PURE__*/React.createElement("div", { style: { textAlign: 'center', color: C.textMuted, padding: '40px 0', fontSize: 14 } }, "Пока нет сохранённых карточек.\nНажмите «💾 Сохранить карточку» на экране «Передача бригаде».")
+      : [...cases].sort((a, b) => b.savedAt - a.savedAt).map(c => /*#__PURE__*/React.createElement("button", {
+          key: c.id,
+          onClick: () => setOpenId(c.id),
+          style: { display: 'block', width: '100%', textAlign: 'left', background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: '12px 14px', marginBottom: 8, cursor: 'pointer', fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif" }
+        },
+          /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, fontSize: 14, color: C.text, marginBottom: 4 } }, c.name || "Без названия"),
+          /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.textSec } }, fmt(c.savedAt))
+        ))
+  ));
+}
+
 /* ══════════════════ HELPER MODE ════════ */
-function HelperMode({ onClose, onAdd }) {
+function HelperMode({ onClose, onAdd, onHome }) {
   const [assigned, setAssigned] = React.useState({});
   const tasks = [
     { id: "call", icon: "📞", title: "Вызови 112", sub: "Оставайся на линии, включи громкую связь" },
-    { id: "aed", icon: "⚡", title: "Найди AED", sub: "Принеси дефибриллятор и включи его" },
-    { id: "compress", icon: "🤲", title: "Смена на CPR", sub: "Сменить компрессии через 2 минуты" },
+    { id: "aed", icon: "⚡", title: "Найди дефибриллятор", sub: "Принеси дефибриллятор и включи его" },
+    { id: "compress", icon: "🤲", title: "Смена на реанимации", sub: "Сменить компрессии через 2 минуты" },
     { id: "meet", icon: "🚪", title: "Встреть скорую", sub: "Открой дверь, проведи бригаду кратчайшим путём" },
     { id: "log", icon: "📋", title: "Веди журнал", sub: "Фиксируй лекарства, разряды, время событий" },
     { id: "space", icon: "🛡️", title: "Освободи место", sub: "Убери лишних людей, обеспечь безопасность" }
@@ -2398,7 +2769,10 @@ function HelperMode({ onClose, onAdd }) {
     onClick: onClose
   }, "←"), /*#__PURE__*/React.createElement("div", {
     className: "hdr-t"
-  }, "👥 Помощники"), /*#__PURE__*/React.createElement("a", {
+  }, "👥 Помощники"), onHome && /*#__PURE__*/React.createElement("button", {
+    className: "home-btn",
+    onClick: onHome
+  }, "🏠 В начало"), /*#__PURE__*/React.createElement("a", {
     href: "tel:112",
     className: "e112"
   }, "📞 112")), /*#__PURE__*/React.createElement("div", {
@@ -2438,7 +2812,6 @@ function App() {
     qKey: "q1",
     protocolId: null,
     rhythmType: null,
-    specialistBack: null,
     caseStartedAt: null,
     isOnline: navigator.onLine
   });
@@ -2447,23 +2820,35 @@ function App() {
   const [showDose, setShowDose] = useState(false);
   const [showHandoff, setShowHandoff] = useState(false);
   const [showHelpers, setShowHelpers] = useState(false);
+  const [showSaved, setShowSaved] = useState(false);
+  const [savedCases, setSavedCases] = useState(() => loadSavedCases());
+  const [confirmedActions, setConfirmedActions] = useState({});
+  const [toast, setToast] = useState(null);
+  // Unfinished case recovered from localStorage on load (survives reload/crash mid-emergency)
+  const [pendingResume, setPendingResume] = useState(() => {
+    const saved = loadActiveCase();
+    return (saved && saved.s && saved.s.caseStartedAt) ? saved : null;
+  });
+  const skipNextPersistRef = useRef(!!pendingResume);
+  const saveCase = (name, text) => {
+    setSavedCases(prev => {
+      const next = [...prev, { id: Date.now() + '_' + Math.random().toString(36).slice(2, 8), name, text, savedAt: Date.now() }];
+      persistSavedCases(next);
+      return next;
+    });
+  };
+  const deleteCase = id => {
+    setSavedCases(prev => {
+      const next = prev.filter(c => c.id !== id);
+      persistSavedCases(next);
+      return next;
+    });
+  };
   const upd = o => set(prev => ({
     ...prev,
     ...o
   }));
-  const TRIAL_LIMIT = 2;
-  const getTrialCount = () => parseInt(localStorage.getItem("pandx_trial") || "0", 10);
-  const incTrial = () => localStorage.setItem("pandx_trial", getTrialCount() + 1);
-
   const go = (screen, extra = {}) => set(prev => {
-    // Intercept steps screen — check trial count
-    if (screen === "steps") {
-      const used = getTrialCount();
-      if (used >= TRIAL_LIMIT) {
-        return { ...prev, screen: "promo" };
-      }
-      incTrial();
-    }
     const next = {
       ...prev,
       screen,
@@ -2472,12 +2857,55 @@ function App() {
     if ((screen === "diagnosis" || screen === "steps") && !next.caseStartedAt) {
       next.caseStartedAt = Date.now();
     }
+    if (screen === "diagnosis") {
+      next.viaQuickAccess = false;
+    }
     if (screen === "welcome") {
       next.caseStartedAt = null;
+      next.viaQuickAccess = false;
+      next.fromDroneHub = false;
+      next.droneStep = null;
+      next.droneWho = null;
+      next.dronePatientType = null;
+      next.droneShowAbcde = false;
     }
     return next;
   });
   const addEvent = text => setEventLog(prev => [...prev, { text, ts: Date.now() }]);
+  const confirmAction = (key, text) => {
+    if (confirmedActions[key]) return;
+    setConfirmedActions(prev => ({ ...prev, [key]: true }));
+    addEvent("✅ Выполнено: " + text);
+  };
+  const resumeCase = () => {
+    if (!pendingResume) return;
+    set(pendingResume.s);
+    setEventLog(pendingResume.eventLog || []);
+    setConfirmedActions(pendingResume.confirmedActions || {});
+    setPendingResume(null);
+  };
+  const discardResume = () => {
+    clearActiveCase();
+    setPendingResume(null);
+  };
+  // Autosave the live case on every change so a reload / crash / dead battery
+  // mid-emergency doesn't wipe the journal and timers. Skips the very first
+  // run so an unresolved "resume?" prompt isn't wiped before the user answers it.
+  useEffect(() => {
+    if (skipNextPersistRef.current) {
+      skipNextPersistRef.current = false;
+      return;
+    }
+    if (s.caseStartedAt) {
+      persistActiveCase({ s, eventLog, confirmedActions, savedAt: Date.now() });
+    } else {
+      clearActiveCase();
+    }
+  }, [s, eventLog, confirmedActions]);
+  // Once the user has moved past "welcome" a stale resume prompt no longer applies
+  useEffect(() => {
+    if (s.screen !== "welcome" && pendingResume) setPendingResume(null);
+  }, [s.screen]);
   const voice = useVoice();
   const wakeLock = useWakeLock();
   const flash = useFlashlight();
@@ -2528,27 +2956,84 @@ function App() {
     b: "hg",
     o: "ho"
   };
+  const goHome = () => {
+    wakeLock.release();
+    if (eventLog.length > 0 || s.caseStartedAt) {
+      const name = `${patientTypeLabel(s.patientType)} · ${fmtShortDateTime(s.caseStartedAt)}`;
+      const text = buildHandoffText(s, proto, eventLog, name);
+      saveCase(name, text);
+      setToast(`💾 Карточка «${name}» сохранена в «Мои карточки»`);
+      setTimeout(() => setToast(null), 4000);
+    }
+    setEventLog([]);
+    setConfirmedActions({});
+    setShowLog(false);
+    setShowDose(false);
+    setShowHandoff(false);
+    setShowHelpers(false);
+    setShowSaved(false);
+    go("welcome");
+  };
+  // Auto-scroll to the current (first unconfirmed) step whenever it changes,
+  // so a stressed user doesn't have to hunt for "what do I do now".
+  const currentStepRef = useRef(null);
+  useEffect(() => {
+    if (s.screen === "steps" && currentStepRef.current) {
+      try {
+        currentStepRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (e) {}
+    }
+  }, [s.screen, s.protocolId, s.rhythmType, confirmedActions]);
   if (showLog) return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement(EventLog, {
     log: eventLog,
     onAdd: addEvent,
-    onClose: () => setShowLog(false)
+    onClose: () => setShowLog(false),
+    onHome: goHome
   }));
   if (showDose) return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement(DoseCalc, {
-    onClose: () => setShowDose(false)
+    onClose: () => setShowDose(false),
+    onHome: goHome
   }));
   if (showHandoff) return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement(HandoffCard, {
     state: s,
     proto: proto,
     log: eventLog,
-    onClose: () => setShowHandoff(false)
+    onClose: () => setShowHandoff(false),
+    onSaveCase: saveCase,
+    onHome: goHome
   }));
   if (showHelpers) return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement(HelperMode, {
     onClose: () => setShowHelpers(false),
-    onAdd: addEvent
+    onAdd: addEvent,
+    onHome: goHome
+  }));
+  if (showSaved) return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement(SavedCasesScreen, {
+    cases: savedCases,
+    onClose: () => setShowSaved(false),
+    onDelete: deleteCase,
+    onHome: goHome
   }));
 
   /* ─── WELCOME ─── */
-  if (s.screen === "welcome") return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
+  if (s.screen === "welcome") return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), toast && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      top: 16,
+      left: "50%",
+      transform: "translateX(-50%)",
+      zIndex: 500,
+      maxWidth: 440,
+      width: "calc(100% - 32px)",
+      background: C.green,
+      color: "#062012",
+      fontWeight: 700,
+      fontSize: 13,
+      padding: "12px 16px",
+      borderRadius: 12,
+      boxShadow: "0 8px 24px rgba(0,0,0,.35)",
+      textAlign: "center"
+    }
+  }, toast), /*#__PURE__*/React.createElement("div", {
     className: "screen",
     style: {
       animation: "fadeIn .4s ease"
@@ -2565,7 +3050,7 @@ function App() {
       fontSize: 11,
       color: C.textSec
     }
-  }, "v2.0 \xB7 AHA 2025"), /*#__PURE__*/React.createElement("span", {
+  }, "v1.0 \xB7 поезд «Смена»"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 11,
       color: s.isOnline ? C.green : C.red
@@ -2575,7 +3060,41 @@ function App() {
     style: {
       textAlign: "center"
     }
+  }, pendingResume && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.orangeBg,
+      border: `2px solid ${C.orange}60`,
+      borderRadius: 16,
+      padding: 16,
+      marginBottom: 16,
+      textAlign: "left"
+    }
   }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 800,
+      color: C.orange,
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      marginBottom: 8
+    }
+  }, "🔄 Незавершённый случай"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: C.textSec,
+      lineHeight: 1.5,
+      marginBottom: 12
+    }
+  }, `${patientTypeLabel(pendingResume.s.patientType)} · начат ${fmtShortDateTime(pendingResume.s.caseStartedAt)} · действий в журнале: ${(pendingResume.eventLog || []).length}`), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-red",
+    style: {
+      marginBottom: 8
+    },
+    onClick: resumeCase
+  }, "▶️ Продолжить с того места"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sec",
+    onClick: discardResume
+  }, "Начать заново")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 72,
       margin: "24px 0 12px"
@@ -2587,18 +3106,14 @@ function App() {
       lineHeight: 1.2,
       marginBottom: 10
     }
-  }, "\u042D\u043A\u0441\u0442\u0440\u0435\u043D\u043D\u0430\u044F", /*#__PURE__*/React.createElement("br", null), "\u043F\u0435\u0440\u0432\u0430\u044F \u043F\u043E\u043C\u043E\u0449\u044C"), /*#__PURE__*/React.createElement("div", {
+  }, "\u041F\u043E\u0435\u0437\u0434 \u00AB\u0421\u043C\u0435\u043D\u0430\u00BB"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
       color: C.textSec,
       lineHeight: 1.65,
       marginBottom: 20
     }
-  }, "\u041F\u043E\u0448\u0430\u0433\u043E\u0432\u044B\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \xB7 ", /*#__PURE__*/React.createElement("strong", {
-    style: {
-      color: C.text
-    }
-  }, "AHA 2025")), /*#__PURE__*/React.createElement("div", {
+  }, "\u0421\u0430\u043D\u043A\u0442-\u041F\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433 - \u041C\u043E\u0441\u043A\u0432\u0430"), /*#__PURE__*/React.createElement("div", {
     style: {
       background: C.redBg,
       border: `2px solid ${C.red}40`,
@@ -2615,7 +3130,7 @@ function App() {
       letterSpacing: 1,
       marginBottom: 10
     }
-  }, "\u26A1 \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0434\u043E\u0441\u0442\u0443\u043F \u2014 CPR \u043F\u0440\u044F\u043C\u043E \u0441\u0435\u0439\u0447\u0430\u0441"), /*#__PURE__*/React.createElement("button", {
+  }, "\u26A1 \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0434\u043E\u0441\u0442\u0443\u043F"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-red pulse",
     style: {
       fontSize: 17
@@ -2623,27 +3138,120 @@ function App() {
     onClick: () => go("steps", {
       protocolId: "cardiac_arrest",
       trainingLevel: "basic",
-      patientType: "adult"
+      patientType: "adult",
+      viaQuickAccess: true
     })
-  }, "\uD83E\uDEC0 \u0412\u0437\u0440\u043E\u0441\u043B\u044B\u0439 \u0431\u0435\u0437 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u044F \u2014 CPR"), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-sec",
+  }, "\uD83E\uDEC0 \u0412\u0437\u0440\u043E\u0441\u043B\u044B\u0439 \u2014 Реанимация"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-red pulse",
     style: {
-      marginTop: 8,
-      fontSize: 14
+      fontSize: 17,
+      marginTop: 10
     },
     onClick: () => go("steps", {
       protocolId: "cardiac_arrest_pediatric",
       trainingLevel: "basic",
-      patientType: "child"
+      patientType: "child",
+      viaQuickAccess: true
     })
-  }, "\uD83E\uDDD2 \u0420\u0435\u0431\u0451\u043D\u043E\u043A \u0431\u0435\u0437 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u044F \u2014 CPR")), /*#__PURE__*/React.createElement("a", {
+  }, "\uD83E\uDEC0 \u0420\u0435\u0431\u0451\u043D\u043E\u043A \u2014 Реанимация"), /*#__PURE__*/React.createElement("button", {
+    className: "btn pulse",
+    style: {
+      fontSize: 17,
+      marginTop: 10,
+      background: C.yellow,
+      color: "#000"
+    },
+    onClick: () => go("drone_attack")
+  }, "💥 Атака беспилотника"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(2,1fr)",
+      gap: 8,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 2,
+      background: C.orange,
+      color: "#fff",
+      border: "none",
+      borderRadius: 12,
+      padding: "10px 4px",
+      minHeight: 68,
+      fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif",
+      cursor: "pointer",
+      textAlign: "center"
+    },
+    onClick: () => go("steps", {
+      protocolId: "fbao_adult",
+      trainingLevel: "basic",
+      patientType: "adult",
+      viaQuickAccess: true
+    })
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 20,
+      marginBottom: 2
+    }
+  }, "😮‍💨"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 800,
+      fontSize: 12.5,
+      lineHeight: 1.15
+    }
+  }, "Удушье")), /*#__PURE__*/React.createElement("button", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 2,
+      background: C.orange,
+      color: "#fff",
+      border: "none",
+      borderRadius: 12,
+      padding: "10px 4px",
+      minHeight: 68,
+      fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif",
+      cursor: "pointer",
+      textAlign: "center"
+    },
+    onClick: () => go("steps", {
+      protocolId: "anaphylaxis",
+      trainingLevel: "basic",
+      patientType: "adult",
+      viaQuickAccess: true
+    })
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 20,
+      marginBottom: 2
+    }
+  }, "🤧"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 800,
+      fontSize: 12.5,
+      lineHeight: 1.15
+    }
+  }, "Аллергия")))), /*#__PURE__*/React.createElement("a", {
     href: "tel:112",
     className: "btn btn-red",
     style: {
       marginBottom: 12,
       fontSize: 18
     }
-  }, "\uD83D\uDCDE \u0412\u044B\u0437\u0432\u0430\u0442\u044C 112"), /*#__PURE__*/React.createElement("div", {
+  }, "\uD83D\uDCDE \u0412\u044B\u0437\u0432\u0430\u0442\u044C 112"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sec",
+    style: {
+      marginBottom: 12,
+      fontSize: 15
+    },
+    onClick: () => setShowSaved(true)
+  }, savedCases.length > 0 ? `📁 Мои карточки (${savedCases.length})` : "📁 Мои карточки"), /*#__PURE__*/React.createElement("div", {
     className: "banner",
     style: {
       textAlign: "left",
@@ -2671,11 +3279,205 @@ function App() {
   }, "112"), ".")), /*#__PURE__*/React.createElement("div", {style: {marginTop:16, padding:"12px 14px", background:"rgba(255,200,0,0.06)",border:"1px solid rgba(255,200,0,0.25)", borderRadius:12, fontSize:12, color:"#8a9cbf",lineHeight:1.55, textAlign:"left"}}, /*#__PURE__*/React.createElement("strong", {style:{color:"#f0b429",marginRight:4}}, "\u26A0\uFE0F \u0414\u0438\u0441\u043A\u043b\u0435\u0439\u043c\u0435\u0440:"), "\u041F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043F\u0440\u0435\u0434\u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u043E \u0438\u0441\u043A\u043B\u044E\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0434\u043B\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0438 \u0438 \u043D\u0435 \u0437\u0430\u043C\u0435\u043D\u044F\u0435\u0442 \u043A\u0432\u0430\u043B\u0438\u0444\u0438\u0446\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u0443\u044E \u043C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0443\u044E \u043F\u043E\u043C\u043E\u0449\u044C. \u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u044B \u0431\u0430\u0437\u0438\u0440\u0443\u044E\u0442\u0441\u044F \u043D\u0430 \u0440\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0430\u0446\u0438\u044F\u0445 AHA 2025.")), /*#__PURE__*/React.createElement("div", {
     className: "footer"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-sec",
+    className: "btn",
     onClick: () => go("patient"),
-    style: {display:"flex",alignItems:"center",justifyContent:"center",gap:8}
-  }, "\u041F\u0430\u0446\u0438\u0435\u043D\u0442 \u0432 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u0438 \u2193"))));
+    style: {display:"flex",alignItems:"center",justifyContent:"center",gap:8, background: C.blue, color: "#fff", fontSize: 16}
+  }, "\u041D\u0435\u043E\u0442\u043B\u043E\u0436\u043D\u044B\u0435 \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u044F \u2193"))));
 
+
+  /* ─── DRONE ATTACK WIZARD ─── */
+  if (s.screen === "drone_attack") {
+    const droneStep = s.droneStep || "safety";
+    const droneWho = s.droneWho || null;
+    const dronePatientType = s.dronePatientType || "adult";
+    const dgo = (step, extra = {}) => go("drone_attack", { droneStep: step, ...extra });
+
+    const openDroneProtocol = protocolId => go("steps", {
+      protocolId,
+      trainingLevel: "basic",
+      patientType: droneWho === "self" ? "adult" : dronePatientType,
+      viaQuickAccess: true,
+      fromDroneHub: true
+    });
+
+    const droneBack = () => {
+      if (droneStep === "who") return dgo("safety");
+      if (droneStep === "patientType") return dgo("who");
+      if (droneStep === "injury") return droneWho === "self" ? dgo("who") : dgo("patientType");
+      if (droneStep === "selfNote") return dgo("injury");
+      return go("welcome");
+    };
+
+    const droneHeader = (title, sub) => /*#__PURE__*/React.createElement("div", {
+      className: "hdr"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "back",
+      onClick: droneBack
+    }, "←"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      className: "hdr-t"
+    }, title), sub && /*#__PURE__*/React.createElement("div", {
+      className: "hdr-s"
+    }, sub)), /*#__PURE__*/React.createElement("a", {
+      href: "tel:112",
+      className: "e112"
+    }, "📞 112"));
+
+    let droneBody;
+
+    if (droneStep === "who") {
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Кому оказываете помощь?", "Шаг 2 из 3"), /*#__PURE__*/React.createElement("div", {
+        className: "body"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "opts"
+      }, /*#__PURE__*/React.createElement("button", {
+        className: "opt",
+        onClick: () => dgo("injury", { droneWho: "self" })
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "opt-ico"
+      }, "🙋"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        className: "opt-lbl"
+      }, "Себе"), /*#__PURE__*/React.createElement("div", {
+        className: "opt-sub"
+      }, "Оказываю помощь самому себе"))), /*#__PURE__*/React.createElement("button", {
+        className: "opt",
+        onClick: () => dgo("patientType", { droneWho: "other" })
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "opt-ico"
+      }, "🧑‍🤝‍🧑"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        className: "opt-lbl"
+      }, "Другому человеку"), /*#__PURE__*/React.createElement("div", {
+        className: "opt-sub"
+      }, "Взрослый, ребёнок или беременная")))), /*#__PURE__*/React.createElement("button", {
+        className: "confirm",
+        style: { marginTop: 14 },
+        onClick: () => go("drone_attack", { droneShowAbcde: !s.droneShowAbcde })
+      }, s.droneShowAbcde ? "Скрыть стандартные действия ▲" : "ℹ️ Стандартные действия для поддержания жизни ▼"), s.droneShowAbcde && /*#__PURE__*/React.createElement("div", {
+        className: "banner",
+        style: { marginTop: 10 }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: { fontSize: 20 }
+      }, "🫀"), /*#__PURE__*/React.createElement("div", {
+        className: "stxt"
+      }, "Последовательность ABCDE:\nA — Airway (дыхательные пути)\nB — Breathing (дыхание)\nC — Circulation (кровообращение)\nD — Disability (неврологический статус)\nE — Extremities/Exposure (конечности и внешние воздействия)\n\nГлавные цели немедленных мер:\n1. Восстановить и поддерживать проходимость верхних дыхательных путей\n2. Поддерживать дыхание\n3. Остановить кровотечение и снизить риск шока\n\nДополнительно на месте: осмотр на ранения и переломы.\nДополнительные меры: сохраняйте тепло пострадавшего, компенсируйте потерю жидкости, окажите психологическую поддержку."))));
+    } else if (droneStep === "patientType") {
+      const ptOpts = [{
+        v: "adult",
+        ico: "🧑",
+        l: "Взрослый"
+      }, {
+        v: "child",
+        ico: "🧒",
+        l: "Ребёнок"
+      }, {
+        v: "pregnant",
+        ico: "🤰",
+        l: "Беременная"
+      }];
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Кто пострадавший?", "Шаг 2 из 3"), /*#__PURE__*/React.createElement("div", {
+        className: "body"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "opts"
+      }, ptOpts.map(o => /*#__PURE__*/React.createElement("button", {
+        key: o.v,
+        className: "opt",
+        onClick: () => dgo("injury", { dronePatientType: o.v })
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "opt-ico"
+      }, o.ico), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        className: "opt-lbl"
+      }, o.l)))))));
+    } else if (droneStep === "selfNote") {
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Ранение груди, тела, шеи, головы", "Помощь себе"), /*#__PURE__*/React.createElement("div", {
+        className: "body"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "banner"
+      }, /*#__PURE__*/React.createElement("span", {
+        style: { fontSize: 20 }
+      }, "🚨"), /*#__PURE__*/React.createElement("div", {
+        className: "stxt"
+      }, "Позовите на помощь любым доступным способом (крик, телефон, стук по поверхности).\nНЕ пейте воду.\nНЕ принимайте таблетки.\nСтарайтесь не двигаться лишний раз и, если можете, прижмите рану рукой или тканью.")), /*#__PURE__*/React.createElement("a", {
+        href: "tel:112",
+        className: "btn btn-red",
+        style: { marginTop: 6, textDecoration: "none" }
+      }, "📞 Позвонить 112"), /*#__PURE__*/React.createElement("button", {
+        className: "btn btn-sec",
+        style: { marginTop: 10 },
+        onClick: () => go("welcome")
+      }, "На главный экран")));
+    } else if (droneStep === "injury") {
+      const items = droneWho === "self" ? [{
+        id: "bleeding",
+        ico: "🩸",
+        l: "Кровь",
+        sub: "Кровотечение — протокол кровотечения"
+      }, {
+        id: "fractures",
+        ico: "🦴",
+        l: "Перелом",
+        sub: "Деформация, боль при опоре — протокол перелома"
+      }, {
+        id: "__self_chest__",
+        ico: "🫁",
+        l: "Раневые дефекты на груди, теле, шее, голове",
+        sub: "Позвать на помощь, не пить воду, не принимать таблетки"
+      }] : [{
+        id: "bleeding",
+        ico: "🩸",
+        l: "Кровь",
+        sub: "Кровотечение — протокол кровотечения"
+      }, {
+        id: "fractures",
+        ico: "🦴",
+        l: "Перелом",
+        sub: "Деформация, боль при опоре — протокол перелома"
+      }, {
+        id: "pneumothorax",
+        ico: "🫁",
+        l: "Дефект на груди и нехватка воздуха",
+        sub: "Протокол пневмоторакса"
+      }];
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader(droneWho === "self" ? "Помощь себе" : "Помощь пострадавшему", "Шаг 3 из 3 — что произошло?"), /*#__PURE__*/React.createElement("div", {
+        className: "body"
+      }, droneWho === "self" && /*#__PURE__*/React.createElement("div", {
+        className: "banner"
+      }, /*#__PURE__*/React.createElement("span", {
+        style: { fontSize: 20 }
+      }, "🔍"), /*#__PURE__*/React.createElement("div", {
+        className: "stxt"
+      }, "Осмотрите себя, по возможности оголив тело: наличие крови, болезненные места, изменение формы тела/конечности, нарушение подвижности.")), /*#__PURE__*/React.createElement("div", {
+        className: "opts",
+        style: { marginTop: droneWho === "self" ? 12 : 0 }
+      }, items.map(o => /*#__PURE__*/React.createElement("button", {
+        key: o.id,
+        className: "opt",
+        onClick: () => o.id === "__self_chest__" ? dgo("selfNote") : openDroneProtocol(o.id)
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "opt-ico"
+      }, o.ico), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        className: "opt-lbl"
+      }, o.l), /*#__PURE__*/React.createElement("div", {
+        className: "opt-sub"
+      }, o.sub)))))));
+    } else {
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Атака беспилотника", "Шаг 1 из 3 — безопасность"), /*#__PURE__*/React.createElement("div", {
+        className: "body"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "banner"
+      }, /*#__PURE__*/React.createElement("span", {
+        style: { fontSize: 20 }
+      }, "⚠️"), /*#__PURE__*/React.createElement("div", {
+        className: "stxt"
+      }, "1) Безопасность:\n• Убедитесь, что вам самому ничего не угрожает\n• Убедитесь, что место безопасно для оказания помощи\n• При необходимости переместите пострадавшего в безопасное место")), /*#__PURE__*/React.createElement("button", {
+        className: "btn btn-red",
+        style: { marginTop: 6 },
+        onClick: () => dgo("who")
+      }, "Продолжить →")));
+    }
+
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
+      className: "screen"
+    }, droneBody));
+  }
 
   /* ─── PATIENT ─── */
   if (s.screen === "patient") {
@@ -2769,7 +3571,7 @@ function App() {
       v: "medical",
       ico: "👨‍⚕️",
       l: "Медицинское образование",
-      sub: "Полные ACLS/PALS/BLS алгоритмы с дозировками"
+      sub: "Полные алгоритмы ACLS/PALS/базовой реанимации с дозировками"
     }];
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
       className: "screen"
@@ -2782,7 +3584,10 @@ function App() {
       className: "hdr-t"
     }, "\u0412\u0430\u0448\u0430 \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u043A\u0430"), /*#__PURE__*/React.createElement("div", {
       className: "hdr-s"
-    }, "\u0428\u0430\u0433 2 \u0438\u0437 3")), /*#__PURE__*/React.createElement("a", {
+    }, "\u0428\u0430\u0433 2 \u0438\u0437 3")), /*#__PURE__*/React.createElement("button", {
+      className: "home-btn",
+      onClick: goHome
+    }, "🏠 В начало"), /*#__PURE__*/React.createElement("a", {
       href: "tel:112",
       className: "e112"
     }, "\uD83D\uDCDE 112")), /*#__PURE__*/React.createElement("div", {
@@ -2853,7 +3658,10 @@ function App() {
       className: "hdr-t"
     }, "\u041E\u0446\u0435\u043D\u043A\u0430 \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u044F"), /*#__PURE__*/React.createElement("div", {
       className: "hdr-s"
-    }, "\u0428\u0430\u0433 3 \u0438\u0437 3")), /*#__PURE__*/React.createElement("a", {
+    }, "\u0428\u0430\u0433 3 \u0438\u0437 3")), /*#__PURE__*/React.createElement("button", {
+      className: "home-btn",
+      onClick: goHome
+    }, "🏠 В начало"), /*#__PURE__*/React.createElement("a", {
       href: "tel:112",
       className: "e112"
     }, "\uD83D\uDCDE 112")), /*#__PURE__*/React.createElement("div", {
@@ -2925,7 +3733,10 @@ function App() {
       })
     }, "\u2190"), /*#__PURE__*/React.createElement("div", {
       className: "hdr-t"
-    }, "\u041F\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u043E\u0446\u0435\u043D\u043A\u0430"), /*#__PURE__*/React.createElement("a", {
+    }, "\u041F\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u043E\u0446\u0435\u043D\u043A\u0430"), /*#__PURE__*/React.createElement("button", {
+      className: "home-btn",
+      onClick: goHome
+    }, "🏠 В начало"), /*#__PURE__*/React.createElement("a", {
       href: "tel:112",
       className: "e112"
     }, "\uD83D\uDCDE 112")), /*#__PURE__*/React.createElement("div", {
@@ -2940,7 +3751,9 @@ function App() {
       className: "dico"
     }, proto.icon), /*#__PURE__*/React.createElement("div", {
       className: "dtit"
-    }, proto.title), /*#__PURE__*/React.createElement("div", {
+    }, proto.title), proto.subtitle && s.trainingLevel !== "medical" && /*#__PURE__*/React.createElement("div", {
+      style: { fontSize: 14, fontWeight: 600, opacity: .8, marginBottom: 6 }
+    }, "(", proto.subtitle, ")"), /*#__PURE__*/React.createElement("div", {
       className: "dsub"
     }, s.patientType === "child" ? "👶 Ребёнок" : s.patientType === "pregnant" ? "🤰 Беременная" : s.patientType === "elderly" ? "👴 Пожилой" : "🧑 Взрослый", " · ", s.trainingLevel === "medical" ? "👨‍⚕️ Медперсонал" : "🙋 Первая помощь"), /*#__PURE__*/React.createElement("div", {
       className: "dbadge",
@@ -3002,7 +3815,7 @@ function App() {
       style: {
         color: C.text
       }
-    }, "\u0418\u0441\u0442\u043E\u0447\u043D\u0438\u043A: "), s.trainingLevel === "medical" ? "AHA 2025 (ACLS/PALS)" : "AHA 2025 (BLS)")), /*#__PURE__*/React.createElement("div", {
+    }, "\u0418\u0441\u0442\u043E\u0447\u043D\u0438\u043A: "), s.trainingLevel === "medical" ? "AHA 2025 (ACLS/PALS)" : "AHA 2025 (базовая реанимация)")), /*#__PURE__*/React.createElement("div", {
       className: "footer"
     }, /*#__PURE__*/React.createElement("button", {
       className: "btn btn-red",
@@ -3012,12 +3825,7 @@ function App() {
       },
       disabled: needsRhythm(),
       onClick: () => go("steps")
-    }, "\u041F\u043E\u0448\u0430\u0433\u043E\u0432\u044B\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u2192"), s.isOnline && /*#__PURE__*/React.createElement("button", {
-      className: "btn btn-blu",
-      onClick: () => go("specialist", {
-        specialistBack: "diagnosis"
-      })
-    }, "\uD83D\uDCF9 \u0412\u044B\u0437\u0432\u0430\u0442\u044C \u0441\u043F\u0435\u0446\u0438\u0430\u043B\u0438\u0441\u0442\u0430 \u043E\u043D\u043B\u0430\u0439\u043D"))));
+    }, "\u041F\u043E\u0448\u0430\u0433\u043E\u0432\u044B\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u2192"))));
   }
 
   /* ─── STEPS ─── */
@@ -3027,6 +3835,12 @@ function App() {
     const mode = isMed ? proto.medical : proto.basic;
     const steps = getSteps();
     if (!steps) return null;
+    const actionKeyFor = st => [proto.id, s.trainingLevel, s.rhythmType || "basic", st.id].join(":");
+    const doneCount = steps.filter(st => confirmedActions[actionKeyFor(st)]).length;
+    const totalStepsCount = steps.length;
+    const allDone = totalStepsCount > 0 && doneCount === totalStepsCount;
+    const firstUndone = steps.find(st => !confirmedActions[actionKeyFor(st)]);
+    const firstUndoneId = firstUndone ? firstUndone.id : null;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
       className: "screen"
     }, /*#__PURE__*/React.createElement("div", {
@@ -3035,16 +3849,61 @@ function App() {
       className: "back",
       onClick: () => {
         wakeLock.release();
-        go("diagnosis");
+        if (s.fromDroneHub) {
+          go("drone_attack");
+        } else if (s.viaQuickAccess) {
+          go("welcome");
+        } else {
+          go("diagnosis");
+        }
       }
     }, "\u2190"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: "hdr-t"
     }, proto.title), /*#__PURE__*/React.createElement("div", {
       className: "hdr-s"
-    }, isMed ? "ACLS/PALS" : "BLS", " \xB7 AHA 2025")), /*#__PURE__*/React.createElement("a", {
+    }, isMed ? "ACLS/PALS" : "базовая реанимация", " \xB7 AHA 2025")), /*#__PURE__*/React.createElement("button", {
+      className: "home-btn",
+      onClick: goHome
+    }, "🏠 В начало"), /*#__PURE__*/React.createElement("a", {
       href: "tel:112",
       className: "e112"
     }, "\uD83D\uDCDE 112")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "10px 16px 0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        fontWeight: 800,
+        color: allDone ? C.green : C.textSec
+      }
+    }, allDone ? "✓ Все шаги выполнены" : `${doneCount} из ${totalStepsCount} выполнено`), !allDone && totalStepsCount > 0 && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: C.textMuted
+      }
+    }, `Осталось: ${totalStepsCount - doneCount}`)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 6,
+        background: C.border,
+        borderRadius: 3,
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: "100%",
+        width: `${totalStepsCount ? doneCount / totalStepsCount * 100 : 0}%`,
+        background: allDone ? C.green : proto.color,
+        transition: "width .35s ease"
+      }
+    }))), /*#__PURE__*/React.createElement("div", {
       style: {
         padding: "8px 16px 0"
       }
@@ -3076,9 +3935,20 @@ function App() {
       style: {
         color: proto.color
       }
-    }, proto.icon, " ", isMed && s.rhythmType ? s.rhythmType === "shockable" ? "⚡ VF/pVT · " : "📉 Асистолия/PEA · " : "", proto.title), /*#__PURE__*/React.createElement("br", null), mode.intro), steps.map((step, i) => /*#__PURE__*/React.createElement("div", {
+    }, proto.icon, " ", isMed && s.rhythmType ? s.rhythmType === "shockable" ? "⚡ VF/pVT · " : "📉 Асистолия/PEA · " : "", proto.title), /*#__PURE__*/React.createElement("br", null), mode.intro), steps.map((step, i) => {
+      const actionKey = [proto.id, s.trainingLevel, s.rhythmType || "basic", step.id].join(":");
+      const actionText = (step.icon ? step.icon + " " : "") + step.title;
+      const done = !!confirmedActions[actionKey];
+      const isCurrent = !done && step.id === firstUndoneId;
+      return /*#__PURE__*/React.createElement("div", {
       key: step.id,
-      className: `step${step.hl ? " " + hlClass[step.hl] : ""}`
+      ref: isCurrent ? currentStepRef : undefined,
+      className: `step${step.hl ? " " + hlClass[step.hl] : ""}`,
+      style: {
+        opacity: done ? 0.55 : 1,
+        transition: "opacity .3s ease, box-shadow .3s ease",
+        boxShadow: isCurrent ? `0 0 0 2px ${proto.color}, 0 4px 16px ${proto.color}30` : "none"
+      }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
@@ -3095,7 +3965,20 @@ function App() {
       style: {
         flex: 1
       }
-    }, /*#__PURE__*/React.createElement("div", {
+    }, isCurrent && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "inline-block",
+        fontSize: 10.5,
+        fontWeight: 800,
+        letterSpacing: .3,
+        color: proto.color,
+        background: proto.color + "22",
+        border: `1px solid ${proto.color}55`,
+        borderRadius: 20,
+        padding: "2px 9px",
+        marginBottom: 6
+      }
+    }, "\u2192 \u0421\u0415\u0419\u0427\u0410\u0421"), /*#__PURE__*/React.createElement("div", {
       className: "stit"
     }, step.icon && /*#__PURE__*/React.createElement("span", {
       style: {
@@ -3114,7 +3997,35 @@ function App() {
       label: step.timerLabel,
       cpr: step.cpr,
       speak: null
-    }))))), /*#__PURE__*/React.createElement("div", {
+    }), step.vitalsCheck ? (confirmedActions[actionKey] ? /*#__PURE__*/React.createElement("button", {
+      className: "confirm done"
+    }, "✓ " + confirmedActions[actionKey] + " — записано в журнал") : /*#__PURE__*/React.createElement("div", {
+      style: { display: "flex", gap: 8, marginTop: 12 }
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "confirm",
+      style: { flex: 1, marginTop: 0, background: C.greenBg, borderColor: C.green, color: C.green },
+      onClick: () => {
+        setConfirmedActions(prev => {
+          const next = { ...prev, [actionKey]: "Пульс/дыхание есть" };
+          (step.skipOnYes || []).forEach(sid => {
+            next[[proto.id, s.trainingLevel, s.rhythmType || "basic", sid].join(":")] = "skipped";
+          });
+          return next;
+        });
+        addEvent("💓 Возобновление пульса и дыхания");
+      }
+    }, "✅ Есть"), /*#__PURE__*/React.createElement("button", {
+      className: "confirm",
+      style: { flex: 1, marginTop: 0, background: C.redBg, borderColor: C.red, color: C.red },
+      onClick: () => {
+        setConfirmedActions(prev => ({ ...prev, [actionKey]: "Пульса/дыхания нет" }));
+        addEvent("📊 Нет пульса");
+      }
+    }, "❌ Нет"))) : /*#__PURE__*/React.createElement("button", {
+      className: `confirm${done ? " done" : ""}`,
+      onClick: () => confirmedActions[actionKey] === "skipped" ? null : confirmAction(actionKey, actionText)
+    }, confirmedActions[actionKey] === "skipped" ? "⏭️ Пропущено — пульс/дыхание в норме" : done ? "✓ Выполнено и записано в журнал" : "Подтвердить выполнение"))));
+    }), /*#__PURE__*/React.createElement("div", {
       style: {
         background: C.card,
         borderRadius: 14,
@@ -3159,7 +4070,7 @@ function App() {
         minHeight: 44
       },
       onClick: () => setShowLog(true)
-    }, "+ Событие", eventLog.length > 0 ? ` (${eventLog.length})` : ""), /*#__PURE__*/React.createElement("button", {
+    }, "Журнал", eventLog.length > 0 ? ` (${eventLog.length})` : ""), /*#__PURE__*/React.createElement("button", {
       className: "btn btn-sec",
       style: {
         fontSize: 12,
@@ -3197,200 +4108,96 @@ function App() {
       style: {
         marginBottom: 8
       }
-    }, "\uD83D\uDCDE \u0417\u0432\u043E\u043D\u043E\u043A 112"), s.isOnline && /*#__PURE__*/React.createElement("button", {
-      className: "btn btn-blu",
-      onClick: () => go("specialist", {
-        specialistBack: "steps"
-      })
-    }, "\uD83D\uDCF9 \u041A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044F \u0441\u043F\u0435\u0446\u0438\u0430\u043B\u0438\u0441\u0442\u0430"))));
+    }, "\uD83D\uDCDE \u0417\u0432\u043E\u043D\u043E\u043A 112"))));
   }
-
-  /* ─── SPECIALIST ─── */
-  if (s.screen === "specialist") return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
-    className: "screen"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "hdr"
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "back",
-    onClick: () => go(s.specialistBack || (s.protocolId ? "steps" : "diagnosis"))
-  }, "\u2190"), /*#__PURE__*/React.createElement("div", {
-    className: "hdr-t"
-  }, "\u041A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044F \u043E\u043D\u043B\u0430\u0439\u043D"), /*#__PURE__*/React.createElement("a", {
-    href: "tel:112",
-    className: "e112"
-  }, "\uD83D\uDCDE 112")), /*#__PURE__*/React.createElement("div", {
-    className: "body"
-  }, !s.isOnline ? /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: "center",
-      padding: "40px 0"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 54,
-      marginBottom: 16
-    }
-  }, "\uD83D\uDCF4"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 800,
-      fontSize: 18,
-      marginBottom: 8
-    }
-  }, "\u041D\u0435\u0442 \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      color: C.textSec,
-      fontSize: 14,
-      lineHeight: 1.6
-    }
-  }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043F\u043E\u0448\u0430\u0433\u043E\u0432\u044B\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u0438\u043B\u0438 \u043F\u043E\u0437\u0432\u043E\u043D\u0438\u0442\u0435 112.")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: C.card,
-      borderRadius: 16,
-      padding: 22,
-      marginBottom: 12,
-      border: `1px solid ${C.border}`,
-      textAlign: "center"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 48,
-      marginBottom: 12
-    }
-  }, "\uD83D\uDC68\u200D\u2695\uFE0F"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 800,
-      fontSize: 18,
-      marginBottom: 8
-    }
-  }, "\u0412\u0438\u0434\u0435\u043E\u043A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044F"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: C.textSec,
-      marginBottom: 16
-    }
-  }, "\u0421\u043F\u0435\u0446\u0438\u0430\u043B\u0438\u0441\u0442 \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u0441\u044F \u0432 \u0440\u0435\u0436\u0438\u043C\u0435 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u0433\u043E \u0432\u0440\u0435\u043C\u0435\u043D\u0438"), /*#__PURE__*/React.createElement("a", {
-    href: CFG.specialistVideoUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "btn btn-grn",
-    style: {
-      textDecoration: "none"
-    }
-  }, "\uD83D\uDCF9 \u041D\u0430\u0447\u0430\u0442\u044C \u0432\u0438\u0434\u0435\u043E\u043A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044E")), CFG.specialistPhone.replace(/\D/g, "").length >= 10 && /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: C.card,
-      borderRadius: 16,
-      padding: 22,
-      marginBottom: 12,
-      border: `1px solid ${C.border}`,
-      textAlign: "center"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 36,
-      marginBottom: 10
-    }
-  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 800,
-      fontSize: 16,
-      marginBottom: 8
-    }
-  }, "WhatsApp / Telegram"), /*#__PURE__*/React.createElement("a", {
-    href: `https://wa.me/${CFG.specialistPhone.replace(/\D/g, "")}`,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "btn btn-sec",
-    style: {
-      textDecoration: "none",
-      marginBottom: 8
-    }
-  }, "\uD83D\uDCAC WhatsApp"), /*#__PURE__*/React.createElement("a", {
-    href: `https://t.me/+${CFG.specialistPhone.replace(/\D/g, "")}`,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "btn btn-sec",
-    style: {
-      textDecoration: "none"
-    }
-  }, "\u2708\uFE0F Telegram")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: 14,
-      background: C.yellowBg,
-      border: `1px solid ${C.yellow}40`,
-      borderRadius: 12,
-      fontSize: 13,
-      color: C.textSec
-    }
-  }, /*#__PURE__*/React.createElement("strong", {
-    style: {
-      color: C.yellow
-    }
-  }, "\u26A0\uFE0F \u041F\u043E\u043C\u043D\u0438\u0442\u0435:"), " \u041E\u043D\u043B\u0430\u0439\u043D-\u043A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044F \u043D\u0435 \u0437\u0430\u043C\u0435\u043D\u044F\u0435\u0442 \u0437\u0432\u043E\u043D\u043E\u043A 112."))), /*#__PURE__*/React.createElement("div", {
-    className: "footer"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "tel:112",
-    className: "btn btn-red"
-  }, "\uD83D\uDCDE \u0417\u0432\u043E\u043D\u043E\u043A 112 \u2014 \u044D\u043A\u0441\u0442\u0440\u0435\u043D\u043D\u043E"))));
-
-  /* ─── PROMO ─── */
-  if (s.screen === "promo") {
-    const trialsLeft = Math.max(0, 2 - parseInt(localStorage.getItem("pandx_trial") || "0", 10));
-    return /*#__PURE__*/React.createElement(React.Fragment, null,
-      /*#__PURE__*/React.createElement("style", null, CSS),
-      /*#__PURE__*/React.createElement("div", {className:"screen", style:{animation:"fadeIn .4s ease", justifyContent:"center", alignItems:"center", minHeight:"100vh"}},
-        /*#__PURE__*/React.createElement("div", {style:{padding:"32px 24px", textAlign:"center", maxWidth:400, margin:"0 auto"}},
-          /*#__PURE__*/React.createElement("div", {style:{fontSize:64, marginBottom:12}}, "🤝"),
-          /*#__PURE__*/React.createElement("div", {style:{fontSize:23, fontWeight:900, color:C.text, lineHeight:1.3, marginBottom:10}},
-            "Мы рады сотрудничеству с вами"
-          ),
-          /*#__PURE__*/React.createElement("div", {style:{width:48, height:3, background:C.red, borderRadius:2, margin:"0 auto 20px"}}, null),
-          trialsLeft > 0 && /*#__PURE__*/React.createElement("div", {style:{background:C.yellowBg, border:`1px solid ${C.yellow}40`, borderRadius:12, padding:"10px 16px", marginBottom:16, fontSize:13, color:C.yellow, fontWeight:700}},
-            `✨ У вас ещё ${trialsLeft} бесплатн${trialsLeft === 1 ? "ая попытка" : "ые попытки"}`
-          ),
-          /*#__PURE__*/React.createElement("div", {style:{background:C.card, border:`1px solid ${C.border}`, borderRadius:18, padding:"22px 20px", marginBottom:16}},
-            /*#__PURE__*/React.createElement("div", {style:{fontSize:13, color:C.textSec, marginBottom:18, lineHeight:1.7}},
-              "Полная версия содержит пошаговые инструкции по всем экстренным состояниям. Для подключения свяжитесь с нами:"
-            ),
-            /*#__PURE__*/React.createElement("a", {href:"https://pandx.ru", target:"_blank", style:{display:"block", fontSize:15, fontWeight:800, color:C.blue, marginBottom:14, textDecoration:"none"}},
-              "🌐 pandx.ru"
-            ),
-            /*#__PURE__*/React.createElement("a", {href:"tel:+79215946532", style:{display:"block", fontSize:21, fontWeight:900, color:C.green, textDecoration:"none", marginBottom:4}},
-              "📞 +7 921 594-65-32"
-            ),
-            /*#__PURE__*/React.createElement("div", {style:{fontSize:13, color:C.textSec, fontWeight:600}}, "Кашинцев Алексей")
-          ),
-          /*#__PURE__*/React.createElement("button", {
-            className:"btn btn-sec",
-            style:{marginBottom:8},
-            onClick:()=>go("welcome")
-          }, "← На главную"),
-          /*#__PURE__*/React.createElement("a", {
-            href:"tel:112",
-            className:"btn btn-red",
-            style:{textDecoration:"none", display:"flex", marginTop:8}
-          }, "📞 Вызвать 112")
-        )
-      )
-    );
-  }
-
   return null;
+}
+
+/* ══════════════ ERROR BOUNDARY ══════════════ */
+/* Without this, any uncaught error anywhere in the tree unmounts the whole app
+   to a blank white screen — unacceptable mid-emergency. The fallback keeps
+   112 one tap away and offers a reload; the active case is autosaved to
+   localStorage already, so reloading can resume right where things left off. */
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    try {
+      console.error("Smena app crashed:", error, info && info.componentStack);
+    } catch (e) {}
+  }
+  render() {
+    if (this.state.hasError) {
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 28,
+          background: "#080f1e",
+          color: "#f0f4ff",
+          fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif",
+          textAlign: "center"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: { fontSize: 56, marginBottom: 14 }
+      }, "⚠️"), /*#__PURE__*/React.createElement("div", {
+        style: { fontSize: 20, fontWeight: 800, marginBottom: 10 }
+      }, "Приложение столкнулось с ошибкой"), /*#__PURE__*/React.createElement("div", {
+        style: { fontSize: 14, color: "#8a9cbf", marginBottom: 26, maxWidth: 320, lineHeight: 1.55 }
+      }, "Не теряйте время на ожидание — если ситуация экстренная, звоните 112 напрямую. Текущий случай сохранён и после перезапуска можно будет продолжить с того же места."), /*#__PURE__*/React.createElement("a", {
+        href: "tel:112",
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          maxWidth: 280,
+          padding: "16px 20px",
+          marginBottom: 12,
+          background: "#ff3a30",
+          color: "#fff",
+          borderRadius: 14,
+          fontWeight: 800,
+          fontSize: 18,
+          textDecoration: "none",
+          boxSizing: "border-box"
+        }
+      }, "📞 Позвонить 112"), /*#__PURE__*/React.createElement("button", {
+        onClick: () => {
+          try { window.location.reload(); } catch (e) {}
+        },
+        style: {
+          display: "block",
+          width: "100%",
+          maxWidth: 280,
+          padding: "14px 20px",
+          background: "#111f3a",
+          color: "#f0f4ff",
+          border: "1px solid #1c3260",
+          borderRadius: 14,
+          fontWeight: 700,
+          fontSize: 15,
+          cursor: "pointer",
+          boxSizing: "border-box"
+        }
+      }, "🔄 Перезапустить приложение"));
+    }
+    return this.props.children;
+  }
 }
 const loadingEl = document.getElementById('loading');
 if (loadingEl) loadingEl.remove();
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(/*#__PURE__*/React.createElement(App, null));
+root.render(/*#__PURE__*/React.createElement(ErrorBoundary, null, /*#__PURE__*/React.createElement(App, null)));
 
-</script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('./sw.js')
-      .then(function(r){ console.log('SW OK:', r.scope); })
-      .catch(function(e){ console.warn('SW err:', e); });
-  });
-}
 </script>
 </body>
 </html>
