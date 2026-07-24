@@ -469,6 +469,29 @@ html,body{font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;backg
 @keyframes animStep{0%,70%,100%{opacity:.35;transform:translateY(0)}25%{opacity:1;transform:translateY(-5px)}}
 @keyframes animRoll{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(18deg)}}
 .pulse{animation:pulse 2s infinite;}
+/* FULLSCREEN STEP VIEWER (one step at a time, swipeable) */
+.steps-screen-h{height:100vh;height:100dvh;}
+.steps-viewport{flex:1;min-height:0;overflow:hidden;position:relative;touch-action:pan-y;}
+.steps-track{display:flex;height:100%;}
+.step-slide{flex:0 0 100%;width:100%;height:100%;overflow-y:auto;padding:22px 20px 16px;box-sizing:border-box;}
+.step-slide.hr{background:${C.redBg};}
+.step-slide.hy{background:${C.yellowBg};}
+.step-slide.hg{background:${C.greenBg};}
+.step-slide.ho{background:${C.orangeBg};}
+.snum-lg{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:${C.blue};color:#fff;font-weight:900;font-size:19px;flex-shrink:0;}
+.stit-lg{font-weight:800;font-size:24px;line-height:1.3;}
+.stxt-lg{font-size:18px;color:${C.text};line-height:1.65;white-space:pre-wrap;margin-top:14px;}
+.audio-btn-lg{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px;margin-top:18px;border-radius:16px;border:1px solid ${C.blue};background:${C.blueBg};color:${C.blue};font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;font-weight:800;font-size:16.5px;cursor:pointer;}
+.audio-btn-lg:active{transform:scale(.98);}
+.vitals-row{display:flex;gap:10px;margin-top:18px;}
+.vitals-btn-lg{flex:1;padding:20px 12px;border-radius:16px;border:2px solid;font-weight:800;font-size:16.5px;cursor:pointer;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;}
+.step-badge{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:20px;font-weight:800;font-size:13.5px;margin-top:18px;}
+.swipe-nav{display:flex;align-items:stretch;gap:8px;padding:10px 16px 12px;flex-shrink:0;}
+.swipe-zone{flex:1;display:flex;align-items:center;gap:6px;padding:13px 14px;border-radius:14px;background:${C.card};border:1px solid ${C.border};cursor:pointer;font-weight:700;font-size:13.5px;color:${C.textSec};min-height:48px;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;}
+.swipe-zone.next{justify-content:flex-end;text-align:right;color:${C.text};}
+.swipe-zone .chev{font-size:22px;font-weight:900;color:${C.blue};line-height:1;}
+.back-lg{width:50px;height:50px;font-size:23px;}
+.hdr-t-lg{font-size:19px;}
 `;
 
 /* ══════════════════════════ PROTOCOLS ══════ */
@@ -1948,17 +1971,23 @@ function useMetronome() {
     if (navigator.vibrate) navigator.vibrate(0);
   }, []);
 
-  const start = useCallback(async () => {
+  const start = useCallback(() => {
     try {
-      // Prime vibration BEFORE any await — must stay in user-gesture call stack
+      // Prime vibration BEFORE any async work — must stay in user-gesture call stack
       if (navigator.vibrate) navigator.vibrate(1);
       const ctx = getCtx();
-      if (ctx.state === 'suspended') await ctx.resume();
-      activeRef.current = true;
-      nextRef.current = ctx.currentTime + 0.05;
-      setActive(true);
-      startVibration();
-      tick();
+      const proceed = function() {
+        activeRef.current = true;
+        nextRef.current = ctx.currentTime + 0.05;
+        setActive(true);
+        startVibration();
+        tick();
+      };
+      if (ctx.state === 'suspended') {
+        ctx.resume().then(proceed).catch(function(e) {});
+      } else {
+        proceed();
+      }
     } catch(e) {}
   }, [getCtx, tick, startVibration]);
 
@@ -1978,6 +2007,10 @@ function useMetronome() {
     clearTimeout(timerRef.current);
     clearInterval(vibIntervalRef.current);
     if (navigator.vibrate) navigator.vibrate(0);
+    if (ctxRef.current) {
+      try { ctxRef.current.close(); } catch (e) {}
+      ctxRef.current = null;
+    }
   }, []);
 
   return { active, toggle, start, stop };
@@ -1986,16 +2019,27 @@ function useMetronome() {
 /* ══════════════════ WAKE LOCK HOOK ══════ */
 function useWakeLock() {
   const lockRef = useRef(null);
-  const acquire = useCallback(async () => {
+  const acquire = useCallback(() => {
     try {
       if ('wakeLock' in navigator) {
-        lockRef.current = await navigator.wakeLock.request('screen');
+        navigator.wakeLock.request('screen').then(function(lock) {
+          lockRef.current = lock;
+        }).catch(function(e) {});
       }
     } catch (e) {}
   }, []);
   const release = useCallback(() => {
     if (lockRef.current) {
-      lockRef.current.release();
+      try { lockRef.current.release(); } catch (e) {}
+      lockRef.current = null;
+    }
+  }, []);
+  // Страховка: если компонент размонтируется (например, ErrorBoundary поймал
+  // ошибку и снял дерево), а release() не был вызван явно из экрана — лок
+  // всё равно снимается и экран не остаётся принудительно включённым.
+  useEffect(() => () => {
+    if (lockRef.current) {
+      try { lockRef.current.release(); } catch (e) {}
       lockRef.current = null;
     }
   }, []);
@@ -2011,20 +2055,24 @@ function useFlashlight() {
   const streamRef = useRef(null);
   const trackRef = useRef(null);
 
-  const toggle = useCallback(async () => {
+  const toggle = useCallback(() => {
     try {
       if (!on) {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-        const track = stream.getVideoTracks()[0];
-        await track.applyConstraints({ advanced: [{ torch: true }] });
-        streamRef.current = stream;
-        trackRef.current = track;
-        setOn(true);
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function(stream) {
+          const track = stream.getVideoTracks()[0];
+          return track.applyConstraints({ advanced: [{ torch: true }] }).then(function() {
+            streamRef.current = stream;
+            trackRef.current = track;
+            setOn(true);
+          });
+        }).catch(function(e) { setOn(false); });
       } else {
-        if (trackRef.current) { await trackRef.current.applyConstraints({ advanced: [{ torch: false }] }); }
-        if (streamRef.current) { streamRef.current.getTracks().forEach(t => t.stop()); }
-        streamRef.current = null; trackRef.current = null;
-        setOn(false);
+        const p = trackRef.current ? trackRef.current.applyConstraints({ advanced: [{ torch: false }] }) : Promise.resolve();
+        p.then(function() {
+          if (streamRef.current) { streamRef.current.getTracks().forEach(function(t) { t.stop(); }); }
+          streamRef.current = null; trackRef.current = null;
+          setOn(false);
+        }).catch(function(e) { setOn(false); });
       }
     } catch(e) { setOn(false); }
   }, [on]);
@@ -2052,20 +2100,56 @@ function sanitizeForSpeech(text) {
 }
 function useVoice() {
   const [enabled, setEnabled] = useState(true);
+  const [supported, setSupported] = useState(true);
+  // Мост для нативной WebView-обёртки (Android 7 и т.п.), где встроенный
+  // speechSynthesis нередко отсутствует или не находит голосов. Обёртка
+  // может внедрить window.AndroidTTS через addJavascriptInterface — тогда
+  // используем системный Android TextToSpeech вместо Web Speech API.
+  const hasNativeBridge = typeof window !== 'undefined' && window.AndroidTTS && typeof window.AndroidTTS.speak === 'function';
+
+  // На части Android 7 устройств (особенно без Google TTS или без
+  // скачанного русского языкового пакета) speechSynthesis.speak() ничего
+  // не делает молча, без ошибки. Проверяем реальное наличие голосов, чтобы
+  // не показывать кнопки озвучки, которые ничего не сделают.
+  useEffect(() => {
+    if (hasNativeBridge) { setSupported(true); return; }
+    if (!window.speechSynthesis) { setSupported(false); return; }
+    const check = () => {
+      try {
+        const voices = window.speechSynthesis.getVoices();
+        setSupported(!!(voices && voices.length));
+      } catch (e) { setSupported(false); }
+    };
+    check();
+    window.speechSynthesis.addEventListener('voiceschanged', check);
+    return () => window.speechSynthesis.removeEventListener('voiceschanged', check);
+  }, [hasNativeBridge]);
+
   const speak = useCallback(text => {
-    if (!enabled || !window.speechSynthesis) return;
+    if (!enabled) return;
     const clean = sanitizeForSpeech(text);
     if (!clean) return;
+    if (hasNativeBridge) {
+      try { window.AndroidTTS.speak(clean); } catch (e) {}
+      return;
+    }
+    if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(clean);
     u.lang = 'ru-RU';
     u.rate = 0.9;
     window.speechSynthesis.speak(u);
-  }, [enabled]);
+  }, [enabled, hasNativeBridge]);
+  // Если приложение размонтируется посреди озвучки (например, после ошибки
+  // в ErrorBoundary), не даём голосу продолжать говорить "в пустоту".
+  useEffect(() => () => {
+    if (!hasNativeBridge && window.speechSynthesis) window.speechSynthesis.cancel();
+  }, [hasNativeBridge]);
   return {
     enabled,
     setEnabled,
-    speak
+    speak,
+    supported
   };
 }
 
@@ -2152,7 +2236,7 @@ function Timer({
       color: done ? C.red : run ? C.green : C.text,
       fontSize: 28
     }
-  }, `${m}:${s.toString().padStart(2, "0")}`), /*#__PURE__*/React.createElement("div", {
+  }, `${m}:${s < 10 ? "0" + s : s}`), /*#__PURE__*/React.createElement("div", {
     className: "tmrl"
   }, done ? "✓ Время вышло!" : label || "Таймер"), cpr && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -2191,6 +2275,10 @@ function Timer({
     onClick: () => setShowCounter(true)
   }, "🤲 Открыть счётчик компрессий на весь экран"));
 }
+// Мемоизация: Timer держит собственное состояние и зависит только от
+// (seconds, label, cpr, speak) — не нужно перерисовывать его при каждом
+// изменении родительского App (например, при добавлении записи в eventLog).
+Timer = React.memo(Timer);
 
 /* ══════════════════ РЕАНИМАЦИЯ COUNTER ══════════ */
 function CprCounter({ onClose, metro }) {
@@ -2331,6 +2419,8 @@ function MiniAnimation({ type }) {
     className: "anim-caption"
   }, cfg.caption));
 }
+// Мемоизация: чисто презентационный компонент, зависит только от `type`.
+MiniAnimation = React.memo(MiniAnimation);
 
 /* ══════════════════ SAVED CASES (localStorage) ═══════════ */
 const CASES_LS_KEY = "smena_saved_cases_v1";
@@ -2466,7 +2556,7 @@ function EventLog({ log, onAdd, onClose, onHome }) {
     style: { position: 'fixed', inset: 0, background: C.bg, zIndex: 200, display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto' }
   },
     /*#__PURE__*/React.createElement("div", { className: "hdr" },
-      /*#__PURE__*/React.createElement("button", { className: "back", onClick: onClose }, "←"),
+      /*#__PURE__*/React.createElement("button", { className: "back", "aria-label": "Назад", onClick: onClose }, "←"),
       /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, "📋 Журнал действий"),
       onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
       /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
@@ -2481,10 +2571,10 @@ function EventLog({ log, onAdd, onClose, onHome }) {
         }, e.icon + ' ' + e.label))
       )
     ),
-    /*#__PURE__*/React.createElement("div", { style: { flex: 1, overflowY: 'auto', padding: '12px 16px' } },
+    /*#__PURE__*/React.createElement("div", { style: { flex: 1, overflowY: 'auto', padding: '12px 16px' }, role: "log", "aria-live": "polite" },
       log.length === 0
         ? /*#__PURE__*/React.createElement("div", { style: { textAlign: 'center', color: C.textMuted, padding: '40px 0', fontSize: 14 } }, "Нет действий. Подтверждайте шаги алгоритма или нажмите кнопку выше.")
-        : [...log].reverse().map((ev, i) => /*#__PURE__*/React.createElement("div", {
+        : log.slice().reverse().map((ev, i) => /*#__PURE__*/React.createElement("div", {
             key: i,
             style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: C.card, borderRadius: 10, marginBottom: 8, border: `1px solid ${C.border}` }
           },
@@ -2526,7 +2616,7 @@ function DoseCalc({ onClose, onHome }) {
     style: { position: 'fixed', inset: 0, background: C.bg, zIndex: 200, display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto' }
   },
     /*#__PURE__*/React.createElement("div", { className: "hdr" },
-      /*#__PURE__*/React.createElement("button", { className: "back", onClick: onClose }, "←"),
+      /*#__PURE__*/React.createElement("button", { className: "back", "aria-label": "Назад", onClick: onClose }, "←"),
       /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, "💊 Калькулятор доз"),
       onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
       /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
@@ -2619,7 +2709,7 @@ function HandoffCard({ state, proto, log, onClose, onSaveCase, onHome }) {
   }, /*#__PURE__*/React.createElement("div", {
     className: "hdr"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "back",
+    className: "back", "aria-label": "Назад",
     onClick: onClose
   }, "←"), /*#__PURE__*/React.createElement("div", {
     className: "hdr-t"
@@ -2689,7 +2779,7 @@ function SavedCasesScreen({ cases, onClose, onDelete, onHome }) {
     return /*#__PURE__*/React.createElement("div", {
       style: { position: 'fixed', inset: 0, background: C.bg, zIndex: 230, display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto' }
     }, /*#__PURE__*/React.createElement("div", { className: "hdr" },
-      /*#__PURE__*/React.createElement("button", { className: "back", onClick: () => setOpenId(null) }, "←"),
+      /*#__PURE__*/React.createElement("button", { className: "back", "aria-label": "Назад", onClick: () => setOpenId(null) }, "←"),
       /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, opened.name || "Карточка"),
       onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
       /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
@@ -2724,14 +2814,14 @@ function SavedCasesScreen({ cases, onClose, onDelete, onHome }) {
   return /*#__PURE__*/React.createElement("div", {
     style: { position: 'fixed', inset: 0, background: C.bg, zIndex: 230, display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto' }
   }, /*#__PURE__*/React.createElement("div", { className: "hdr" },
-    /*#__PURE__*/React.createElement("button", { className: "back", onClick: onClose }, "←"),
+    /*#__PURE__*/React.createElement("button", { className: "back", "aria-label": "Назад", onClick: onClose }, "←"),
     /*#__PURE__*/React.createElement("div", { className: "hdr-t" }, "📁 Мои карточки"),
     onHome && /*#__PURE__*/React.createElement("button", { className: "home-btn", onClick: onHome }, "🏠 В начало"),
     /*#__PURE__*/React.createElement("a", { href: "tel:112", className: "e112" }, "📞 112")
   ), /*#__PURE__*/React.createElement("div", { style: { flex: 1, overflowY: 'auto', padding: '12px 16px' } },
     cases.length === 0
       ? /*#__PURE__*/React.createElement("div", { style: { textAlign: 'center', color: C.textMuted, padding: '40px 0', fontSize: 14 } }, "Пока нет сохранённых карточек.\nНажмите «💾 Сохранить карточку» на экране «Передача бригаде».")
-      : [...cases].sort((a, b) => b.savedAt - a.savedAt).map(c => /*#__PURE__*/React.createElement("button", {
+      : cases.slice().sort((a, b) => b.savedAt - a.savedAt).map(c => /*#__PURE__*/React.createElement("button", {
           key: c.id,
           onClick: () => setOpenId(c.id),
           style: { display: 'block', width: '100%', textAlign: 'left', background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: '12px 14px', marginBottom: 8, cursor: 'pointer', fontFamily: "-apple-system,'Segoe UI',Roboto,system-ui,sans-serif" }
@@ -2755,7 +2845,7 @@ function HelperMode({ onClose, onAdd, onHome }) {
   ];
   const toggle = task => {
     setAssigned(prev => {
-      const next = { ...prev, [task.id]: !prev[task.id] };
+      const next = Object.assign({}, prev, { [task.id]: !prev[task.id] });
       if (!prev[task.id]) onAdd("👥 Назначен помощник: " + task.title);
       return next;
     });
@@ -2765,7 +2855,7 @@ function HelperMode({ onClose, onAdd, onHome }) {
   }, /*#__PURE__*/React.createElement("div", {
     className: "hdr"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "back",
+    className: "back", "aria-label": "Назад",
     onClick: onClose
   }, "←"), /*#__PURE__*/React.createElement("div", {
     className: "hdr-t"
@@ -2832,7 +2922,7 @@ function App() {
   const skipNextPersistRef = useRef(!!pendingResume);
   const saveCase = (name, text) => {
     setSavedCases(prev => {
-      const next = [...prev, { id: Date.now() + '_' + Math.random().toString(36).slice(2, 8), name, text, savedAt: Date.now() }];
+      const next = prev.concat([{ id: Date.now() + '_' + Math.random().toString(36).slice(2, 8), name, text, savedAt: Date.now() }]);
       persistSavedCases(next);
       return next;
     });
@@ -2844,16 +2934,9 @@ function App() {
       return next;
     });
   };
-  const upd = o => set(prev => ({
-    ...prev,
-    ...o
-  }));
+  const upd = o => set(prev => Object.assign({}, prev, o));
   const go = (screen, extra = {}) => set(prev => {
-    const next = {
-      ...prev,
-      screen,
-      ...extra
-    };
+    const next = Object.assign({}, prev, { screen: screen }, extra);
     if ((screen === "diagnosis" || screen === "steps") && !next.caseStartedAt) {
       next.caseStartedAt = Date.now();
     }
@@ -2871,10 +2954,10 @@ function App() {
     }
     return next;
   });
-  const addEvent = text => setEventLog(prev => [...prev, { text, ts: Date.now() }]);
+  const addEvent = text => setEventLog(prev => prev.concat([{ text: text, ts: Date.now() }]));
   const confirmAction = (key, text) => {
     if (confirmedActions[key]) return;
-    setConfirmedActions(prev => ({ ...prev, [key]: true }));
+    setConfirmedActions(prev => Object.assign({}, prev, { [key]: true }));
     addEvent("✅ Выполнено: " + text);
   };
   const resumeCase = () => {
@@ -2945,10 +3028,10 @@ function App() {
       }
       return m.steps || [];
     }
-    return proto.basic?.steps || [];
+    return (proto.basic && proto.basic.steps) || [];
   };
-  const needsRhythm = () => s.trainingLevel === "medical" && proto && proto.medical?.shockable && !s.rhythmType;
-  const isCardiacArr = () => proto && ["cardiac_arrest", "cardiac_arrest_pediatric", "cardiac_arrest_pregnancy"].includes(proto.id);
+  const needsRhythm = () => s.trainingLevel === "medical" && proto && proto.medical && proto.medical.shockable && !s.rhythmType;
+  const isCardiacArr = () => proto && ["cardiac_arrest", "cardiac_arrest_pediatric", "cardiac_arrest_pregnancy"].indexOf(proto.id) !== -1;
   const hlClass = {
     r: "hr",
     y: "hy",
@@ -2974,16 +3057,30 @@ function App() {
     setShowSaved(false);
     go("welcome");
   };
-  // Auto-scroll to the current (first unconfirmed) step whenever it changes,
-  // so a stressed user doesn't have to hunt for "what do I do now".
-  const currentStepRef = useRef(null);
+  // Full-screen, one-step-at-a-time step viewer. `stepIndex` (0-based) is
+  // the step currently shown full-screen; index === steps.length is the
+  // closing "all done" page. Swiping/tapping toward the next step auto-
+  // confirms the step being left (replaces the old "Подтвердить выполнение"
+  // button); swiping/tapping back just navigates, no side effects.
+  const [stepIndex, setStepIndex] = useState(0);
+  const dragPxRef = useRef(0);
+  const [dragPx, setDragPxState] = useState(0);
+  const setDragPx = v => { dragPxRef.current = v; setDragPxState(v); };
+  const [stepDragging, setStepDragging] = useState(false);
+  const stepDragStartRef = useRef({ x: 0, y: 0, w: 1 });
+  // Whenever a case (re)starts or the rhythm branch is picked, jump to the
+  // first not-yet-confirmed step — same intent as the old auto-scroll-to-
+  // current-step, adapted to a paginated view. `confirmedActions` is
+  // deliberately left out of the deps so this doesn't fight the user's own
+  // swiping back and forth through the steps.
   useEffect(() => {
-    if (s.screen === "steps" && currentStepRef.current) {
-      try {
-        currentStepRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-      } catch (e) {}
-    }
-  }, [s.screen, s.protocolId, s.rhythmType, confirmedActions]);
+    if (s.screen !== "steps") return;
+    const stepsNow = getSteps() || [];
+    if (!stepsNow.length) { setStepIndex(0); return; }
+    const idx = stepsNow.findIndex(st => !confirmedActions[[proto && proto.id, s.trainingLevel, s.rhythmType || "basic", st.id].join(":")]);
+    setStepIndex(idx === -1 ? stepsNow.length : idx);
+    setDragPx(0);
+  }, [s.screen, s.protocolId, s.trainingLevel, s.rhythmType]);
   if (showLog) return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement(EventLog, {
     log: eventLog,
     onAdd: addEvent,
@@ -3164,9 +3261,7 @@ function App() {
     onClick: () => go("drone_attack")
   }, "💥 Атака беспилотника"), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(2,1fr)",
-      gap: 8,
+      display: "flex",
       marginTop: 10
     }
   }, /*#__PURE__*/React.createElement("button", {
@@ -3175,7 +3270,8 @@ function App() {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      gap: 2,
+      flex: 1,
+      marginRight: 4,
       background: C.orange,
       color: "#fff",
       border: "none",
@@ -3209,7 +3305,8 @@ function App() {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      gap: 2,
+      flex: 1,
+      marginLeft: 4,
       background: C.orange,
       color: "#fff",
       border: "none",
@@ -3290,7 +3387,7 @@ function App() {
     const droneStep = s.droneStep || "safety";
     const droneWho = s.droneWho || null;
     const dronePatientType = s.dronePatientType || "adult";
-    const dgo = (step, extra = {}) => go("drone_attack", { droneStep: step, ...extra });
+    const dgo = (step, extra = {}) => go("drone_attack", Object.assign({ droneStep: step }, extra));
 
     const openDroneProtocol = protocolId => go("steps", {
       protocolId,
@@ -3303,15 +3400,22 @@ function App() {
     const droneBack = () => {
       if (droneStep === "who") return dgo("safety");
       if (droneStep === "patientType") return dgo("who");
-      if (droneStep === "injury") return droneWho === "self" ? dgo("who") : dgo("patientType");
+      if (droneStep === "abcde") return droneWho === "self" ? dgo("who") : dgo("patientType");
+      if (droneStep === "injury") return dgo("abcde");
       if (droneStep === "selfNote") return dgo("injury");
       return go("welcome");
     };
 
+    const speakBtn = text => voice.enabled && voice.supported && /*#__PURE__*/React.createElement("button", {
+      style: { background: "none", border: "none", cursor: "pointer", fontSize: 17, padding: "6px 0", opacity: .6, display: "block", marginTop: 2 },
+      title: "Озвучить",
+      onClick: () => voice.speak(text)
+    }, "🔊 Озвучить");
+
     const droneHeader = (title, sub) => /*#__PURE__*/React.createElement("div", {
       className: "hdr"
     }, /*#__PURE__*/React.createElement("button", {
-      className: "back",
+      className: "back", "aria-label": "Назад",
       onClick: droneBack
     }, "←"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: "hdr-t"
@@ -3325,13 +3429,13 @@ function App() {
     let droneBody;
 
     if (droneStep === "who") {
-      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Кому оказываете помощь?", "Шаг 2 из 3"), /*#__PURE__*/React.createElement("div", {
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Кому оказываете помощь?", "Шаг 2 из 4"), /*#__PURE__*/React.createElement("div", {
         className: "body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "opts"
       }, /*#__PURE__*/React.createElement("button", {
         className: "opt",
-        onClick: () => dgo("injury", { droneWho: "self" })
+        onClick: () => dgo("abcde", { droneWho: "self" })
       }, /*#__PURE__*/React.createElement("div", {
         className: "opt-ico"
       }, "🙋"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -3347,18 +3451,7 @@ function App() {
         className: "opt-lbl"
       }, "Другому человеку"), /*#__PURE__*/React.createElement("div", {
         className: "opt-sub"
-      }, "Взрослый, ребёнок или беременная")))), /*#__PURE__*/React.createElement("button", {
-        className: "confirm",
-        style: { marginTop: 14 },
-        onClick: () => go("drone_attack", { droneShowAbcde: !s.droneShowAbcde })
-      }, s.droneShowAbcde ? "Скрыть стандартные действия ▲" : "ℹ️ Стандартные действия для поддержания жизни ▼"), s.droneShowAbcde && /*#__PURE__*/React.createElement("div", {
-        className: "banner",
-        style: { marginTop: 10 }
-      }, /*#__PURE__*/React.createElement("span", {
-        style: { fontSize: 20 }
-      }, "🫀"), /*#__PURE__*/React.createElement("div", {
-        className: "stxt"
-      }, "Последовательность ABCDE:\nA — Airway (дыхательные пути)\nB — Breathing (дыхание)\nC — Circulation (кровообращение)\nD — Disability (неврологический статус)\nE — Extremities/Exposure (конечности и внешние воздействия)\n\nГлавные цели немедленных мер:\n1. Восстановить и поддерживать проходимость верхних дыхательных путей\n2. Поддерживать дыхание\n3. Остановить кровотечение и снизить риск шока\n\nДополнительно на месте: осмотр на ранения и переломы.\nДополнительные меры: сохраняйте тепло пострадавшего, компенсируйте потерю жидкости, окажите психологическую поддержку."))));
+      }, "Взрослый или ребёнок"))))));
     } else if (droneStep === "patientType") {
       const ptOpts = [{
         v: "adult",
@@ -3368,24 +3461,93 @@ function App() {
         v: "child",
         ico: "🧒",
         l: "Ребёнок"
-      }, {
-        v: "pregnant",
-        ico: "🤰",
-        l: "Беременная"
       }];
-      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Кто пострадавший?", "Шаг 2 из 3"), /*#__PURE__*/React.createElement("div", {
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Кто пострадавший?", "Шаг 2 из 4"), /*#__PURE__*/React.createElement("div", {
         className: "body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "opts"
       }, ptOpts.map(o => /*#__PURE__*/React.createElement("button", {
         key: o.v,
         className: "opt",
-        onClick: () => dgo("injury", { dronePatientType: o.v })
+        onClick: () => dgo("abcde", { dronePatientType: o.v })
       }, /*#__PURE__*/React.createElement("div", {
         className: "opt-ico"
       }, o.ico), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
         className: "opt-lbl"
       }, o.l)))))));
+    } else if (droneStep === "abcde") {
+      if (droneWho === "self") {
+        // Полный алгоритм ABCDE не подходит для самопомощи: нельзя проверить
+        // у себя пульс/дыхание и начать себе реанимацию (пункт C), и нет
+        // смысла опрашивать себя об имени и дате (пункт D). Вместо этого —
+        // самоосмотр, перенесённый сюда с прежнего шага 4.
+        const selfExamText = "Осмотрите себя, по возможности оголив тело: наличие крови, болезненные места, изменение формы тела/конечности, нарушение подвижности.";
+        droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Осмотрите себя", "Шаг 3 из 4"), /*#__PURE__*/React.createElement("div", {
+          className: "body"
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "banner"
+        }, /*#__PURE__*/React.createElement("span", {
+          style: { fontSize: 20 }
+        }, "🔍"), /*#__PURE__*/React.createElement("div", {
+          className: "stxt"
+        }, selfExamText)), speakBtn(selfExamText), /*#__PURE__*/React.createElement("button", {
+          className: "btn btn-red",
+          style: { marginTop: 18 },
+          onClick: () => dgo("injury")
+        }, "Продолжить →")));
+      } else {
+      const reanimProtocolId = droneWho === "other" && dronePatientType === "child" ? "cardiac_arrest_pediatric" : "cardiac_arrest";
+      const letters = [{
+        l: "A",
+        color: C.blue,
+        title: "Airway — проходимость дыхательных путей",
+        text: "Убедитесь, что рот и дыхательные пути свободны: нет крови, рвотных масс, инородных предметов. При необходимости очистите рот пальцем, обёрнутым тканью."
+      }, {
+        l: "B",
+        color: C.blue,
+        title: "Breathing — обеспечение дыхания",
+        text: "Проверьте, дышит ли пострадавший: смотрите на движение груди, слушайте и чувствуйте дыхание (10 секунд)."
+      }, {
+        l: "C",
+        color: C.red,
+        title: "Circulation — обеспечение кровообращения",
+        text: "Проверьте пульс и остановите видимое кровотечение. Если пульса и дыхания нет — немедленно начинайте реанимацию.",
+        link: true
+      }, {
+        l: "D",
+        color: C.orange,
+        title: "Disability — сознание",
+        text: "Опросите пострадавшего: спросите имя, что случилось, какой сегодня день — и оцените, как он отвечает: ясно, спутанно, только на боль или не реагирует совсем."
+      }, {
+        l: "E",
+        color: C.blue,
+        title: "Exposure — конечности и внешние воздействия",
+        text: "Осмотрите конечности на предмет повреждений. Учтите внешние условия — жару, холод, дождь, снег — и при необходимости укройте или переместите пострадавшего в более безопасные условия."
+      }];
+      const fullSpeechText = "Стандартные действия для поддержания жизни. " + letters.map(x => x.l + ". " + x.title + ". " + x.text).join(" ");
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Стандартные действия для поддержания жизни", "Шаг 3 из 4 — ABCDE"), /*#__PURE__*/React.createElement("div", {
+        className: "body"
+      }, speakBtn(fullSpeechText), letters.map(item => /*#__PURE__*/React.createElement("div", {
+        key: item.l,
+        style: { display: "flex", gap: 12, alignItems: "flex-start", padding: "12px 0", borderBottom: `1px solid ${C.border}` }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: { width: 32, height: 32, borderRadius: "50%", background: item.color, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 15, flexShrink: 0 }
+      }, item.l), /*#__PURE__*/React.createElement("div", {
+        style: { flex: 1 }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: { fontWeight: 800, fontSize: 15, marginBottom: 3 }
+      }, item.title), /*#__PURE__*/React.createElement("div", {
+        style: { fontSize: 14, lineHeight: 1.6, color: C.textSec }
+      }, item.text), item.link && /*#__PURE__*/React.createElement("button", {
+        className: "confirm",
+        style: { marginTop: 8, background: C.redBg, borderColor: C.red, color: C.red },
+        onClick: () => openDroneProtocol(reanimProtocolId)
+      }, "→ Открыть протокол реанимации")))), /*#__PURE__*/React.createElement("button", {
+        className: "btn btn-red",
+        style: { marginTop: 18 },
+        onClick: () => dgo("injury")
+      }, "Продолжить →")));
+      }
     } else if (droneStep === "selfNote") {
       droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Ранение груди, тела, шеи, головы", "Помощь себе"), /*#__PURE__*/React.createElement("div", {
         className: "body"
@@ -3436,17 +3598,10 @@ function App() {
         l: "Дефект на груди и нехватка воздуха",
         sub: "Протокол пневмоторакса"
       }];
-      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader(droneWho === "self" ? "Помощь себе" : "Помощь пострадавшему", "Шаг 3 из 3 — что произошло?"), /*#__PURE__*/React.createElement("div", {
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader(droneWho === "self" ? "Помощь себе" : "Помощь пострадавшему", "Шаг 4 из 4 — что произошло?"), /*#__PURE__*/React.createElement("div", {
         className: "body"
-      }, droneWho === "self" && /*#__PURE__*/React.createElement("div", {
-        className: "banner"
-      }, /*#__PURE__*/React.createElement("span", {
-        style: { fontSize: 20 }
-      }, "🔍"), /*#__PURE__*/React.createElement("div", {
-        className: "stxt"
-      }, "Осмотрите себя, по возможности оголив тело: наличие крови, болезненные места, изменение формы тела/конечности, нарушение подвижности.")), /*#__PURE__*/React.createElement("div", {
-        className: "opts",
-        style: { marginTop: droneWho === "self" ? 12 : 0 }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "opts"
       }, items.map(o => /*#__PURE__*/React.createElement("button", {
         key: o.id,
         className: "opt",
@@ -3459,17 +3614,20 @@ function App() {
         className: "opt-sub"
       }, o.sub)))))));
     } else {
-      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Атака беспилотника", "Шаг 1 из 3 — безопасность"), /*#__PURE__*/React.createElement("div", {
+      const safetyText = "1) Безопасность. Убедитесь, что вам самому ничего не угрожает. Убедитесь, что место безопасно для оказания помощи. Переместитесь и/или переместите пострадавшего в безопасное место: уйдите с проезжей части, из-под завала, подальше от возможного повторного удара, из зоны задымления или открытого огня.";
+      droneBody = /*#__PURE__*/React.createElement(React.Fragment, null, droneHeader("Атака беспилотника", "Шаг 1 из 4 — безопасность"), /*#__PURE__*/React.createElement("div", {
         className: "body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "banner"
       }, /*#__PURE__*/React.createElement("span", {
-        style: { fontSize: 20 }
+        style: { fontSize: 22 }
       }, "⚠️"), /*#__PURE__*/React.createElement("div", {
-        className: "stxt"
-      }, "1) Безопасность:\n• Убедитесь, что вам самому ничего не угрожает\n• Убедитесь, что место безопасно для оказания помощи\n• При необходимости переместите пострадавшего в безопасное место")), /*#__PURE__*/React.createElement("button", {
+        style: { fontSize: 17, lineHeight: 1.8, color: C.textSec }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: { fontWeight: 800, fontSize: 18, color: C.text, marginBottom: 6 }
+      }, "1) Безопасность:"), "• Убедитесь, что вам самому ничего не угрожает", /*#__PURE__*/React.createElement("br", null), "• Убедитесь, что место безопасно для оказания помощи", /*#__PURE__*/React.createElement("br", null), "• Переместитесь и/или переместите пострадавшего в безопасное место (уйдите с проезжей части, из-под завала, подальше от возможного повторного удара, из зоны задымления или открытого огня и т.д.)")), speakBtn(safetyText), /*#__PURE__*/React.createElement("button", {
         className: "btn btn-red",
-        style: { marginTop: 6 },
+        style: { marginTop: 10 },
         onClick: () => dgo("who")
       }, "Продолжить →")));
     }
@@ -3507,7 +3665,7 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "hdr"
     }, /*#__PURE__*/React.createElement("button", {
-      className: "back",
+      className: "back", "aria-label": "Назад",
       onClick: () => go("welcome")
     }, "\u2190"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: "hdr-t"
@@ -3578,7 +3736,7 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "hdr"
     }, /*#__PURE__*/React.createElement("button", {
-      className: "back",
+      className: "back", "aria-label": "Назад",
       onClick: () => go("patient")
     }, "\u2190"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: "hdr-t"
@@ -3652,7 +3810,7 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "hdr"
     }, /*#__PURE__*/React.createElement("button", {
-      className: "back",
+      className: "back", "aria-label": "Назад",
       onClick: () => go("training")
     }, "\u2190"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: "hdr-t"
@@ -3725,7 +3883,7 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "hdr"
     }, /*#__PURE__*/React.createElement("button", {
-      className: "back",
+      className: "back", "aria-label": "Назад",
       onClick: () => go("symptoms", {
         qKey: "q1",
         protocolId: null,
@@ -3829,6 +3987,7 @@ function App() {
   }
 
   /* ─── STEPS ─── */
+  /* ─── STEPS (full-screen, one step at a time, swipeable) ─── */
   if (s.screen === "steps") {
     if (!proto) return null;
     const isMed = s.trainingLevel === "medical";
@@ -3836,17 +3995,79 @@ function App() {
     const steps = getSteps();
     if (!steps) return null;
     const actionKeyFor = st => [proto.id, s.trainingLevel, s.rhythmType || "basic", st.id].join(":");
-    const doneCount = steps.filter(st => confirmedActions[actionKeyFor(st)]).length;
     const totalStepsCount = steps.length;
-    const allDone = totalStepsCount > 0 && doneCount === totalStepsCount;
-    const firstUndone = steps.find(st => !confirmedActions[actionKeyFor(st)]);
-    const firstUndoneId = firstUndone ? firstUndone.id : null;
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
-      className: "screen"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "hdr"
+    const totalPages = totalStepsCount + 1; // +1 = closing "all done" page
+    const activeIndex = Math.max(0, Math.min(stepIndex, totalPages - 1));
+    const onClosingPage = activeIndex >= totalStepsCount;
+
+    const confirmAndAdvance = () => {
+      if (activeIndex < totalStepsCount) {
+        const step = steps[activeIndex];
+        if (step && !step.vitalsCheck) {
+          confirmAction(actionKeyFor(step), (step.icon ? step.icon + " " : "") + step.title);
+        }
+      }
+      setStepIndex(Math.min(activeIndex + 1, totalPages - 1));
+      setDragPx(0);
+    };
+    const goPrevStep = () => {
+      setStepIndex(Math.max(0, activeIndex - 1));
+      setDragPx(0);
+    };
+    const answerVitals = (step, ok) => {
+      const key = actionKeyFor(step);
+      const skipIds = ok ? (step.skipOnYes || []) : [];
+      setConfirmedActions(prev => {
+        const next = Object.assign({}, prev, { [key]: ok ? "Пульс/дыхание есть" : "Пульса/дыхания нет" });
+        skipIds.forEach(sid => {
+          next[[proto.id, s.trainingLevel, s.rhythmType || "basic", sid].join(":")] = "skipped";
+        });
+        return next;
+      });
+      addEvent(ok ? "💓 Возобновление пульса и дыхания" : "📊 Нет пульса");
+      let idx = activeIndex + 1;
+      while (idx < totalStepsCount && skipIds.indexOf(steps[idx].id) !== -1) idx++;
+      setStepIndex(Math.min(idx, totalPages - 1));
+      setDragPx(0);
+    };
+
+    const onStepTouchStart = e => {
+      const t = e.touches[0];
+      stepDragStartRef.current = { x: t.clientX, y: t.clientY, w: e.currentTarget.offsetWidth || 320 };
+      setStepDragging(true);
+    };
+    const onStepTouchMove = e => {
+      const t = e.touches[0];
+      const dx = t.clientX - stepDragStartRef.current.x;
+      const dy = t.clientY - stepDragStartRef.current.y;
+      if (Math.abs(dy) > Math.abs(dx) * 1.2) return;
+      const atStart = activeIndex === 0 && dx > 0;
+      const atEnd = activeIndex === totalPages - 1 && dx < 0;
+      setDragPx((atStart || atEnd) ? dx * 0.35 : dx);
+    };
+    const onStepTouchEnd = () => {
+      setStepDragging(false);
+      const width = stepDragStartRef.current.w || 320;
+      const threshold = Math.min(90, width * 0.2);
+      const v = dragPxRef.current;
+      if (v <= -threshold && activeIndex < totalPages - 1) {
+        confirmAndAdvance();
+      } else if (v >= threshold && activeIndex > 0) {
+        goPrevStep();
+      } else {
+        setDragPx(0);
+      }
+    };
+
+    const nextLabel = activeIndex + 1 < totalStepsCount ? `Шаг ${activeIndex + 2}` : "Готово";
+    const prevLabel = `Шаг ${activeIndex}`;
+    const trackShift = totalPages ? activeIndex / totalPages * 100 : 0;
+
+    const headerEl = /*#__PURE__*/React.createElement("div", {
+      className: "hdr",
+      style: { flexShrink: 0 }
     }, /*#__PURE__*/React.createElement("button", {
-      className: "back",
+      className: "back back-lg", "aria-label": "Назад",
       onClick: () => {
         wakeLock.release();
         if (s.fromDroneHub) {
@@ -3857,258 +4078,205 @@ function App() {
           go("diagnosis");
         }
       }
-    }, "\u2190"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      className: "hdr-t"
+    }, "←"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      className: "hdr-t hdr-t-lg"
     }, proto.title), /*#__PURE__*/React.createElement("div", {
       className: "hdr-s"
-    }, isMed ? "ACLS/PALS" : "базовая реанимация", " \xB7 AHA 2025")), /*#__PURE__*/React.createElement("button", {
+    }, isMed ? "ACLS/PALS" : "базовая реанимация", " · AHA 2025")), /*#__PURE__*/React.createElement("button", {
       className: "home-btn",
       onClick: goHome
-    }, "🏠 В начало"), /*#__PURE__*/React.createElement("a", {
-      href: "tel:112",
-      className: "e112"
-    }, "\uD83D\uDCDE 112")), /*#__PURE__*/React.createElement("div", {
-      style: {
-        padding: "10px 16px 0"
-      }
+    }, "🏠 В начало"));
+
+    const progressEl = /*#__PURE__*/React.createElement("div", {
+      style: { padding: "10px 16px 0", flexShrink: 0 }
     }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "baseline",
-        marginBottom: 6
-      }
+      style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }
     }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontSize: 12,
-        fontWeight: 800,
-        color: allDone ? C.green : C.textSec
-      }
-    }, allDone ? "✓ Все шаги выполнены" : `${doneCount} из ${totalStepsCount} выполнено`), !allDone && totalStepsCount > 0 && /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontSize: 11,
-        color: C.textMuted
-      }
-    }, `Осталось: ${totalStepsCount - doneCount}`)), /*#__PURE__*/React.createElement("div", {
-      style: {
-        height: 6,
-        background: C.border,
-        borderRadius: 3,
-        overflow: "hidden"
-      }
+      style: { fontSize: 12, fontWeight: 800, color: onClosingPage ? C.green : C.textSec }
+    }, onClosingPage ? "✓ Все шаги выполнены" : `Шаг ${activeIndex + 1} из ${totalStepsCount}`)), /*#__PURE__*/React.createElement("div", {
+      style: { height: 6, background: C.border, borderRadius: 3, overflow: "hidden" }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         height: "100%",
-        width: `${totalStepsCount ? doneCount / totalStepsCount * 100 : 0}%`,
-        background: allDone ? C.green : proto.color,
-        transition: "width .35s ease"
+        width: `${totalStepsCount ? Math.min(activeIndex, totalStepsCount) / totalStepsCount * 100 : 0}%`,
+        background: onClosingPage ? C.green : proto.color,
+        transition: "width .3s ease"
       }
-    }))), /*#__PURE__*/React.createElement("div", {
-      style: {
-        padding: "8px 16px 0"
-      }
+    })));
+
+    const toggleEl = /*#__PURE__*/React.createElement("div", {
+      style: { padding: "8px 16px 0", flexShrink: 0 }
     }, /*#__PURE__*/React.createElement("div", {
       className: "tog",
-      onClick: () => voice.setEnabled(e => !e)
+      style: voice.supported ? undefined : { opacity: .5, cursor: "default" },
+      role: "switch",
+      "aria-checked": voice.enabled && voice.supported,
+      "aria-label": "Голосовые подсказки",
+      tabIndex: voice.supported ? 0 : -1,
+      onClick: () => voice.supported && voice.setEnabled(e => !e),
+      onKeyDown: e => {
+        if (voice.supported && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          voice.setEnabled(v => !v);
+        }
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: "tog-ico"
-    }, "\uD83D\uDD0A"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    }, "🔊"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: "tog-lbl"
-    }, "\u0413\u043E\u043B\u043E\u0441\u043E\u0432\u044B\u0435 \u043F\u043E\u0434\u0441\u043A\u0430\u0437\u043A\u0438"), /*#__PURE__*/React.createElement("div", {
+    }, "Голосовые подсказки"), /*#__PURE__*/React.createElement("div", {
       className: "tog-sub"
-    }, "\u041E\u0437\u0432\u0443\u0447\u0438\u0432\u0430\u0442\u044C \u0442\u0430\u0439\u043C\u0435\u0440 \u0438 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438")), /*#__PURE__*/React.createElement("div", {
-      className: `tog-sw${voice.enabled ? " on" : ""}`
-    }))), /*#__PURE__*/React.createElement("div", {
-      className: "body"
-    }, mode?.intro && /*#__PURE__*/React.createElement("div", {
+    }, voice.supported ? "Озвучивать таймер и инструкции" : "Недоступно на этом устройстве (нет голосового движка)")), /*#__PURE__*/React.createElement("div", {
+      className: `tog-sw${voice.enabled && voice.supported ? " on" : ""}`
+    })));
+
+    const introEl = mode && mode.intro && /*#__PURE__*/React.createElement("div", {
       style: {
+        margin: "10px 16px 0",
         background: proto.color + "20",
         border: `1px solid ${proto.color}40`,
         borderRadius: 12,
         padding: 14,
-        marginBottom: 18,
         fontSize: 13.5,
         lineHeight: 1.55,
-        color: C.textSec
+        color: C.textSec,
+        flexShrink: 0
       }
     }, /*#__PURE__*/React.createElement("strong", {
-      style: {
-        color: proto.color
-      }
-    }, proto.icon, " ", isMed && s.rhythmType ? s.rhythmType === "shockable" ? "⚡ VF/pVT · " : "📉 Асистолия/PEA · " : "", proto.title), /*#__PURE__*/React.createElement("br", null), mode.intro), steps.map((step, i) => {
-      const actionKey = [proto.id, s.trainingLevel, s.rhythmType || "basic", step.id].join(":");
-      const actionText = (step.icon ? step.icon + " " : "") + step.title;
+      style: { color: proto.color }
+    }, proto.icon, " ", isMed && s.rhythmType ? (s.rhythmType === "shockable" ? "⚡ VF/pVT · " : "📉 Асистолия/PEA · ") : "", proto.title), /*#__PURE__*/React.createElement("br", null), mode.intro);
+
+    const slideEls = steps.map((step, i) => {
+      const actionKey = actionKeyFor(step);
       const done = !!confirmedActions[actionKey];
-      const isCurrent = !done && step.id === firstUndoneId;
+      const skipped = confirmedActions[actionKey] === "skipped";
       return /*#__PURE__*/React.createElement("div", {
-      key: step.id,
-      ref: isCurrent ? currentStepRef : undefined,
-      className: `step${step.hl ? " " + hlClass[step.hl] : ""}`,
-      style: {
-        opacity: done ? 0.55 : 1,
-        transition: "opacity .3s ease, box-shadow .3s ease",
-        boxShadow: isCurrent ? `0 0 0 2px ${proto.color}, 0 4px 16px ${proto.color}30` : "none"
+        key: step.id,
+        className: `step-slide${step.hl ? " " + hlClass[step.hl] : ""}`
+      }, /*#__PURE__*/React.createElement("div", {
+        style: { display: "flex", alignItems: "center", gap: 14 }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "snum-lg",
+        style: {
+          background: step.hl ? (step.hl === "r" ? C.red : step.hl === "y" ? C.yellow : step.hl === "g" ? C.green : step.hl === "o" ? C.orange : C.blue) : C.blue,
+          color: step.hl === "y" ? "#000" : "#fff"
+        }
+      }, i + 1), /*#__PURE__*/React.createElement("div", {
+        className: "stit-lg"
+      }, step.icon && /*#__PURE__*/React.createElement("span", {
+        style: { marginRight: 8 }
+      }, step.icon), step.title)), /*#__PURE__*/React.createElement("div", {
+        className: "stxt-lg"
+      }, step.text), step.anim && /*#__PURE__*/React.createElement(MiniAnimation, {
+        type: step.anim
+      }), voice.enabled && voice.supported && /*#__PURE__*/React.createElement("button", {
+        className: "audio-btn-lg",
+        "aria-label": "Озвучить этот шаг",
+        onClick: () => voice.speak((step.title || "") + ". " + (step.text || ""))
+      }, "🔊 Озвучить шаг"), step.timer && /*#__PURE__*/React.createElement(Timer, {
+        seconds: step.timer,
+        label: step.timerLabel,
+        cpr: step.cpr,
+        speak: null
+      }), step.vitalsCheck ? (done ? /*#__PURE__*/React.createElement("div", {
+        className: "step-badge",
+        style: { background: C.greenBg, color: C.green, border: `1px solid ${C.green}` }
+      }, "✓ " + confirmedActions[actionKey] + " — записано в журнал") : /*#__PURE__*/React.createElement("div", {
+        className: "vitals-row"
+      }, /*#__PURE__*/React.createElement("button", {
+        className: "vitals-btn-lg",
+        style: { background: C.greenBg, borderColor: C.green, color: C.green },
+        onClick: () => answerVitals(step, true)
+      }, "✅ Есть"), /*#__PURE__*/React.createElement("button", {
+        className: "vitals-btn-lg",
+        style: { background: C.redBg, borderColor: C.red, color: C.red },
+        onClick: () => answerVitals(step, false)
+      }, "❌ Нет"))) : skipped ? /*#__PURE__*/React.createElement("div", {
+        className: "step-badge",
+        style: { background: C.card, color: C.textSec, border: `1px solid ${C.border}` }
+      }, "⏭️ Пропущено — пульс/дыхание в норме") : done ? /*#__PURE__*/React.createElement("div", {
+        className: "step-badge",
+        style: { background: C.greenBg, color: C.green, border: `1px solid ${C.green}` }
+      }, "✓ Выполнено и записано в журнал") : null);
+    });
+
+    const closingSlideEl = /*#__PURE__*/React.createElement("div", {
+      className: "step-slide",
+      style: { textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100%" }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: { fontSize: 48, marginBottom: 12 }
+    }, "✅"), /*#__PURE__*/React.createElement("div", {
+      style: { fontWeight: 800, fontSize: 19, marginBottom: 6 }
+    }, "Продолжайте до прибытия скорой"), /*#__PURE__*/React.createElement("div", {
+      style: { fontSize: 12, color: C.textSec }
+    }, "© American Heart Association 2025"));
+
+    const viewportEl = /*#__PURE__*/React.createElement("div", {
+      className: "steps-viewport",
+      tabIndex: 0,
+      onTouchStart: onStepTouchStart,
+      onTouchMove: onStepTouchMove,
+      onTouchEnd: onStepTouchEnd,
+      onTouchCancel: onStepTouchEnd,
+      onKeyDown: e => {
+        if (e.key === "ArrowRight") confirmAndAdvance();
+        else if (e.key === "ArrowLeft") goPrevStep();
       }
     }, /*#__PURE__*/React.createElement("div", {
+      className: "steps-track",
       style: {
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 12
+        transform: `translateX(calc(${-trackShift}% + ${dragPx}px))`,
+        transition: stepDragging ? "none" : "transform .3s cubic-bezier(.22,.61,.36,1)"
       }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "snum",
-      style: {
-        background: step.hl ? step.hl === "r" ? C.red : step.hl === "y" ? C.yellow : step.hl === "g" ? C.green : step.hl === "o" ? C.orange : C.blue : C.blue,
-        color: step.hl === "y" ? "#000" : "#fff"
-      }
-    }, i + 1), /*#__PURE__*/React.createElement("div", {
-      style: {
-        flex: 1
-      }
-    }, isCurrent && /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "inline-block",
-        fontSize: 10.5,
-        fontWeight: 800,
-        letterSpacing: .3,
-        color: proto.color,
-        background: proto.color + "22",
-        border: `1px solid ${proto.color}55`,
-        borderRadius: 20,
-        padding: "2px 9px",
-        marginBottom: 6
-      }
-    }, "\u2192 \u0421\u0415\u0419\u0427\u0410\u0421"), /*#__PURE__*/React.createElement("div", {
-      className: "stit"
-    }, step.icon && /*#__PURE__*/React.createElement("span", {
-      style: {
-        marginRight: 6
-      }
-    }, step.icon), step.title), /*#__PURE__*/React.createElement("div", {
-      className: "stxt"
-    }, step.text), step.anim && /*#__PURE__*/React.createElement(MiniAnimation, {
-      type: step.anim
-    }), voice.enabled && /*#__PURE__*/React.createElement("button", {
-      style: {background:"none",border:"none",cursor:"pointer",fontSize:16,padding:"4px 0",opacity:.55,display:"block",marginTop:4},
-      title: "Озвучить",
-      onClick: () => voice.speak((step.title||"") + ". " + (step.text||""))
-    }, "\uD83D\uDD0A"), step.timer && /*#__PURE__*/React.createElement(Timer, {
-      seconds: step.timer,
-      label: step.timerLabel,
-      cpr: step.cpr,
-      speak: null
-    }), step.vitalsCheck ? (confirmedActions[actionKey] ? /*#__PURE__*/React.createElement("button", {
-      className: "confirm done"
-    }, "✓ " + confirmedActions[actionKey] + " — записано в журнал") : /*#__PURE__*/React.createElement("div", {
-      style: { display: "flex", gap: 8, marginTop: 12 }
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "confirm",
-      style: { flex: 1, marginTop: 0, background: C.greenBg, borderColor: C.green, color: C.green },
-      onClick: () => {
-        setConfirmedActions(prev => {
-          const next = { ...prev, [actionKey]: "Пульс/дыхание есть" };
-          (step.skipOnYes || []).forEach(sid => {
-            next[[proto.id, s.trainingLevel, s.rhythmType || "basic", sid].join(":")] = "skipped";
-          });
-          return next;
-        });
-        addEvent("💓 Возобновление пульса и дыхания");
-      }
-    }, "✅ Есть"), /*#__PURE__*/React.createElement("button", {
-      className: "confirm",
-      style: { flex: 1, marginTop: 0, background: C.redBg, borderColor: C.red, color: C.red },
-      onClick: () => {
-        setConfirmedActions(prev => ({ ...prev, [actionKey]: "Пульса/дыхания нет" }));
-        addEvent("📊 Нет пульса");
-      }
-    }, "❌ Нет"))) : /*#__PURE__*/React.createElement("button", {
-      className: `confirm${done ? " done" : ""}`,
-      onClick: () => confirmedActions[actionKey] === "skipped" ? null : confirmAction(actionKey, actionText)
-    }, confirmedActions[actionKey] === "skipped" ? "⏭️ Пропущено — пульс/дыхание в норме" : done ? "✓ Выполнено и записано в журнал" : "Подтвердить выполнение"))));
-    }), /*#__PURE__*/React.createElement("div", {
-      style: {
-        background: C.card,
-        borderRadius: 14,
-        padding: 18,
-        marginTop: 8,
-        textAlign: "center",
-        border: `1px solid ${C.border}`
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 26,
-        marginBottom: 8
-      }
-    }, "\u2705"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontWeight: 800,
-        marginBottom: 4
-      }
-    }, "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0430\u0439\u0442\u0435 \u0434\u043E \u043F\u0440\u0438\u0431\u044B\u0442\u0438\u044F \u0441\u043A\u043E\u0440\u043E\u0439"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 12,
-        color: C.textSec
-      }
-    }, "\xA9 American Heart Association 2025")), /*#__PURE__*/React.createElement("div", {
-      style: {
-        height: 16
-      }
-    })), /*#__PURE__*/React.createElement("div", {
+    }, slideEls, closingSlideEl));
+
+    const swipeNavEl = /*#__PURE__*/React.createElement("div", {
+      className: "swipe-nav"
+    }, activeIndex > 0 && /*#__PURE__*/React.createElement("button", {
+      className: "swipe-zone prev",
+      onClick: goPrevStep
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "chev"
+    }, "‹"), prevLabel), activeIndex < totalPages - 1 && /*#__PURE__*/React.createElement("button", {
+      className: "swipe-zone next",
+      onClick: confirmAndAdvance
+    }, nextLabel, /*#__PURE__*/React.createElement("span", {
+      className: "chev"
+    }, "›")));
+
+    const footerEl = /*#__PURE__*/React.createElement("div", {
       className: "footer"
     }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(3,1fr)",
-        gap: 8,
-        marginBottom: 8
-      }
+      style: { display: "flex", flexWrap: "wrap", marginLeft: -4, marginRight: -4, marginBottom: 4 }
     }, /*#__PURE__*/React.createElement("button", {
       className: "btn btn-sec",
-      style: {
-        fontSize: 12,
-        padding: "10px 6px",
-        minHeight: 44
-      },
+      style: { fontSize: 12, padding: "10px 6px", minHeight: 44, width: "calc(33.333% - 8px)", margin: "4px" },
       onClick: () => setShowLog(true)
     }, "Журнал", eventLog.length > 0 ? ` (${eventLog.length})` : ""), /*#__PURE__*/React.createElement("button", {
       className: "btn btn-sec",
-      style: {
-        fontSize: 12,
-        padding: "10px 6px",
-        minHeight: 44
-      },
+      style: { fontSize: 12, padding: "10px 6px", minHeight: 44, width: "calc(33.333% - 8px)", margin: "4px" },
       onClick: () => setShowHandoff(true)
-    }, "\uD83D\uDE91 \u041F\u0435\u0440\u0435\u0434\u0430\u0442\u044C"), /*#__PURE__*/React.createElement("button", {
+    }, "🚑 Передать"), /*#__PURE__*/React.createElement("button", {
       className: "btn btn-sec",
-      style: {
-        fontSize: 12,
-        padding: "10px 6px",
-        minHeight: 44
-      },
+      style: { fontSize: 12, padding: "10px 6px", minHeight: 44, width: "calc(33.333% - 8px)", margin: "4px" },
       onClick: () => setShowHelpers(true)
-    }, "\uD83D\uDC65 \u041F\u043E\u043C\u043E\u0449\u043D\u0438\u043A\u0438"), /*#__PURE__*/React.createElement("button", {
+    }, "👥 Помощники"), /*#__PURE__*/React.createElement("button", {
       className: "btn btn-sec",
-      style: {
-        fontSize: 12,
-        padding: "10px 6px",
-        minHeight: 44
-      },
+      style: { fontSize: 12, padding: "10px 6px", minHeight: 44, width: "calc(33.333% - 8px)", margin: "4px" },
       onClick: () => setShowDose(true)
-    }, "\uD83D\uDC8A \u0414\u043E\u0437\u044B"), /*#__PURE__*/React.createElement("button", {
+    }, "💊 Дозы"), /*#__PURE__*/React.createElement("button", {
       className: `btn ${flash.on ? "btn-grn" : "btn-sec"}`,
-      style: {
-        fontSize: 12,
-        padding: "10px 6px",
-        minHeight: 44
-      },
+      style: { fontSize: 12, padding: "10px 6px", minHeight: 44, width: "calc(33.333% - 8px)", margin: "4px" },
       onClick: flash.toggle
-    }, flash.on ? "\uD83D\uDD26 \u0412\u044B\u043A\u043B" : "\uD83D\uDD26 \u0424\u043E\u043D\u0430\u0440\u0438\u043A")), /*#__PURE__*/React.createElement("a", {
+    }, flash.on ? "🔦 Выкл" : "🔦 Фонарик")), /*#__PURE__*/React.createElement("a", {
       href: "tel:112",
       className: "btn btn-red",
-      style: {
-        marginBottom: 8
-      }
-    }, "\uD83D\uDCDE \u0417\u0432\u043E\u043D\u043E\u043A 112"))));
+      style: { marginBottom: 8 }
+    }, "📞 Звонок 112"));
+
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
+      className: "screen steps-screen-h"
+    }, headerEl, progressEl, toggleEl, introEl, viewportEl, swipeNavEl, footerEl));
   }
   return null;
 }
@@ -4197,6 +4365,39 @@ const loadingEl = document.getElementById('loading');
 if (loadingEl) loadingEl.remove();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(ErrorBoundary, null, /*#__PURE__*/React.createElement(App, null)));
+
+// Регистрация service worker для офлайн-доступа при раздаче по HTTPS-адресу.
+// Требования service worker: секретный контекст (https:// или localhost).
+// Если условия не выполняются (например, страница открыта как локальный файл
+// или по обычному http://) — регистрация просто не сработает,
+// само приложение при этом продолжает работать как обычно.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').then(function (reg) {
+      // Отслеживаем установку новой версии SW. Сознательно НЕ делаем
+      // авто-перезагрузку страницы при обновлении: если проводник в этот
+      // момент находится посреди шагов оказания первой помощи, внезапный
+      // reload недопустим. Новая версия просто активируется сама при
+      // следующем обычном открытии приложения.
+      reg.addEventListener('updatefound', function () {
+        var nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener('statechange', function () {
+          if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+            if (window.console && console.info) {
+              console.info('Смена: доступна новая версия, применится при следующем запуске.');
+            }
+          }
+        });
+      });
+    }).catch(function (e) {
+      // Регистрация недоступна (file://, http://, старый браузер и т.п.) —
+      // для пользователя ничего не меняем (офлайн-режим без SW работает
+      // штатно), но логируем причину, чтобы её можно было увидеть при отладке.
+      if (window.console && console.warn) console.warn('SW registration failed:', e);
+    });
+  });
+}
 
 </script>
 </body>
